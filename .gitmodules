@@ -1,0 +1,24 @@
+[submodule "pack/vendor/vim-orgmode"]
+	path = pack/vendor/start/vim-orgmode
+	url = https://github.com/jceb/vim-orgmode
+[submodule "pack/vendor/nerdtree"]
+	path = pack/vendor/start/nerdtree
+	url = https://github.com/scrooloose/nerdtree
+[submodule "pack/vendor/powerline"]
+	path = pack/vendor/start/powerline
+	url = https://github.com/powerline/powerline
+[submodule "pack/vendor/vim-better-whitespace"]
+	path = pack/vendor/start/vim-better-whitespace
+	url = https://github.com/ntpeters/vim-better-whitespace
+[submodule "pack/vendor/vim-fugitive"]
+	path = pack/vendor/start/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive
+[submodule "pack/vendor/molokai"]
+	path = pack/vendor/start/molokai
+	url = https://github.com/tomasr/molokai
+[submodule "pack/vendor/vim-markdown-folding"]
+	path = pack/vendor/start/vim-markdown-folding
+	url = https://github.com/nelstrom/vim-markdown-folding
+[submodule "pack/vendor/vim-speeddating"]
+	path = pack/vendor/start/vim-speeddating
+	url = https://github.com/tpope/vim-speeddating

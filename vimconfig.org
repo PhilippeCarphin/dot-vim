@@ -1,56 +1,61 @@
 #+TITLE: Vimrc file
-#+PROPERTY: header-args:vimrc :tangle ~/.vim/vimrc :results none
+#+PROPERTY: header-args:vimrc :tangle vimrc :results none
 
 * Be iMproved
 
 #+begin_src vimrc
 set nocompatible              " be iMproved, required
-filetype off                  " required
+filetype plugin indent on
 #+end_src
 
 * TAB Behavior
+
+** 4 spaces for everything
+Allways use 4 spaces, if a file does contain real =\t= characters, display them
+4 spaces wide
 #+begin_src vimrc
 set tabstop=4       " Display width of \t character
 set shiftwidth=4    " Indents will have a width of 4.
 set softtabstop=4   " Sets the number of columns for a TAB.
 set expandtab       " Expand TABs to spaces.
 #+end_src
+** Tabs for Makefile and Go
 Use different rules for makefiles and go
-http://stackoverflow.com/questions/234564/tab-key-4-spaces-and-auto-indent-after-curly-braces-in-vim/21323445#21323445
 #+begin_src vimrc
-filetype plugin indent on
 autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
 autocmd FileType go set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
 #+end_src
 
 * wrapping
+
 #+begin_src vimrc
-set autoindent
 set wrap
 set textwidth=80
 set wrapmargin=0
 set colorcolumn=80
 #+end_src
 
-* MISC
+* Color
+
 #+begin_src vimrc
+set t_Co=256 " Apparently this has to be set before setting the color scheme
+colorscheme molokai " Requires https://github.com/tomasr/molokai
+#+end_src
+
+* MISC
+
+#+begin_src vimrc
+syntax on
+set autoindent
 set scrolloff=5
 set nolist " Show or don't show invisible chars like tabs and newlines
 set hlsearch
 set number
 set showcmd " Display incomplete commands at the right
 set backspace=indent,eol,start " Usual backspace behavior
-set foldnestmax=1
 set encoding=utf-8
-#+end_src
-
-* Color and powerline
-
-#+begin_src vimrc
-syntax on
-set t_Co=256 " Apparently this has to be set before setting the color scheme
 set laststatus=2 " For vim-powerline
-colorscheme molokai " Requires https://github.com/tomasr/molokai
+autocmd FileType markdown set foldexpr=NestedMarkdownFolds()
 #+end_src
 
 * Remember position in file
@@ -90,7 +95,6 @@ inoremap <Down> <ESC>:echoerr "The clouded mind sees nothing"<CR>
 inoremap <Left> <ESC>:echoerr "Your mind is weak."<CR>
 inoremap <Right> <ESC>:echoerr "The clouded mind sees nothing"<CR>
 #+end_src
-
 
 * Org todo keywords
 

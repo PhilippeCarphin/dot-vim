@@ -1,34 +1,33 @@
 set nocompatible              " be iMproved, required
-filetype off                  " required
+filetype plugin indent on
 
 set tabstop=4       " Display width of \t character
 set shiftwidth=4    " Indents will have a width of 4.
 set softtabstop=4   " Sets the number of columns for a TAB.
 set expandtab       " Expand TABs to spaces.
 
-filetype plugin indent on
 autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
 autocmd FileType go set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
 
-set autoindent
 set wrap
 set textwidth=80
 set wrapmargin=0
 set colorcolumn=80
 
+set t_Co=256 " Apparently this has to be set before setting the color scheme
+colorscheme molokai " Requires https://github.com/tomasr/molokai
+
+syntax on
+set autoindent
 set scrolloff=5
 set nolist " Show or don't show invisible chars like tabs and newlines
 set hlsearch
 set number
 set showcmd " Display incomplete commands at the right
 set backspace=indent,eol,start " Usual backspace behavior
-set foldnestmax=1
 set encoding=utf-8
-
-syntax on
-set t_Co=256 " Apparently this has to be set before setting the color scheme
 set laststatus=2 " For vim-powerline
-colorscheme molokai " Requires https://github.com/tomasr/molokai
+autocmd FileType markdown set foldexpr=NestedMarkdownFolds()
 
 inoremap jk <ESC>
 

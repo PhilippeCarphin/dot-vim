@@ -17,6 +17,8 @@ set colorcolumn=80
 set t_Co=256 " Apparently this has to be set before setting the color scheme
 colorscheme molokai " Requires https://github.com/tomasr/molokai
 
+set clipboard=unnamedplus
+
 syntax on
 set autoindent
 set scrolloff=5

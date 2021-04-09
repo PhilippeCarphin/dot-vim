@@ -42,6 +42,19 @@ set t_Co=256 " Apparently this has to be set before setting the color scheme
 colorscheme molokai " Requires https://github.com/tomasr/molokai
 #+end_src
 
+
+* Use system clipboard
+
+Tested on MacOS with Vim 8+
+
+Reference
+[[https://advancedweb.hu/working-with-the-system-clipboard-in-vim/][Using the System Clipboard in Vim]]
+
+#+begin_src vimrc
+set clipboard=unnamedplus
+#+end_src
+
+
 * MISC
 
 #+begin_src vimrc

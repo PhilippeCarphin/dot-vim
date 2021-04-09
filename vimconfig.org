@@ -68,6 +68,7 @@ set showcmd " Display incomplete commands at the right
 set backspace=indent,eol,start " Usual backspace behavior
 set encoding=utf-8
 set laststatus=2 " For vim-powerline
+set rtp+=$HOME/.vim/pack/vendor/start/powerline/powerline/bindings/vim
 autocmd FileType markdown set foldexpr=NestedMarkdownFolds()
 #+end_src
 

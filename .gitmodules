@@ -22,6 +22,3 @@
 [submodule "pack/vendor/powerline"]
     path = pack/vendor/start/powerline
     url = https://github.com/powerline/powerline
-[submodule "pack/vendor/start/vim-powerline"]
-	path = pack/vendor/start/vim-powerline
-	url = https://github.com/lokaltog/vim-powerline

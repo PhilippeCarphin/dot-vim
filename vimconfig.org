@@ -16,15 +16,34 @@ filetype plugin indent on
 set laststatus=2
 #+end_src
 
-* New Powerline (broken)
+* New Powerline
+** Install instructions
 
-Powerline works by adding a directory to =rtp=.
+These are the official instructions but this is not what I do.
+
+https://powerline.readthedocs.io/en/latest/installation/osx.html#python-package
+
+** Using powerline
+
+I don't remember where I read to do this but that is what I do now.
 
 #+begin_src vimrc :tangle no
 set rtp+=$HOME/.vim/pack/vendor/start/powerline/powerline/bindings/vim
 #+end_src
 
 Make sure =laststatus=2= makes it always displayed.
+
+** Important note about macos
+
+Adding powerline made vim hang and fail to start on my mac.  I figured out that
+changing to a version of vim that has python3 support fixed my problem.
+
+I did
+#+begin_src shell
+brew install --cask macvim
+#+end_src
+and made sure that this version of vim is the one being used.
+
 
 * Old powerline
 

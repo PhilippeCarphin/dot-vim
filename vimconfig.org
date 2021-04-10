@@ -107,8 +107,11 @@ Tested on MacOS with Vim 8+
 Reference
 [[https://advancedweb.hu/working-with-the-system-clipboard-in-vim/][Using the System Clipboard in Vim]]
 
+Only do it if not running through an SSH connection
 #+begin_src vimrc
-set clipboard=unnamedplus
+if $SSH_CLIENT == ""
+    set clipboard=unnamedplus
+endif
 #+end_src
 
 

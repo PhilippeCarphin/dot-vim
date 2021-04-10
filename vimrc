@@ -1,9 +1,9 @@
 set nocompatible              " be iMproved, required
 filetype plugin indent on
 
-set laststatus=2
+set mouse=a
 
-set rtp+=$HOME/.vim/pack/vendor/start/powerline/powerline/bindings/vim
+set laststatus=2
 
 autocmd FileType markdown set foldexpr=NestedMarkdownFolds()
 

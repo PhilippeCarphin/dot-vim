@@ -8,6 +8,15 @@ set nocompatible              " be iMproved, required
 filetype plugin indent on
 #+end_src
 
+* Mouse mode
+
+I think once you have learned vim well enought that you don't ever need the
+mouse, at that point, actually having the mouse is a bit useful.
+
+#+begin_src vimrc
+set mouse=a
+#+end_src
+
 * Status line
 
 2 means always
@@ -25,11 +34,10 @@ https://powerline.readthedocs.io/en/latest/installation/osx.html#python-package
 
 ** Using powerline
 
-I don't remember where I read to do this but that is what I do now.
+I use powerline with vim8's native plugin handling.
 
-#+begin_src vimrc
-set rtp+=$HOME/.vim/pack/vendor/start/powerline/powerline/bindings/vim
-#+end_src
+I put a link pointing to =$repo/powerline/bindings/vim= inside the
+=~/.vim/pack/*/start=.
 
 Make sure =laststatus=2= makes it always displayed.
 

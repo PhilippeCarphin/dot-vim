@@ -1,6 +1,12 @@
 set nocompatible              " be iMproved, required
 filetype plugin indent on
 
+set laststatus=2
+
+set rtp+=$HOME/.vim/pack/vendor/start/powerline/powerline/bindings/vim
+
+autocmd FileType markdown set foldexpr=NestedMarkdownFolds()
+
 set tabstop=4       " Display width of \t character
 set shiftwidth=4    " Indents will have a width of 4.
 set softtabstop=4   " Sets the number of columns for a TAB.
@@ -28,9 +34,8 @@ set number
 set showcmd " Display incomplete commands at the right
 set backspace=indent,eol,start " Usual backspace behavior
 set encoding=utf-8
-set laststatus=2 " For vim-powerline
-set rtp+=$HOME/.vim/pack/vendor/start/powerline/powerline/bindings/vim
-autocmd FileType markdown set foldexpr=NestedMarkdownFolds()
+
+autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal!  g'\"" | endif
 
 inoremap jk <ESC>
 

@@ -8,6 +8,32 @@ set nocompatible              " be iMproved, required
 filetype plugin indent on
 #+end_src
 
+* Status line
+
+2 means always
+
+#+begin_src vimrc
+set laststatus=2
+#+end_src
+
+* Powerline
+
+Powerline works by adding a directory to =rtp=.  It is very useful because it
+has a 
+
+#+begin_src vimrc
+set rtp+=$HOME/.vim/pack/vendor/start/powerline/powerline/bindings/vim
+#+end_src
+
+and setting =laststatus=2= makes it always displayed.
+
+* Markdown nested folding
+
+#+begin_src vimrc
+autocmd FileType markdown set foldexpr=NestedMarkdownFolds()
+#+end_src
+
+
 * TAB Behavior
 
 ** 4 spaces for everything
@@ -67,15 +93,12 @@ set number
 set showcmd " Display incomplete commands at the right
 set backspace=indent,eol,start " Usual backspace behavior
 set encoding=utf-8
-set laststatus=2 " For vim-powerline
-set rtp+=$HOME/.vim/pack/vendor/start/powerline/powerline/bindings/vim
-autocmd FileType markdown set foldexpr=NestedMarkdownFolds()
 #+end_src
 
 * Remember position in file
 
 This line can be found commented in the system vimrc file : =/etc/vim/vimrc=.
-#+begin_src 
+#+begin_src vimrc
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal!  g'\"" | endif
 #+end_src
 I left out the =if has("autocmd")= because I have yet to encounter a version of

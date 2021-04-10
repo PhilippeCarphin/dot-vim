@@ -63,6 +63,14 @@ and made sure that this version of vim is the one being used.
 Just added the submodule https//github.com/lokaltog/vim-powerline.  No need
 to do anything else than make sure the =laststatus= is set to 2 (always).
 
+Edit: I removed it but I am leaving this section here.  The new powerline made
+my vim not start until I replaced it with macvim installed from homebrew.
+
+The lokaltog one however doesn't need anything like that.
+
+As far as I know, the problem only happens on mac and on the various linux
+computers I have tried, the new powerline has not been an issue.
+
 * Markdown nested folding
 
 #+begin_src vimrc

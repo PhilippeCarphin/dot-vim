@@ -27,7 +27,7 @@ https://powerline.readthedocs.io/en/latest/installation/osx.html#python-package
 
 I don't remember where I read to do this but that is what I do now.
 
-#+begin_src vimrc :tangle no
+#+begin_src vimrc
 set rtp+=$HOME/.vim/pack/vendor/start/powerline/powerline/bindings/vim
 #+end_src
 

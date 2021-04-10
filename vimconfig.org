@@ -1,6 +1,13 @@
 #+TITLE: Vimrc file
 #+PROPERTY: header-args:vimrc :tangle vimrc :results none
 
+* Header
+
+#+begin_src vimrc
+" This file was generated from vimconfig.org by using the org-babel-tangle.
+" That file is 'tangled' to make this vimrc file which should be pointed to
+" by a link '~/.vimrc -> $this_file'
+#+end_src
 * Be iMproved
 
 #+begin_src vimrc
@@ -10,10 +17,8 @@ filetype plugin indent on
 
 * Mouse mode
 
-I think once you have learned vim well enought that you don't ever need the
-mouse, at that point, actually having the mouse is a bit useful.
-
-#+begin_src vimrc
+I don't like having the mouse support.  I might try it again in the future.
+#+begin_src vimrc :tangle no
 set mouse=a
 #+end_src
 

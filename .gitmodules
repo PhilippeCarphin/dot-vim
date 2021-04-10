@@ -20,5 +20,5 @@
 	path = pack/vendor/start/vim-speeddating
 	url = https://github.com/tpope/vim-speeddating
 [submodule "pack/vendor/powerline"]
-    path = pack/vendor/start/powerline
+	path = pack/vendor/start/powerline-repo
     url = https://github.com/powerline/powerline

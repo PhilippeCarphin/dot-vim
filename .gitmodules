@@ -4,9 +4,6 @@
 [submodule "pack/vendor/nerdtree"]
 	path = pack/vendor/start/nerdtree
 	url = https://github.com/scrooloose/nerdtree
-[submodule "pack/vendor/powerline"]
-	path = pack/vendor/start/powerline
-	url = https://github.com/powerline/powerline
 [submodule "pack/vendor/vim-better-whitespace"]
 	path = pack/vendor/start/vim-better-whitespace
 	url = https://github.com/ntpeters/vim-better-whitespace
@@ -22,3 +19,6 @@
 [submodule "pack/vendor/vim-speeddating"]
 	path = pack/vendor/start/vim-speeddating
 	url = https://github.com/tpope/vim-speeddating
+[submodule "pack/vendor/start/vim-powerline"]
+	path = pack/vendor/start/vim-powerline
+	url = https://github.com/lokaltog/vim-powerline

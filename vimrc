@@ -3,8 +3,6 @@ filetype plugin indent on
 
 set laststatus=2
 
-set rtp+=$HOME/.vim/pack/vendor/start/powerline/powerline/bindings/vim
-
 autocmd FileType markdown set foldexpr=NestedMarkdownFolds()
 
 set tabstop=4       " Display width of \t character

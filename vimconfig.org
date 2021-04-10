@@ -16,16 +16,20 @@ filetype plugin indent on
 set laststatus=2
 #+end_src
 
-* Powerline
+* New Powerline (broken)
 
-Powerline works by adding a directory to =rtp=.  It is very useful because it
-has a 
+Powerline works by adding a directory to =rtp=.
 
-#+begin_src vimrc
+#+begin_src vimrc :tangle no
 set rtp+=$HOME/.vim/pack/vendor/start/powerline/powerline/bindings/vim
 #+end_src
 
-and setting =laststatus=2= makes it always displayed.
+Make sure =laststatus=2= makes it always displayed.
+
+* Old powerline
+
+Just added the submodule https//github.com/lokaltog/vim-powerline.  No need
+to do anything else than make sure the =laststatus= is set to 2 (always).
 
 * Markdown nested folding
 
@@ -140,27 +144,9 @@ inoremap <Right> <ESC>:echoerr "The clouded mind sees nothing"<CR>
 #+end_src
 * How this file works
 
-*NOTE* The file cannot be named anything that contains =vimrc= otherwise vim
-will open it as a vimrc instead of opening it as an orgmode file.
-
-Tangle this file using =C-c C-v C-t= to produce =~/.vimrc= and clone the repos
-in the plugins section.  With vim 8+, there is no need to do any more than to
-clone vim plugins in =~/.vim/pack/*/start= for the plugin to be loaded on start.
-
 #+begin_src shell :results output :exports both
-mkdir -p ~/.vim/pack/vendor/start/
-cd ~/.vim
-git init
-cd ./pack/vendor/start/
-git submodule add https://github.com/jceb/vim-orgmode 2>&1
-git submodule add https://github.com/scrooloose/nerdtree 2>&1
-git submodule add https://github.com/powerline/powerline 2>&1
-git submodule add https://github.com/ntpeters/vim-better-whitespace 2>&1
-git submodule add https://github.com/tpope/vim-fugitive 2>&1
-git submodule add https://github.com/tomasr/molokai 2>&1
-git submodule add https://github.com/nelstrom/vim-markdown-folding 2>&1 || true
+git clone --recursive https://github.com/philippecarphin/dot-vim ~/.vim
+ln -s ~/.vim/vimrc ~/.vimrc
 #+end_src
-
-Use =C-c C-c= on this block (=org-babel-execute-src-block=) in Emacs
 
 

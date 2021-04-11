@@ -29,7 +29,7 @@ set t_Co=256 " Apparently this has to be set before setting the color scheme
 colorscheme molokai " Requires https://github.com/tomasr/molokai
 
 if $SSH_CLIENT == ""
-    set clipboard=unnamedplus
+    set clipboard=unnamed
 endif
 
 syntax on

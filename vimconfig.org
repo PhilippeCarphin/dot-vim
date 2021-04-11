@@ -1,4 +1,4 @@
-#+TITLE: Vimrc file
+/#+TITLE: Vimrc file
 #+PROPERTY: header-args:vimrc :tangle vimrc :results none
 
 * Header
@@ -125,13 +125,10 @@ colorscheme molokai " Requires https://github.com/tomasr/molokai
 
 Tested on MacOS with Vim 8+
 
-Reference
-[[https://advancedweb.hu/working-with-the-system-clipboard-in-vim/][Using the System Clipboard in Vim]]
-
-Only do it if not running through an SSH connection
+Reference : =:help clipboard=
 #+begin_src vimrc
 if $SSH_CLIENT == ""
-    set clipboard=unnamedplus
+    set clipboard=unnamed
 endif
 #+end_src
 

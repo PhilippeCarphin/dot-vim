@@ -105,6 +105,14 @@ set wrapmargin=0
 set colorcolumn=80
 #+end_src
 
+This makes =j,k= move up and down display lines instead of moving by physical
+lines (i.e. defined by ='\n'=).
+
+#+begin_src vimrc
+nnoremap j gj
+nnoremap k gk
+#+end_src
+
 * Color
 
 #+begin_src vimrc

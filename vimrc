@@ -22,6 +22,9 @@ set textwidth=80
 set wrapmargin=0
 set colorcolumn=80
 
+nnoremap j gj
+nnoremap k gk
+
 set t_Co=256 " Apparently this has to be set before setting the color scheme
 colorscheme molokai " Requires https://github.com/tomasr/molokai
 

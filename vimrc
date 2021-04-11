@@ -54,3 +54,5 @@ inoremap <Left> <ESC>:echoerr "Your mind is weak."<CR>
 inoremap <Right> <ESC>:echoerr "The clouded mind sees nothing"<CR>
 
 :let g:org_todo_keywords=['TODO', 'GTD-IN', 'GTD-ACTION', 'GTD-PROJECT', 'GTD-NEXT-ACTION', 'GTD-WAITING', 'GTD-SOMEDAY-MAYBE', 'FEEDBACK', 'VERIFY', '|', 'DONE', 'GTD-DONE', 'GTD-REFERENCE', 'GTD-DELEGATED']
+
+let g:org_export_emacs="~/.local/bin/emacs"

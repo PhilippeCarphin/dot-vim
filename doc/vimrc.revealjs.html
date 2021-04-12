@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<title>Additional</title>
+<title>Vimrc file</title>
 <meta name="author" content="(Philippe Carphin)"/>
 <style type="text/css">
 .underline { text-decoration: underline; }
@@ -26,40 +26,210 @@
 <body>
 <div class="reveal">
 <div class="slides">
-<section id="sec-title-slide"><h1 class="title">Additional</h1><h2 class="author">Philippe Carphin</h2><p class="date">Created: 2021-04-12 Mon 06:26</p>
+<section id="sec-title-slide"><h1 class="title">Vimrc file</h1><h2 class="author">Philippe Carphin</h2><p class="date">Created: 2021-04-12 Mon 11:15</p>
 </section>
 <section id="table-of-contents"><div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#/slide-orga667817">1. Color</a></li>
-<li><a href="#/slide-orga83b12d">2. Plugins</a>
+<li><a href="#/slide-org4191423">1. Fundamental</a>
 <ul>
-<li><a href="#/slide-org5f8652e">2.1. Markdown nested folding</a></li>
-<li><a href="#/slide-org1fee9c8">2.2. Org</a></li>
+<li><a href="#/slide-orgf4d3522">1.1. Be iMproved</a></li>
+<li><a href="#/slide-org74f9241">1.2. Remember position in file</a></li>
+<li><a href="#/slide-orgae9035e">1.3. Indentation</a></li>
+<li><a href="#/slide-org7db804c">1.4. Wrapping</a></li>
+<li><a href="#/slide-org9adaeb6">1.5. MISC</a></li>
 </ul>
 </li>
-<li><a href="#/slide-orga9db18f">3. Status line</a>
+<li><a href="#/slide-org0d7bda4">2. Additional</a>
 <ul>
-<li><a href="#/slide-org42dd328">3.1. Always show status line</a></li>
-<li><a href="#/slide-orgb2bc1dd">3.2. New Powerline</a></li>
-<li><a href="#/slide-org2db32e6">3.3. Old powerline</a></li>
+<li><a href="#/slide-org936c0ad">2.1. Color</a></li>
+<li><a href="#/slide-orgabd2ac5">2.2. Plugins</a></li>
+<li><a href="#/slide-org681eef4">2.3. Status line</a></li>
+<li><a href="#/slide-orga69452c">2.4. Keys</a></li>
+<li><a href="#/slide-org3d63410">2.5. Use system clipboard</a></li>
 </ul>
 </li>
-<li><a href="#/slide-orge2bc779">4. Keys</a>
-<ul>
-<li><a href="#/slide-orgfef7419">4.1. Scrolling</a></li>
-<li><a href="#/slide-org320fe04">4.2. Make arrows print quotes from The Shadow (1982) with Alec Baldwin</a></li>
-</ul>
-</li>
-<li><a href="#/slide-orgae273d7">5. Use system clipboard</a></li>
 </ul>
 </div>
 </div>
 </section>
 <section>
-<section id="slide-orga667817">
-<h2 id="orga667817"><span class="section-number-2">1</span> Color</h2>
+<section id="slide-org4191423">
+<h2 id="org4191423"><span class="section-number-2">1</span> Fundamental</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+</section>
+<section id="slide-orgf4d3522">
+<h3 id="orgf4d3522"><span class="section-number-3">1.1</span> Be iMproved</h3>
+<div class="org-src-container">
+
+<pre  class="src src-vimrc"><code trim><span style="color: #ffad29; font-weight: bold;">set</span> <span style="color: #dbdb95;">nocompatible</span>              <span style="color: #74af68;">" be iMproved, required</span>
+<span style="color: #dbdb95;">filetype</span> plugin indent <span style="color: #ffad29; font-weight: bold;">on</span>
+</code></pre>
+</div>
+
+</section>
+<section id="slide-org74f9241">
+<h3 id="org74f9241"><span class="section-number-3">1.2</span> Remember position in file</h3>
+<p>
+This line can be found commented in the system vimrc file : <code>/etc/vim/vimrc</code>.
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-vimrc"><code trim><span style="color: #ffad29; font-weight: bold;">autocmd</span> BufReadPost * <span style="color: #ffad29; font-weight: bold;">if</span> <span style="color: #00ede1; font-weight: bold;">line</span>(<span style="color: #74af68;">"'\"") &gt; 1 &amp;&amp; line("'\"") &lt;= line("$") | exe "normal!  g'\"" | endif</span>
+</code></pre>
+</div>
+<p>
+I left out the <code>if has("autocmd")</code> because I have yet to encounter a version of
+vim that does not have it.
+</p>
+
+</section>
+<section id="slide-orgae9035e">
+<h3 id="orgae9035e"><span class="section-number-3">1.3</span> Indentation</h3>
+<p>
+We use listchars to show unwanted whitespace characters: tabs are shown as <code>»~</code>
+when space is the preferred indentation and leading spaces are shown as <code>»</code> in
+<code>go</code> and <code>make</code> where real <code>\t</code> characters are the preferred indentation method.
+</p>
+
+</section>
+<section id="slide-org21cb6cd">
+<h4 id="org21cb6cd"><span class="section-number-4">1.3.1</span> General</h4>
+<div class="org-src-container">
+
+<pre  class="src src-vimrc"><code trim><span style="color: #ffad29; font-weight: bold;">set</span> <span style="color: #dbdb95;">autoindent</span>
+<span style="color: #ffad29; font-weight: bold;">set</span> list
+</code></pre>
+</div>
+
+</section>
+<section id="slide-orgb37f5bc">
+<h4 id="orgb37f5bc"><span class="section-number-4">1.3.2</span> 4 spaces for everything</h4>
+<p>
+Allways use 4 spaces, if a file does contain real <code>\t</code> characters, display them
+4 spaces wide
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-vimrc"><code trim><span style="color: #ffad29; font-weight: bold;">set</span> <span style="color: #dbdb95;">tabstop</span><span style="color: #008b8b;">=</span><span style="color: #87ceeb;">4</span>       <span style="color: #74af68;">" Display width of \t character</span>
+<span style="color: #ffad29; font-weight: bold;">set</span> <span style="color: #dbdb95;">shiftwidth</span><span style="color: #008b8b;">=</span><span style="color: #87ceeb;">4</span>    <span style="color: #74af68;">" Indents will have a width of 4.</span>
+<span style="color: #ffad29; font-weight: bold;">set</span> <span style="color: #dbdb95;">softtabstop</span><span style="color: #008b8b;">=</span><span style="color: #87ceeb;">4</span>   <span style="color: #74af68;">" Sets the number of columns for a TAB.</span>
+<span style="color: #ffad29; font-weight: bold;">set</span> <span style="color: #dbdb95;">expandtab</span>       <span style="color: #74af68;">" Expand TABs to spaces.</span>
+</code></pre>
+</div>
+
+<p>
+Display unwanted whitespace characters by setting <code>listchars</code>.
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-vimrc"><code trim><span style="color: #ffad29; font-weight: bold;">set</span> <span style="color: #dbdb95;">listchars</span><span style="color: #008b8b;">=</span><span style="color: #ffad29; font-weight: bold;">tab</span>:&#187;~,extends:&#8250;,precedes:&#8249;,nbsp:&#183;,trail:&#183;
+</code></pre>
+</div>
+
+</section>
+<section id="slide-org2c2d54d">
+<h4 id="org2c2d54d"><span class="section-number-4">1.3.3</span> Tabs for go and make</h4>
+<p>
+Display tabs 4 spaces wide and don't convert to spaces.
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-vimrc"><code trim><span style="color: #ffad29; font-weight: bold;">autocmd</span> FileType <span style="color: #ffad29; font-weight: bold;">make</span>,<span style="color: #dbdb95;">go</span> <span style="color: #ffad29; font-weight: bold;">set</span> <span style="color: #dbdb95;">tabstop</span><span style="color: #008b8b;">=</span><span style="color: #87ceeb;">8</span> <span style="color: #dbdb95;">shiftwidth</span><span style="color: #008b8b;">=</span><span style="color: #87ceeb;">8</span> <span style="color: #dbdb95;">softtabstop</span><span style="color: #008b8b;">=</span><span style="color: #87ceeb;">0</span> noexpandtab
+</code></pre>
+</div>
+
+<p>
+Change <code>listchars</code> to show indentation with spaces and display tabs normally.
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-vimrc"><code trim><span style="color: #ffad29; font-weight: bold;">autocmd</span> FileType <span style="color: #ffad29; font-weight: bold;">make</span>,<span style="color: #dbdb95;">go</span> <span style="color: #ffad29; font-weight: bold;">set</span> <span style="color: #dbdb95;">listchars</span><span style="color: #008b8b;">=</span><span style="color: #ffad29; font-weight: bold;">tab</span>:\ \ ,lead:&#187;,trail:&#183;,precedes:&#8592;,extends:&#8594;
+</code></pre>
+</div>
+
+</section>
+<section id="slide-org7db804c">
+<h3 id="org7db804c"><span class="section-number-3">1.4</span> Wrapping</h3>
+<div class="outline-text-3" id="text-1-4">
+</div>
+</section>
+<section id="slide-orgd37813b">
+<h4 id="orgd37813b"><span class="section-number-4">1.4.1</span> Hard Wrapping</h4>
+<p>
+See <code>:help textwidth</code> setting <code>textwidth</code> to a non-zero value activates
+automatic hard wrapping while inserting.
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-vimrc"><code trim><span style="color: #ffad29; font-weight: bold;">au</span> BufRead,BufNewFile *<span style="color: #008b8b;">.</span>md <span style="color: #ffad29; font-weight: bold;">setlocal</span> <span style="color: #dbdb95;">textwidth</span><span style="color: #008b8b;">=</span><span style="color: #87ceeb;">80</span>
+<span style="color: #ffad29; font-weight: bold;">au</span> BufRead,BufNewFile *<span style="color: #008b8b;">.</span>org <span style="color: #ffad29; font-weight: bold;">setlocal</span> <span style="color: #dbdb95;">textwidth</span><span style="color: #008b8b;">=</span><span style="color: #87ceeb;">80</span>
+<span style="color: #ffad29; font-weight: bold;">au</span> BufRead,BufNewFile *<span style="color: #008b8b;">.</span>txt <span style="color: #ffad29; font-weight: bold;">setlocal</span> <span style="color: #dbdb95;">textwidth</span><span style="color: #008b8b;">=</span><span style="color: #87ceeb;">80</span>
+</code></pre>
+</div>
+
+</section>
+<section id="slide-org1978a95">
+<h4 id="org1978a95"><span class="section-number-4">1.4.2</span> Visual wrapping</h4>
+<div class="outline-text-4" id="text-1-4-2">
+</div>
+<ol class="org-ol">
+<li><a id="org8c4de7c"></a>Configure visual wrapping<br />
+<div class="org-src-container">
+
+<pre  class="src src-vimrc"><code trim><span style="color: #ffad29; font-weight: bold;">set</span> <span style="color: #dbdb95;">wrap</span>
+<span style="color: #ffad29; font-weight: bold;">set</span> <span style="color: #dbdb95;">wrapmargin</span><span style="color: #008b8b;">=</span><span style="color: #87ceeb;">0</span>
+<span style="color: #ffad29; font-weight: bold;">set</span> <span style="color: #dbdb95;">colorcolumn</span><span style="color: #008b8b;">=</span><span style="color: #87ceeb;">80</span>
+</code></pre>
+</div>
+</li>
+
+<li><a id="orga39b6a9"></a>Set j,k to move up and down visual lines<br />
+<p>
+This makes <code>j,k</code> move up and down display lines instead of moving by physical
+lines (i.e. defined by <code>'\n'</code>).
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-vimrc"><code trim><span style="color: #ffad29; font-weight: bold;">nnoremap</span> j gj
+<span style="color: #ffad29; font-weight: bold;">nnoremap</span> k gk
+</code></pre>
+</div>
+</li>
+</ol>
+
+</section>
+<section id="slide-org9adaeb6">
+<h3 id="org9adaeb6"><span class="section-number-3">1.5</span> MISC</h3>
+<div class="org-src-container">
+
+<pre  class="src src-vimrc"><code trim>syntax <span style="color: #ffad29; font-weight: bold;">on</span>
+<span style="color: #ffad29; font-weight: bold;">set</span> <span style="color: #dbdb95;">scrolloff</span><span style="color: #008b8b;">=</span><span style="color: #87ceeb;">5</span>
+<span style="color: #ffad29; font-weight: bold;">set</span> <span style="color: #dbdb95;">hlsearch</span>
+<span style="color: #ffad29; font-weight: bold;">set</span> <span style="color: #dbdb95;">number</span>
+<span style="color: #ffad29; font-weight: bold;">set</span> <span style="color: #dbdb95;">showcmd</span> <span style="color: #74af68;">" Display incomplete commands at the right</span>
+<span style="color: #ffad29; font-weight: bold;">set</span> <span style="color: #dbdb95;">backspace</span><span style="color: #008b8b;">=</span>indent,<span style="color: #dbdb95;">eol</span>,start <span style="color: #74af68;">" Usual backspace behavior</span>
+<span style="color: #ffad29; font-weight: bold;">set</span> <span style="color: #dbdb95;">encoding</span><span style="color: #008b8b;">=</span>utf<span style="color: #87ceeb;">-8</span>
+</code></pre>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-org0d7bda4">
+<h2 id="org0d7bda4"><span class="section-number-2">2</span> Additional</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+</section>
+<section id="slide-org936c0ad">
+<h3 id="org936c0ad"><span class="section-number-3">2.1</span> Color</h3>
 <div class="org-src-container">
 
 <pre  class="src src-vimrc"><code trim><span style="color: #ffad29; font-weight: bold;">set</span> t_Co<span style="color: #008b8b;">=</span><span style="color: #87ceeb;">256</span> <span style="color: #74af68;">" Apparently this has to be set before setting the color scheme</span>
@@ -68,15 +238,13 @@
 </div>
 
 </section>
-</section>
-<section>
-<section id="slide-orga83b12d">
-<h2 id="orga83b12d"><span class="section-number-2">2</span> Plugins</h2>
-<div class="outline-text-2" id="text-2">
+<section id="slide-orgabd2ac5">
+<h3 id="orgabd2ac5"><span class="section-number-3">2.2</span> Plugins</h3>
+<div class="outline-text-3" id="text-2-2">
 </div>
 </section>
-<section id="slide-org5f8652e">
-<h3 id="org5f8652e"><span class="section-number-3">2.1</span> Markdown nested folding</h3>
+<section id="slide-orgd56cd4d">
+<h4 id="orgd56cd4d"><span class="section-number-4">2.2.1</span> Markdown nested folding</h4>
 <p>
 Plugin : <a href="https://github.com/masukomi/vim-markdown-folding">https://github.com/masukomi/vim-markdown-folding</a>
 </p>
@@ -88,8 +256,8 @@ Plugin : <a href="https://github.com/masukomi/vim-markdown-folding">https://gith
 </div>
 
 </section>
-<section id="slide-org1fee9c8">
-<h3 id="org1fee9c8"><span class="section-number-3">2.2</span> Org</h3>
+<section id="slide-orgb841a46">
+<h4 id="orgb841a46"><span class="section-number-4">2.2.2</span> Org</h4>
 <p>
 Plugins :
 </p>
@@ -118,15 +286,13 @@ Path to elisp backend
 </div>
 
 </section>
-</section>
-<section>
-<section id="slide-orga9db18f">
-<h2 id="orga9db18f"><span class="section-number-2">3</span> Status line</h2>
-<div class="outline-text-2" id="text-3">
+<section id="slide-org681eef4">
+<h3 id="org681eef4"><span class="section-number-3">2.3</span> Status line</h3>
+<div class="outline-text-3" id="text-2-3">
 </div>
 </section>
-<section id="slide-org42dd328">
-<h3 id="org42dd328"><span class="section-number-3">3.1</span> Always show status line</h3>
+<section id="slide-orgaeba3b7">
+<h4 id="orgaeba3b7"><span class="section-number-4">2.3.1</span> Always show status line</h4>
 <p>
 2 means always
 </p>
@@ -138,13 +304,12 @@ Path to elisp backend
 </div>
 
 </section>
-<section id="slide-orgb2bc1dd">
-<h3 id="orgb2bc1dd"><span class="section-number-3">3.2</span> New Powerline</h3>
-<div class="outline-text-3" id="text-3-2">
+<section id="slide-orgf42f50f">
+<h4 id="orgf42f50f"><span class="section-number-4">2.3.2</span> New Powerline</h4>
+<div class="outline-text-4" id="text-2-3-2">
 </div>
-</section>
-<section id="slide-org9b6034d">
-<h4 id="org9b6034d"><span class="section-number-4">3.2.1</span> Install instructions</h4>
+<ol class="org-ol">
+<li><a id="org69a6f32"></a>Install instructions<br />
 <p>
 These are the official instructions but this is not what I do.
 </p>
@@ -152,10 +317,9 @@ These are the official instructions but this is not what I do.
 <p>
 <a href="https://powerline.readthedocs.io/en/latest/installation/osx.html#python-package">https://powerline.readthedocs.io/en/latest/installation/osx.html#python-package</a>
 </p>
+</li>
 
-</section>
-<section id="slide-org0b25f5b">
-<h4 id="org0b25f5b"><span class="section-number-4">3.2.2</span> Using powerline</h4>
+<li><a id="org9c2a0a4"></a>Using powerline<br />
 <p>
 I use powerline with vim8's native plugin handling.
 </p>
@@ -168,10 +332,9 @@ I put a link pointing to <code>$repo/powerline/bindings/vim</code> inside the
 <p>
 Make sure <code>laststatus=2</code> makes it always displayed.
 </p>
+</li>
 
-</section>
-<section id="slide-org1c36339">
-<h4 id="org1c36339"><span class="section-number-4">3.2.3</span> Important note about macos</h4>
+<li><a id="org52ecce0"></a>Important note about macos<br />
 <p>
 Adding powerline made vim hang and fail to start on my mac.  I figured out that
 changing to a version of vim that has python3 support fixed my problem.
@@ -188,10 +351,12 @@ I did
 <p>
 and made sure that this version of vim is the one being used.
 </p>
+</li>
+</ol>
 
 </section>
-<section id="slide-org2db32e6">
-<h3 id="org2db32e6"><span class="section-number-3">3.3</span> Old powerline</h3>
+<section id="slide-org9d512c7">
+<h4 id="org9d512c7"><span class="section-number-4">2.3.3</span> Old powerline</h4>
 <p>
 Just added the submodule https//github.com/lokaltog/vim-powerline.  No need
 to do anything else than make sure the <code>laststatus</code> is set to 2 (always).
@@ -212,10 +377,8 @@ computers I have tried, the new powerline has not been an issue.
 </p>
 
 </section>
-</section>
-<section>
-<section id="slide-orge2bc779">
-<h2 id="orge2bc779"><span class="section-number-2">4</span> Keys</h2>
+<section id="slide-orga69452c">
+<h3 id="orga69452c"><span class="section-number-3">2.4</span> Keys</h3>
 <div class="org-src-container">
 
 <pre  class="src src-vimrc"><code trim><span style="color: #ffad29; font-weight: bold;">inoremap</span> jk <span style="color: #008b8b;">&lt;</span>ESC<span style="color: #008b8b;">&gt;</span>
@@ -223,8 +386,8 @@ computers I have tried, the new powerline has not been an issue.
 </div>
 
 </section>
-<section id="slide-orgfef7419">
-<h3 id="orgfef7419"><span class="section-number-3">4.1</span> Scrolling</h3>
+<section id="slide-org76349aa">
+<h4 id="org76349aa"><span class="section-number-4">2.4.1</span> Scrolling</h4>
 <p>
 Up down move the cursor in one direction and scrolls the view in the other.
 This has the effect that the cursor stays in the same place on the screen
@@ -238,8 +401,8 @@ which is a good behavior for scrolling.
 </div>
 
 </section>
-<section id="slide-org320fe04">
-<h3 id="org320fe04"><span class="section-number-3">4.2</span> Make arrows print quotes from The Shadow (1982) with Alec Baldwin</h3>
+<section id="slide-org94d84e2">
+<h4 id="org94d84e2"><span class="section-number-4">2.4.2</span> Make arrows print quotes from The Shadow (1982) with Alec Baldwin</h4>
 <div class="org-src-container">
 
 <pre  class="src src-vimrc"><code trim><span style="color: #ffad29; font-weight: bold;">nnoremap</span> <span style="color: #008b8b;">&lt;</span>Left<span style="color: #008b8b;">&gt;</span> <span style="color: #008b8b;">&lt;</span>ESC<span style="color: #008b8b;">&gt;</span>:<span style="color: #ffad29; font-weight: bold;">echoerr</span> <span style="color: #74af68;">"Your mind is weak."&lt;CR&gt;</span>
@@ -253,10 +416,8 @@ which is a good behavior for scrolling.
 </div>
 
 </section>
-</section>
-<section>
-<section id="slide-orgae273d7">
-<h2 id="orgae273d7"><span class="section-number-2">5</span> Use system clipboard</h2>
+<section id="slide-org3d63410">
+<h3 id="org3d63410"><span class="section-number-3">2.5</span> Use system clipboard</h3>
 <p>
 Tested on MacOS with Vim 8+
 </p>

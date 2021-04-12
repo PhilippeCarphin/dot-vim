@@ -28,24 +28,47 @@ vim that does not have it.
 
 ** Indentation
 
+We use listchars to show unwanted whitespace characters: tabs are shown as =»~=
+when space is the preferred indentation and leading spaces are shown as =»= in
+=go= and =make= where real =\t= characters are the preferred indentation method.
+
+*** General
+
 #+begin_src vimrc
 set autoindent
+set list
 #+end_src
 
 *** 4 spaces for everything
+
 Allways use 4 spaces, if a file does contain real =\t= characters, display them
 4 spaces wide
+
 #+begin_src vimrc
 set tabstop=4       " Display width of \t character
 set shiftwidth=4    " Indents will have a width of 4.
 set softtabstop=4   " Sets the number of columns for a TAB.
 set expandtab       " Expand TABs to spaces.
 #+end_src
-*** Tabs for Makefile and Go
-Use different rules for makefiles and go
+
+Display unwanted whitespace characters by setting =listchars=.
+
 #+begin_src vimrc
-autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
-autocmd FileType go set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
+set listchars=tab:»~,extends:›,precedes:‹,nbsp:·,trail:·
+#+end_src
+
+*** Tabs for go and make
+
+Display tabs 4 spaces wide and don't convert to spaces.
+
+#+begin_src vimrc
+autocmd FileType make,go set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
+#+end_src
+
+Change =listchars= to show indentation with spaces and display tabs normally.
+
+#+begin_src vimrc
+autocmd FileType make,go set listchars=tab:\ \ ,lead:»,trail:·,precedes:←,extends:→
 #+end_src
 
 ** Wrapping
@@ -85,7 +108,6 @@ nnoremap k gk
 #+begin_src vimrc
 syntax on
 set scrolloff=5
-set nolist " Show or don't show invisible chars like tabs and newlines
 set hlsearch
 set number
 set showcmd " Display incomplete commands at the right

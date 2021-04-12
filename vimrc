@@ -8,14 +8,18 @@ filetype plugin indent on
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal!  g'\"" | endif
 
 set autoindent
+set list
 
 set tabstop=4       " Display width of \t character
 set shiftwidth=4    " Indents will have a width of 4.
 set softtabstop=4   " Sets the number of columns for a TAB.
 set expandtab       " Expand TABs to spaces.
 
-autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
-autocmd FileType go set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
+set listchars=tab:»~,extends:›,precedes:‹,nbsp:·,trail:·
+
+autocmd FileType make,go set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
+
+autocmd FileType make,go set listchars=tab:\ \ ,lead:»,trail:·,precedes:←,extends:→
 
 au BufRead,BufNewFile *.md setlocal textwidth=80
 au BufRead,BufNewFile *.org setlocal textwidth=80
@@ -30,7 +34,6 @@ nnoremap k gk
 
 syntax on
 set scrolloff=5
-set nolist " Show or don't show invisible chars like tabs and newlines
 set hlsearch
 set number
 set showcmd " Display incomplete commands at the right

@@ -1,5 +1,6 @@
 #+TITLE: Vimrc file
 #+PROPERTY: header-args:vimrc :tangle vimrc :results none
+#+OPTIONS: toc:2
 
 * Header
 
@@ -200,14 +201,7 @@ computers I have tried, the new powerline has not been an issue.
 inoremap jk <ESC>
 #+end_src
 
-*** Arrows
-I remap arrows to do nothing except for the up-down arrows in normal mode.
-
-This allows me to use the mouse wheel to scroll through a file when in normal
-mode.
-
-I don't want to turn on mouse mode, but I do like being able to scroll like
-this when I'm just reading through a file.
+*** Scrolling
 
 Up down move the cursor in one direction and scrolls the view in the other.
 This has the effect that the cursor stays in the same place on the screen
@@ -215,6 +209,10 @@ which is a good behavior for scrolling.
 #+begin_src vimrc
 nnoremap <Up> <C-y>k
 nnoremap <Down> <C-e>j
+#+end_src
+
+*** Make arrows print quotes from The Shadow (1982) with Alec Baldwin
+#+begin_src vimrc
 nnoremap <Left> <ESC>:echoerr "Your mind is weak."<CR>
 nnoremap <Right> <ESC>:echoerr "Your mind is weak."<CR>
 

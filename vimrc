@@ -55,6 +55,7 @@ inoremap jk <ESC>
 
 nnoremap <Up> <C-y>k
 nnoremap <Down> <C-e>j
+
 nnoremap <Left> <ESC>:echoerr "Your mind is weak."<CR>
 nnoremap <Right> <ESC>:echoerr "Your mind is weak."<CR>
 

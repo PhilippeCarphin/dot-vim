@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Additional</title>
+<meta name="author" content="(Philippe Carphin)"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/moon.css" id="theme"/>
+
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'https://cdn.jsdelivr.net/npm/reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">Additional</h1><h2 class="author">Philippe Carphin</h2><p class="date">Created: 2021-04-12 Mon 06:26</p>
+</section>
+<section id="table-of-contents"><div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#/slide-orga667817">1. Color</a></li>
+<li><a href="#/slide-orga83b12d">2. Plugins</a>
+<ul>
+<li><a href="#/slide-org5f8652e">2.1. Markdown nested folding</a></li>
+<li><a href="#/slide-org1fee9c8">2.2. Org</a></li>
+</ul>
+</li>
+<li><a href="#/slide-orga9db18f">3. Status line</a>
+<ul>
+<li><a href="#/slide-org42dd328">3.1. Always show status line</a></li>
+<li><a href="#/slide-orgb2bc1dd">3.2. New Powerline</a></li>
+<li><a href="#/slide-org2db32e6">3.3. Old powerline</a></li>
+</ul>
+</li>
+<li><a href="#/slide-orge2bc779">4. Keys</a>
+<ul>
+<li><a href="#/slide-orgfef7419">4.1. Scrolling</a></li>
+<li><a href="#/slide-org320fe04">4.2. Make arrows print quotes from The Shadow (1982) with Alec Baldwin</a></li>
+</ul>
+</li>
+<li><a href="#/slide-orgae273d7">5. Use system clipboard</a></li>
+</ul>
+</div>
+</div>
+</section>
+<section>
+<section id="slide-orga667817">
+<h2 id="orga667817"><span class="section-number-2">1</span> Color</h2>
+<div class="org-src-container">
+
+<pre  class="src src-vimrc"><code trim><span style="color: #ffad29; font-weight: bold;">set</span> t_Co<span style="color: #008b8b;">=</span><span style="color: #87ceeb;">256</span> <span style="color: #74af68;">" Apparently this has to be set before setting the color scheme</span>
+<span style="color: #ffad29; font-weight: bold;">colorscheme</span> molokai <span style="color: #74af68;">" Requires https://github.com/tomasr/molokai</span>
+</code></pre>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-orga83b12d">
+<h2 id="orga83b12d"><span class="section-number-2">2</span> Plugins</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+</section>
+<section id="slide-org5f8652e">
+<h3 id="org5f8652e"><span class="section-number-3">2.1</span> Markdown nested folding</h3>
+<p>
+Plugin : <a href="https://github.com/masukomi/vim-markdown-folding">https://github.com/masukomi/vim-markdown-folding</a>
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-vimrc"><code trim><span style="color: #ffad29; font-weight: bold;">autocmd</span> FileType markdown <span style="color: #ffad29; font-weight: bold;">set</span> <span style="color: #dbdb95;">foldexpr</span><span style="color: #008b8b;">=</span><span style="color: #00ede1; font-weight: bold;">NestedMarkdownFolds</span>()
+</code></pre>
+</div>
+
+</section>
+<section id="slide-org1fee9c8">
+<h3 id="org1fee9c8"><span class="section-number-3">2.2</span> Org</h3>
+<p>
+Plugins :
+</p>
+<ul>
+<li><a href="https://github.com/jceb/vim-orgmode">https://github.com/jceb/vim-orgmode</a></li>
+<li><a href="https://github.com/tpope/vim-speeddating">https://github.com/tpope/vim-speeddating</a></li>
+
+</ul>
+
+<p>
+Org todo keywords
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-vimrc"><code trim><span style="color: #ffad29; font-weight: bold;">let</span> <span style="color: #dbdb95;">g:org_todo_keywords</span><span style="color: #008b8b;">=</span>[<span style="color: #e67128;">'TODO'</span>, <span style="color: #e67128;">'GTD-IN'</span>, <span style="color: #e67128;">'GTD-ACTION'</span>, <span style="color: #e67128;">'GTD-PROJECT'</span>, <span style="color: #e67128;">'GTD-NEXT-ACTION'</span>, <span style="color: #e67128;">'GTD-WAITING'</span>, <span style="color: #e67128;">'GTD-SOMEDAY-MAYBE'</span>, <span style="color: #e67128;">'FEEDBACK'</span>, <span style="color: #e67128;">'VERIFY'</span>, <span style="color: #e67128;">'|'</span>, <span style="color: #e67128;">'DONE'</span>, <span style="color: #e67128;">'GTD-DONE'</span>, <span style="color: #e67128;">'GTD-REFERENCE'</span>, <span style="color: #e67128;">'GTD-DELEGATED'</span>]
+</code></pre>
+</div>
+
+<p>
+Path to elisp backend
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-vimrc"><code trim><span style="color: #ffad29; font-weight: bold;">let</span> <span style="color: #dbdb95;">g:org_export_emacs</span><span style="color: #008b8b;">=</span><span style="color: #74af68;">"~/.local/bin/emacs"</span>
+</code></pre>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-orga9db18f">
+<h2 id="orga9db18f"><span class="section-number-2">3</span> Status line</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+</section>
+<section id="slide-org42dd328">
+<h3 id="org42dd328"><span class="section-number-3">3.1</span> Always show status line</h3>
+<p>
+2 means always
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-vimrc"><code trim><span style="color: #ffad29; font-weight: bold;">set</span> <span style="color: #dbdb95;">laststatus</span><span style="color: #008b8b;">=</span><span style="color: #87ceeb;">2</span>
+</code></pre>
+</div>
+
+</section>
+<section id="slide-orgb2bc1dd">
+<h3 id="orgb2bc1dd"><span class="section-number-3">3.2</span> New Powerline</h3>
+<div class="outline-text-3" id="text-3-2">
+</div>
+</section>
+<section id="slide-org9b6034d">
+<h4 id="org9b6034d"><span class="section-number-4">3.2.1</span> Install instructions</h4>
+<p>
+These are the official instructions but this is not what I do.
+</p>
+
+<p>
+<a href="https://powerline.readthedocs.io/en/latest/installation/osx.html#python-package">https://powerline.readthedocs.io/en/latest/installation/osx.html#python-package</a>
+</p>
+
+</section>
+<section id="slide-org0b25f5b">
+<h4 id="org0b25f5b"><span class="section-number-4">3.2.2</span> Using powerline</h4>
+<p>
+I use powerline with vim8's native plugin handling.
+</p>
+
+<p>
+I put a link pointing to <code>$repo/powerline/bindings/vim</code> inside the
+<code>~/.vim/pack/*/start</code>.
+</p>
+
+<p>
+Make sure <code>laststatus=2</code> makes it always displayed.
+</p>
+
+</section>
+<section id="slide-org1c36339">
+<h4 id="org1c36339"><span class="section-number-4">3.2.3</span> Important note about macos</h4>
+<p>
+Adding powerline made vim hang and fail to start on my mac.  I figured out that
+changing to a version of vim that has python3 support fixed my problem.
+</p>
+
+<p>
+I did
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-shell"><code trim>brew install --cask macvim
+</code></pre>
+</div>
+<p>
+and made sure that this version of vim is the one being used.
+</p>
+
+</section>
+<section id="slide-org2db32e6">
+<h3 id="org2db32e6"><span class="section-number-3">3.3</span> Old powerline</h3>
+<p>
+Just added the submodule https//github.com/lokaltog/vim-powerline.  No need
+to do anything else than make sure the <code>laststatus</code> is set to 2 (always).
+</p>
+
+<p>
+Edit: I removed it but I am leaving this section here.  The new powerline made
+my vim not start until I replaced it with macvim installed from homebrew.
+</p>
+
+<p>
+The lokaltog one however doesn't need anything like that.
+</p>
+
+<p>
+As far as I know, the problem only happens on mac and on the various linux
+computers I have tried, the new powerline has not been an issue.
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-orge2bc779">
+<h2 id="orge2bc779"><span class="section-number-2">4</span> Keys</h2>
+<div class="org-src-container">
+
+<pre  class="src src-vimrc"><code trim><span style="color: #ffad29; font-weight: bold;">inoremap</span> jk <span style="color: #008b8b;">&lt;</span>ESC<span style="color: #008b8b;">&gt;</span>
+</code></pre>
+</div>
+
+</section>
+<section id="slide-orgfef7419">
+<h3 id="orgfef7419"><span class="section-number-3">4.1</span> Scrolling</h3>
+<p>
+Up down move the cursor in one direction and scrolls the view in the other.
+This has the effect that the cursor stays in the same place on the screen
+which is a good behavior for scrolling.
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-vimrc"><code trim><span style="color: #ffad29; font-weight: bold;">nnoremap</span> <span style="color: #008b8b;">&lt;</span>Up<span style="color: #008b8b;">&gt;</span> <span style="color: #008b8b;">&lt;</span>C<span style="color: #008b8b;">-</span><span style="color: #ffad29; font-weight: bold;">y</span><span style="color: #008b8b;">&gt;</span>k
+<span style="color: #ffad29; font-weight: bold;">nnoremap</span> <span style="color: #008b8b;">&lt;</span>Down<span style="color: #008b8b;">&gt;</span> <span style="color: #008b8b;">&lt;</span>C<span style="color: #008b8b;">-</span><span style="color: #ffad29; font-weight: bold;">e</span><span style="color: #008b8b;">&gt;</span>j
+</code></pre>
+</div>
+
+</section>
+<section id="slide-org320fe04">
+<h3 id="org320fe04"><span class="section-number-3">4.2</span> Make arrows print quotes from The Shadow (1982) with Alec Baldwin</h3>
+<div class="org-src-container">
+
+<pre  class="src src-vimrc"><code trim><span style="color: #ffad29; font-weight: bold;">nnoremap</span> <span style="color: #008b8b;">&lt;</span>Left<span style="color: #008b8b;">&gt;</span> <span style="color: #008b8b;">&lt;</span>ESC<span style="color: #008b8b;">&gt;</span>:<span style="color: #ffad29; font-weight: bold;">echoerr</span> <span style="color: #74af68;">"Your mind is weak."&lt;CR&gt;</span>
+<span style="color: #ffad29; font-weight: bold;">nnoremap</span> <span style="color: #008b8b;">&lt;</span>Right<span style="color: #008b8b;">&gt;</span> <span style="color: #008b8b;">&lt;</span>ESC<span style="color: #008b8b;">&gt;</span>:<span style="color: #ffad29; font-weight: bold;">echoerr</span> <span style="color: #74af68;">"Your mind is weak."&lt;CR&gt;</span>
+
+<span style="color: #ffad29; font-weight: bold;">inoremap</span> <span style="color: #008b8b;">&lt;</span>Up<span style="color: #008b8b;">&gt;</span> <span style="color: #008b8b;">&lt;</span>ESC<span style="color: #008b8b;">&gt;</span>:<span style="color: #ffad29; font-weight: bold;">echoerr</span> <span style="color: #74af68;">"Join me or die"&lt;CR&gt;</span>
+<span style="color: #ffad29; font-weight: bold;">inoremap</span> <span style="color: #008b8b;">&lt;</span>Down<span style="color: #008b8b;">&gt;</span> <span style="color: #008b8b;">&lt;</span>ESC<span style="color: #008b8b;">&gt;</span>:<span style="color: #ffad29; font-weight: bold;">echoerr</span> <span style="color: #74af68;">"The clouded mind sees nothing"&lt;CR&gt;</span>
+<span style="color: #ffad29; font-weight: bold;">inoremap</span> <span style="color: #008b8b;">&lt;</span>Left<span style="color: #008b8b;">&gt;</span> <span style="color: #008b8b;">&lt;</span>ESC<span style="color: #008b8b;">&gt;</span>:<span style="color: #ffad29; font-weight: bold;">echoerr</span> <span style="color: #74af68;">"Your mind is weak."&lt;CR&gt;</span>
+<span style="color: #ffad29; font-weight: bold;">inoremap</span> <span style="color: #008b8b;">&lt;</span>Right<span style="color: #008b8b;">&gt;</span> <span style="color: #008b8b;">&lt;</span>ESC<span style="color: #008b8b;">&gt;</span>:<span style="color: #ffad29; font-weight: bold;">echoerr</span> <span style="color: #74af68;">"The clouded mind sees nothing"&lt;CR&gt;</span>
+</code></pre>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-orgae273d7">
+<h2 id="orgae273d7"><span class="section-number-2">5</span> Use system clipboard</h2>
+<p>
+Tested on MacOS with Vim 8+
+</p>
+
+<p>
+Reference : <code>:help clipboard</code>
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-vimrc"><code trim><span style="color: #ffad29; font-weight: bold;">if</span> $SSH_CLIENT <span style="color: #008b8b;">==</span> <span style="color: #74af68;">""</span>
+    <span style="color: #ffad29; font-weight: bold;">set</span> <span style="color: #dbdb95;">clipboard</span><span style="color: #008b8b;">=</span>unnamed
+<span style="color: #ffad29; font-weight: bold;">endif</span>
+</code></pre>
+</div>
+</section>
+</section>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+});
+
+
+</script>
+</body>
+</html>

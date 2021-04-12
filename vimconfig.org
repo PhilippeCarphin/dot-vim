@@ -91,8 +91,6 @@ set wrapmargin=0
 set colorcolumn=80
 #+end_src
 
-#+end_src
-
 **** Set j,k to move up and down visual lines
 
 This makes =j,k= move up and down display lines instead of moving by physical

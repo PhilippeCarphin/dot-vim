@@ -1,0 +1,41 @@
+#+TITLE: Phil's vimrc of a lifetime
+
+* Synopsis
+
+I like to not configure my vim too much.  That way it behaves like other
+people's vim.
+
+This =vimrc= has grows and shrunk since 2015.  It has stabilised to a small
+vimrc that contains only the bare necessities
+- Setting filetype-dependant tabs and indentation behavior
+- Configure filetype-dependant hard-wrapping and soft-wrapping behavior
+- plugins =vim-markdown-folding=, =vim-orgmode=, =powerline=
+- Minor extras
+
+* Installation
+#+begin_src 
+git clone --recursive https://github.com/philippecarphin/dot-vim ~/.vim
+#+end_src
+
+#+begin_src 
+ln -s ~/.vim/vimrc ~/.vimrc
+#+end_src
+
+If we forget the =--recursive= when we clone, we can run this later at any time.
+
+#+begin_src 
+git submodule update --init --recursive
+#+end_src
+
+* Use
+
+Just start vim.
+
+* Doc
+
+The file =vimconfig.org= is the source of this vimrc.
+
+It contains text describing the various options that I use.
+
+The file =doc/vimrc.revealjs.html= is that same =vimconfig.org= file exported to
+a Reveal.js presentation using org-reveal.

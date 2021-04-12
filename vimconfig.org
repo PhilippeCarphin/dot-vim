@@ -1,4 +1,4 @@
-/#+TITLE: Vimrc file
+#+TITLE: Vimrc file
 #+PROPERTY: header-args:vimrc :tangle vimrc :results none
 
 * Header
@@ -8,21 +8,127 @@
 " That file is 'tangled' to make this vimrc file which should be pointed to
 " by a link '~/.vimrc -> $this_file'
 #+end_src
-* Be iMproved
+
+* Fundamental
+** Be iMproved
 
 #+begin_src vimrc
 set nocompatible              " be iMproved, required
 filetype plugin indent on
 #+end_src
 
-* Mouse mode
+** Remember position in file
 
-I don't like having the mouse support.  I might try it again in the future.
-#+begin_src vimrc :tangle no
-set mouse=a
+This line can be found commented in the system vimrc file : =/etc/vim/vimrc=.
+#+begin_src vimrc
+autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal!  g'\"" | endif
+#+end_src
+I left out the =if has("autocmd")= because I have yet to encounter a version of
+vim that does not have it.
+
+** Indentation
+
+#+begin_src vimrc
+set autoindent
 #+end_src
 
-* Status line
+*** 4 spaces for everything
+Allways use 4 spaces, if a file does contain real =\t= characters, display them
+4 spaces wide
+#+begin_src vimrc
+set tabstop=4       " Display width of \t character
+set shiftwidth=4    " Indents will have a width of 4.
+set softtabstop=4   " Sets the number of columns for a TAB.
+set expandtab       " Expand TABs to spaces.
+#+end_src
+*** Tabs for Makefile and Go
+Use different rules for makefiles and go
+#+begin_src vimrc
+autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
+autocmd FileType go set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
+#+end_src
+
+** Wrapping
+*** Hard Wrapping
+See =:help textwidth= setting =textwidth= to a non-zero value activates
+automatic hard wrapping while inserting.
+#+begin_src vimrc
+au BufRead,BufNewFile *.md setlocal textwidth=80
+au BufRead,BufNewFile *.org setlocal textwidth=80
+au BufRead,BufNewFile *.txt setlocal textwidth=80
+#+end_src
+
+*** Visual wrapping
+
+**** Configure visual wrapping
+
+#+begin_src vimrc
+set wrap
+set wrapmargin=0
+set colorcolumn=80
+#+end_src
+
+#+end_src
+
+**** Set j,k to move up and down visual lines
+
+This makes =j,k= move up and down display lines instead of moving by physical
+lines (i.e. defined by ='\n'=).
+
+#+begin_src vimrc
+nnoremap j gj
+nnoremap k gk
+#+end_src
+
+** MISC
+
+#+begin_src vimrc
+syntax on
+set scrolloff=5
+set nolist " Show or don't show invisible chars like tabs and newlines
+set hlsearch
+set number
+set showcmd " Display incomplete commands at the right
+set backspace=indent,eol,start " Usual backspace behavior
+set encoding=utf-8
+#+end_src
+
+* Additional
+** Color
+
+#+begin_src vimrc
+set t_Co=256 " Apparently this has to be set before setting the color scheme
+colorscheme molokai " Requires https://github.com/tomasr/molokai
+#+end_src
+
+** Plugins
+*** Markdown nested folding
+
+Plugin : https://github.com/masukomi/vim-markdown-folding
+
+#+begin_src vimrc
+autocmd FileType markdown set foldexpr=NestedMarkdownFolds()
+#+end_src
+
+*** Org
+
+Plugins :
+- https://github.com/jceb/vim-orgmode
+- https://github.com/tpope/vim-speeddating
+
+**** Org todo keywords
+
+#+begin_src vimrc
+:let g:org_todo_keywords=['TODO', 'GTD-IN', 'GTD-ACTION', 'GTD-PROJECT', 'GTD-NEXT-ACTION', 'GTD-WAITING', 'GTD-SOMEDAY-MAYBE', 'FEEDBACK', 'VERIFY', '|', 'DONE', 'GTD-DONE', 'GTD-REFERENCE', 'GTD-DELEGATED']
+#+end_src
+**** Export backend
+
+#+begin_src vimrc
+let g:org_export_emacs="~/.local/bin/emacs"
+#+end_src
+
+** Status line
+*** Always show status line
 
 2 means always
 
@@ -30,14 +136,14 @@ set mouse=a
 set laststatus=2
 #+end_src
 
-* New Powerline
-** Install instructions
+*** New Powerline
+**** Install instructions
 
 These are the official instructions but this is not what I do.
 
 https://powerline.readthedocs.io/en/latest/installation/osx.html#python-package
 
-** Using powerline
+**** Using powerline
 
 I use powerline with vim8's native plugin handling.
 
@@ -46,7 +152,7 @@ I put a link pointing to =$repo/powerline/bindings/vim= inside the
 
 Make sure =laststatus=2= makes it always displayed.
 
-** Important note about macos
+**** Important note about macos
 
 Adding powerline made vim hang and fail to start on my mac.  I figured out that
 changing to a version of vim that has python3 support fixed my problem.
@@ -57,8 +163,7 @@ brew install --cask macvim
 #+end_src
 and made sure that this version of vim is the one being used.
 
-
-* Old powerline
+*** Old powerline
 
 Just added the submodule https//github.com/lokaltog/vim-powerline.  No need
 to do anything else than make sure the =laststatus= is set to 2 (always).
@@ -71,97 +176,12 @@ The lokaltog one however doesn't need anything like that.
 As far as I know, the problem only happens on mac and on the various linux
 computers I have tried, the new powerline has not been an issue.
 
-* Markdown nested folding
-
-#+begin_src vimrc
-autocmd FileType markdown set foldexpr=NestedMarkdownFolds()
-#+end_src
-
-
-* TAB Behavior
-
-** 4 spaces for everything
-Allways use 4 spaces, if a file does contain real =\t= characters, display them
-4 spaces wide
-#+begin_src vimrc
-set tabstop=4       " Display width of \t character
-set shiftwidth=4    " Indents will have a width of 4.
-set softtabstop=4   " Sets the number of columns for a TAB.
-set expandtab       " Expand TABs to spaces.
-#+end_src
-** Tabs for Makefile and Go
-Use different rules for makefiles and go
-#+begin_src vimrc
-autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
-autocmd FileType go set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
-#+end_src
-
-* wrapping
-
-#+begin_src vimrc
-set wrap
-set textwidth=80
-set wrapmargin=0
-set colorcolumn=80
-#+end_src
-
-This makes =j,k= move up and down display lines instead of moving by physical
-lines (i.e. defined by ='\n'=).
-
-#+begin_src vimrc
-nnoremap j gj
-nnoremap k gk
-#+end_src
-
-* Color
-
-#+begin_src vimrc
-set t_Co=256 " Apparently this has to be set before setting the color scheme
-colorscheme molokai " Requires https://github.com/tomasr/molokai
-#+end_src
-
-
-* Use system clipboard
-
-Tested on MacOS with Vim 8+
-
-Reference : =:help clipboard=
-#+begin_src vimrc
-if $SSH_CLIENT == ""
-    set clipboard=unnamed
-endif
-#+end_src
-
-
-* MISC
-
-#+begin_src vimrc
-syntax on
-set autoindent
-set scrolloff=5
-set nolist " Show or don't show invisible chars like tabs and newlines
-set hlsearch
-set number
-set showcmd " Display incomplete commands at the right
-set backspace=indent,eol,start " Usual backspace behavior
-set encoding=utf-8
-#+end_src
-
-* Remember position in file
-
-This line can be found commented in the system vimrc file : =/etc/vim/vimrc=.
-#+begin_src vimrc
-autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal!  g'\"" | endif
-#+end_src
-I left out the =if has("autocmd")= because I have yet to encounter a version of
-vim that does not have it.
-
-* Keys
+** Keys
 #+begin_src vimrc
 inoremap jk <ESC>
 #+end_src
 
-** Arrows
+*** Arrows
 I remap arrows to do nothing except for the up-down arrows in normal mode.
 
 This allows me to use the mouse wheel to scroll through a file when in normal
@@ -185,23 +205,13 @@ inoremap <Left> <ESC>:echoerr "Your mind is weak."<CR>
 inoremap <Right> <ESC>:echoerr "The clouded mind sees nothing"<CR>
 #+end_src
 
-* Org
-** Org todo keywords
+** Use system clipboard
 
+Tested on MacOS with Vim 8+
+
+Reference : =:help clipboard=
 #+begin_src vimrc
-:let g:org_todo_keywords=['TODO', 'GTD-IN', 'GTD-ACTION', 'GTD-PROJECT', 'GTD-NEXT-ACTION', 'GTD-WAITING', 'GTD-SOMEDAY-MAYBE', 'FEEDBACK', 'VERIFY', '|', 'DONE', 'GTD-DONE', 'GTD-REFERENCE', 'GTD-DELEGATED']
+if $SSH_CLIENT == ""
+    set clipboard=unnamed
+endif
 #+end_src
-** Export backend
-
-#+begin_src vimrc
-let g:org_export_emacs="~/.local/bin/emacs"
-#+end_src
-
-* How this file works
-
-#+begin_src shell :results output :exports both
-git clone --recursive https://github.com/philippecarphin/dot-vim ~/.vim
-ln -s ~/.vim/vimrc ~/.vimrc
-#+end_src
-
-

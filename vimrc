@@ -5,9 +5,9 @@
 set nocompatible              " be iMproved, required
 filetype plugin indent on
 
-set laststatus=2
+autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal!  g'\"" | endif
 
-autocmd FileType markdown set foldexpr=NestedMarkdownFolds()
+set autoindent
 
 set tabstop=4       " Display width of \t character
 set shiftwidth=4    " Indents will have a width of 4.
@@ -17,23 +17,18 @@ set expandtab       " Expand TABs to spaces.
 autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
 autocmd FileType go set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
 
+au BufRead,BufNewFile *.md setlocal textwidth=80
+au BufRead,BufNewFile *.org setlocal textwidth=80
+au BufRead,BufNewFile *.txt setlocal textwidth=80
+
 set wrap
-set textwidth=80
 set wrapmargin=0
 set colorcolumn=80
 
 nnoremap j gj
 nnoremap k gk
 
-set t_Co=256 " Apparently this has to be set before setting the color scheme
-colorscheme molokai " Requires https://github.com/tomasr/molokai
-
-if $SSH_CLIENT == ""
-    set clipboard=unnamed
-endif
-
 syntax on
-set autoindent
 set scrolloff=5
 set nolist " Show or don't show invisible chars like tabs and newlines
 set hlsearch
@@ -42,7 +37,16 @@ set showcmd " Display incomplete commands at the right
 set backspace=indent,eol,start " Usual backspace behavior
 set encoding=utf-8
 
-autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal!  g'\"" | endif
+set t_Co=256 " Apparently this has to be set before setting the color scheme
+colorscheme molokai " Requires https://github.com/tomasr/molokai
+
+autocmd FileType markdown set foldexpr=NestedMarkdownFolds()
+
+:let g:org_todo_keywords=['TODO', 'GTD-IN', 'GTD-ACTION', 'GTD-PROJECT', 'GTD-NEXT-ACTION', 'GTD-WAITING', 'GTD-SOMEDAY-MAYBE', 'FEEDBACK', 'VERIFY', '|', 'DONE', 'GTD-DONE', 'GTD-REFERENCE', 'GTD-DELEGATED']
+
+let g:org_export_emacs="~/.local/bin/emacs"
+
+set laststatus=2
 
 inoremap jk <ESC>
 
@@ -56,6 +60,6 @@ inoremap <Down> <ESC>:echoerr "The clouded mind sees nothing"<CR>
 inoremap <Left> <ESC>:echoerr "Your mind is weak."<CR>
 inoremap <Right> <ESC>:echoerr "The clouded mind sees nothing"<CR>
 
-:let g:org_todo_keywords=['TODO', 'GTD-IN', 'GTD-ACTION', 'GTD-PROJECT', 'GTD-NEXT-ACTION', 'GTD-WAITING', 'GTD-SOMEDAY-MAYBE', 'FEEDBACK', 'VERIFY', '|', 'DONE', 'GTD-DONE', 'GTD-REFERENCE', 'GTD-DELEGATED']
-
-let g:org_export_emacs="~/.local/bin/emacs"
+if $SSH_CLIENT == ""
+    set clipboard=unnamed
+endif

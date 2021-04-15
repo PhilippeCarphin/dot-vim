@@ -68,8 +68,15 @@ autocmd FileType make,go set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
 
 Change =listchars= to show indentation with spaces and display tabs normally.
 
+Note that when tabs are used to indent, we only want to highlight /leading/
+space which would be with =listchars=tab:\ \ ,lead:·=. However =:help listchars=
+at my work shows that it is not available and that is because it is Vim 8.0.
+
+Until I figure out how to write an =if version < 8.2= in vim, I'll make it
+conditional.  For now, just showing spaces as a center dot.
+
 #+begin_src vimrc
-autocmd FileType make,go set listchars=tab:\ \ ,lead:»,trail:·,precedes:←,extends:→
+autocmd FileType make,go set listchars=tab:\ \ ,space:·,trail:·,precedes:←,extends:→
 #+end_src
 
 ** Wrapping

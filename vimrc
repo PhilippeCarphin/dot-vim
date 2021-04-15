@@ -19,7 +19,7 @@ set listchars=tab:»~,extends:›,precedes:‹,nbsp:·,trail:·
 
 autocmd FileType make,go set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
 
-autocmd FileType make,go set listchars=tab:\ \ ,lead:»,trail:·,precedes:←,extends:→
+autocmd FileType make,go set listchars=tab:\ \ ,space:·,trail:·,precedes:←,extends:→
 
 au BufRead,BufNewFile *.md setlocal textwidth=80
 au BufRead,BufNewFile *.org setlocal textwidth=80

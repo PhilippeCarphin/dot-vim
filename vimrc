@@ -21,9 +21,15 @@ autocmd FileType make,go set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
 
 autocmd FileType make,go set listchars=tab:\ \ ,space:·,trail:·,precedes:←,extends:→
 
-au BufRead,BufNewFile *.md setlocal textwidth=80
-au BufRead,BufNewFile *.org setlocal textwidth=80
-au BufRead,BufNewFile *.txt setlocal textwidth=80
+autocmd FileType yaml set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+
+set textwidth=0
+
+" This doesn't work but I tried it with autocmd filetype and it seemed to
+" work
+" au BufRead,BufNewFile *.md setlocal textwidth=80
+" au BufRead,BufNewFile *.org setlocal textwidth=80
+" au BufRead,BufNewFile *.txt setlocal textwidth=80
 
 set wrap
 set wrapmargin=0

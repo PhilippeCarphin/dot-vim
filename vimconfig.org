@@ -79,14 +79,26 @@ conditional.  For now, just showing spaces as a center dot.
 autocmd FileType make,go set listchars=tab:\ \ ,space:·,trail:·,precedes:←,extends:→
 #+end_src
 
+*** Two spaces for yaml
+
+#+begin_src vimrc
+autocmd FileType yaml set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+#+end_src
+
 ** Wrapping
+
 *** Hard Wrapping
+#+begin_src vimrc
+set textwidth=0
+#+end_src
 See =:help textwidth= setting =textwidth= to a non-zero value activates
 automatic hard wrapping while inserting.
 #+begin_src vimrc
-au BufRead,BufNewFile *.md setlocal textwidth=80
-au BufRead,BufNewFile *.org setlocal textwidth=80
-au BufRead,BufNewFile *.txt setlocal textwidth=80
+" This doesn't work but I tried it with autocmd filetype and it seemed to
+" work
+" au BufRead,BufNewFile *.md setlocal textwidth=80
+" au BufRead,BufNewFile *.org setlocal textwidth=80
+" au BufRead,BufNewFile *.txt setlocal textwidth=80
 #+end_src
 
 *** Visual wrapping

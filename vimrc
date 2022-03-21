@@ -22,7 +22,9 @@ autocmd FileType make,go set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
 autocmd FileType make,go set listchars=tab:\ \ ,space:·,trail:·,precedes:←,extends:→
 
 autocmd FileType yaml set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
-autocmd FileType fortran set conceallevel=2 concealcursor=ni
+
+" Funny thing to show '%' as '.' in Fortran files
+autocmd FileType fortran set conceallevel=2
 autocmd FileType fortran call matchadd('Conceal', '%', 10, -1, {'conceal': '.'})
 
 set textwidth=0

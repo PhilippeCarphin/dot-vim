@@ -1,4 +1,4 @@
-" This file was generated from vimconfig.org by using the org-babel-tangle.
+" This file was generated from vimconfig.org by using org-babel-tangle.
 " That file is 'tangled' to make this vimrc file which should be pointed to
 " by a link '~/.vimrc -> $this_file'
 
@@ -17,15 +17,14 @@ set expandtab       " Expand TABs to spaces.
 
 set listchars=tab:»~,extends:›,precedes:‹,nbsp:·,trail:·
 
-autocmd FileType make,go set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
+autocmd FileType make,go setlocal tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
 
-autocmd FileType make,go set listchars=tab:\ \ ,space:·,trail:·,precedes:←,extends:→
+autocmd FileType make,go setlocal listchars=tab:\ \ ,space:·,trail:·,precedes:←,extends:→
 
-autocmd FileType yaml set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+autocmd FileType yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 
-" Funny thing to show '%' as '.' in Fortran files
-autocmd FileType fortran set conceallevel=2
-autocmd FileType fortran call matchadd('Conceal', '%', 10, -1, {'conceal': '.'})
+autocmd BufRead *.out :AnsiEsc
+autocmd BufRead *.out setlocal nowrap
 
 set textwidth=0
 
@@ -53,7 +52,7 @@ set encoding=utf-8
 set t_Co=256 " Apparently this has to be set before setting the color scheme
 colorscheme molokai " Requires https://github.com/tomasr/molokai
 
-autocmd FileType markdown set foldexpr=NestedMarkdownFolds()
+autocmd FileType markdown setlocal foldexpr=NestedMarkdownFolds()
 
 let g:org_todo_keywords=['TODO', 'GTD-IN', 'GTD-ACTION', 'GTD-PROJECT', 'GTD-NEXT-ACTION', 'GTD-WAITING', 'GTD-SOMEDAY-MAYBE', 'FEEDBACK', 'VERIFY', '|', 'DONE', 'GTD-DONE', 'GTD-REFERENCE', 'GTD-DELEGATED']
 
@@ -77,3 +76,7 @@ inoremap <Right> <ESC>:echoerr "The clouded mind sees nothing"<CR>
 if $SSH_CLIENT == ""
     set clipboard=unnamed
 endif
+
+" Funny thing to show '%' as '.' in Fortran files
+" autocmd FileType fortran set conceallevel=2
+" autocmd FileType fortran call matchadd('Conceal', '%', 10, -1, {'conceal': '.'})

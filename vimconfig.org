@@ -81,7 +81,7 @@ set listchars=tab:»~,extends:›,precedes:‹,nbsp:·,trail:·
 Display tabs 4 spaces wide and don't convert to spaces.
 
 #+begin_src vimrc
-autocmd FileType make,go set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
+autocmd FileType make,go setlocal tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
 #+end_src
 
 Change =listchars= to show indentation with spaces and display tabs normally.
@@ -94,13 +94,13 @@ Until I figure out how to write an =if version < 8.2= in vim, I'll make it
 conditional.  For now, just showing spaces as a center dot.
 
 #+begin_src vimrc
-autocmd FileType make,go set listchars=tab:\ \ ,space:·,trail:·,precedes:←,extends:→
+autocmd FileType make,go setlocal listchars=tab:\ \ ,space:·,trail:·,precedes:←,extends:→
 #+end_src
 
 *** Two spaces for yaml
 
 #+begin_src vimrc
-autocmd FileType yaml set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+autocmd FileType yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 #+end_src
 
 ** Wrapping
@@ -165,7 +165,7 @@ colorscheme molokai " Requires https://github.com/tomasr/molokai
 Plugin : https://github.com/masukomi/vim-markdown-folding
 
 #+begin_src vimrc
-autocmd FileType markdown set foldexpr=NestedMarkdownFolds()
+autocmd FileType markdown setlocal foldexpr=NestedMarkdownFolds()
 #+end_src
 
 *** Org

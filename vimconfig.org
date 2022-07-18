@@ -276,3 +276,15 @@ if $SSH_CLIENT == ""
     set clipboard=unnamed
 endif
 #+end_src
+
+** Display % as . in Fortran
+
+Fortran uses =object%attribute= to get a field of a struct (in Fortran they
+don't call it a struct, I think they call it a type).
+
+#+begin_src vimrc
+" Funny thing to show '%' as '.' in Fortran files
+" autocmd FileType fortran set conceallevel=2
+" autocmd FileType fortran call matchadd('Conceal', '%', 10, -1, {'conceal': '.'})
+#+end_src
+

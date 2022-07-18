@@ -2,6 +2,23 @@
 #+PROPERTY: header-args:vimrc :tangle vimrc :results none
 #+OPTIONS: toc:2
 
+* Shell command to tangle
+
+To tangle from the shell, use this command:
+#+begin_src sh
+emacs --batch -l org FILE -f org-babel-tangle
+#+end_src
+Note where the =FILE= appears in the command.
+
+It seems that it must appear before the =-f org-babel-tangle= argument.
+
+The manual =man emacs= says this about =-f=, =-l=, =-e, --eval=:
+
+#+begin_quote
+The following options are Lisp-oriented (these options are processed in the
+order encountered):
+#+end_quote
+
 * Header
 
 #+begin_src vimrc

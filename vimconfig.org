@@ -103,6 +103,13 @@ autocmd FileType make,go setlocal listchars=tab:\ \ ,space:·,trail:·,precedes:
 autocmd FileType yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 #+end_src
 
+*** Use AnsiEsc for =*.out= files
+
+#+begin_src vimrc
+autocmd BufRead *.out :AnsiEsc
+autocmd BufRead *.out setlocal nowrap
+#+end_src
+
 ** Wrapping
 
 *** Hard Wrapping

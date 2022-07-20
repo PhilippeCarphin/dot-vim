@@ -23,8 +23,8 @@ autocmd FileType make,go setlocal listchars=tab:\ \ ,space:·,trail:·,precedes:
 
 autocmd FileType yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 
-autocmd BufRead *.out :AnsiEsc
-autocmd BufRead *.out setlocal nowrap
+autocmd BufRead *.out,*.log :AnsiEsc
+autocmd BufRead *.out,*.log setlocal nowrap
 
 set textwidth=0
 

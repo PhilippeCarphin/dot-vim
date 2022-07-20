@@ -106,8 +106,8 @@ autocmd FileType yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 *** Use AnsiEsc for =*.out= files
 
 #+begin_src vimrc
-autocmd BufRead *.out :AnsiEsc
-autocmd BufRead *.out setlocal nowrap
+autocmd BufRead *.out,*.log :AnsiEsc
+autocmd BufRead *.out,*.log setlocal nowrap
 #+end_src
 
 ** Wrapping

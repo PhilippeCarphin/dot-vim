@@ -5,6 +5,8 @@ if exists("did_load_filetypes")
 endif
 augroup filetypedetect
 
-    autocmd BufRead,BufNewFile *.ftn,*.ftn90,*.cdk,*.cdk90,*.inc,*.hf set filetype=fortran
+autocmd BufRead,BufNewFile *.ftn,*.ftn90,*.cdk,*.cdk90,*.inc,*.hf set filetype=fortran
+
+autocmd BufRead,BufNewFile *.dot set filetype=sh
 
 augroup END

@@ -314,6 +314,16 @@ However these are not know by standard programs.
     autocmd BufRead,BufNewFile *.ftn,*.ftn90,*.cdk,*.cdk90,*.inc,*.hf set filetype=fortran
 #+end_src
 
+** '.dot' file from CMC
+
+The =.dot= extension is used to indicate that the script in question is meant
+to be sourced.  The extension is recognized by vim as 'dot graph'.  To
+override this:
+
+#+begin_src filetype
+    autocmd BufRead,BufNewFile *.dot set filetype=sh
+#+end_src
+
 #+begin_src filetype
 augroup END
 #+end_src

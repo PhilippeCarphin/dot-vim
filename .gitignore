@@ -1,2 +1,3 @@
 *.html
 .netrwhist
+pack/vendor/start/YouCompleteMe

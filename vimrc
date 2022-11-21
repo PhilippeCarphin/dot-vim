@@ -40,6 +40,8 @@ set colorcolumn=80
 
 nnoremap j gj
 nnoremap k gk
+vnoremap j gj
+vnoremap k gk
 
 syntax on
 set scrolloff=5

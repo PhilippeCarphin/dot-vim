@@ -141,11 +141,13 @@ set colorcolumn=80
 **** Set j,k to move up and down visual lines
 
 This makes =j,k= move up and down display lines instead of moving by physical
-lines (i.e. defined by ='\n'=).
+lines (i.e. defined by ='\n'=) in normal and visual modes.
 
 #+begin_src vimrc
 nnoremap j gj
 nnoremap k gk
+vnoremap j gj
+vnoremap k gk
 #+end_src
 
 ** MISC

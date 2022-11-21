@@ -290,6 +290,19 @@ don't call it a struct, I think they call it a type).
 " autocmd FileType fortran call matchadd('Conceal', '%', 10, -1, {'conceal': '.'})
 #+end_src
 
+** YouCompleteMe
+
+#+begin_src vimrc
+" Technically version > 8.1.2269 but I only encounter either vim 8.0 or vim 9+
+" so this is easier
+if version >= 900
+    " Silent makes it not complain if the package doesn't exits in
+    " .vim/pack/*/opt/
+    silent! packadd YouCompleteMe
+endif
+#+end_src
+
+
 * Filetype associations
 
 This section generates the file =filetype.vim=.

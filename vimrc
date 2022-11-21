@@ -81,3 +81,11 @@ endif
 " Funny thing to show '%' as '.' in Fortran files
 " autocmd FileType fortran set conceallevel=2
 " autocmd FileType fortran call matchadd('Conceal', '%', 10, -1, {'conceal': '.'})
+
+" Technically version > 8.1.2269 but I only encounter either vim 8.0 or vim 9+
+" so this is easier
+if version >= 900
+    " Silent makes it not complain if the package doesn't exits in
+    " .vim/pack/*/opt/
+    silent! packadd YouCompleteMe
+endif

@@ -1,4 +1,3 @@
-
 " This file was generated from vimconfig.org by using org-babel-tangle.
 " That file is 'tangled' to make this vimrc file which should be pointed to
 " by a link '~/.vimrc -> $this_file'

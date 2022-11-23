@@ -341,7 +341,17 @@ override this:
 
 ** CMC profile files
 #+begin_src filetype
-    autocmd BufRead,BufNewFile */.profile.d/interactive/post,*/.profile.d/interactive/pre, set filetype=sh
+    autocmd BufRead,BufNewFile */.profile.d/interactive/pre    set filetype=sh
+    autocmd BufRead,BufNewFile */.profile.d/interactive/post   set filetype=sh
+#+end_src
+** Package file
+
+Files meant to be sourced by my custom function =p.use= inspired by
+François's function =f.use= which basically does
+=source ~/.profile.d/interactive/pack/$1=
+
+#+begin_src filetype
+    autocmd BufRead,BufNewFile */.profile.d/interactive/pack/* set filetype=sh
 #+end_src
 
 ** CMC maestro files

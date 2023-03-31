@@ -7,6 +7,8 @@ filetype plugin indent on
 
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal!  g'\"" | endif
 
+autocmd BufReadPost COMMIT_EDITMSG,git-rebase-todo :0
+
 set autoindent
 set list
 

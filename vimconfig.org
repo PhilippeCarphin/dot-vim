@@ -47,6 +47,17 @@ autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "norm
 I left out the =if has("autocmd")= because I have yet to encounter a version of
 vim that does not have it.
 
+*** Exception for commit messages
+
+Git reuses =.git/COMMIT_EDITMSG= for when editing commit messages with the
+editor.  In that context we always want the cursor to start on the first
+line.  We do the same thing for the =git-rebase-todo= file that is used for
+interactive rebases.
+
+#+begin_src vimrc
+autocmd BufReadPost COMMIT_EDITMSG,git-rebase-todo :0
+#+end_src
+
 ** Indentation
 
 We use listchars to show unwanted whitespace characters: tabs are shown as =»~=

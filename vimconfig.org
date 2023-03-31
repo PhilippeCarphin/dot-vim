@@ -352,6 +352,23 @@ if version >= 900
 endif
 #+end_src
 
+** Command to justify text
+
+This loads a visual mode command =_j= that will justify a paragraph of text.
+
+The usefulness of this is somewhat questionnable, but it's fun to have I
+guess.
+
+Note that the format the format option 't' (=formatoptions+=t=) may make a
+difference.  I read somewhere that it was needed but I'm not sure in what
+cases.  I don't want to erroeneously think that it is needed so I'm leaving
+it in commented.
+
+#+begin_src vimrc
+runtime macros/justify.vim
+" set formatoptions+=t
+#+end_src
+
 
 * Filetype associations
 

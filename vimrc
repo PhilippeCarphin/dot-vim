@@ -96,3 +96,6 @@ if version >= 900
     " .vim/pack/*/opt/
     silent! packadd YouCompleteMe
 endif
+
+runtime macros/justify.vim
+" set formatoptions+=t

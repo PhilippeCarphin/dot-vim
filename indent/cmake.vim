@@ -1,0 +1,1 @@
+/home/phc001/fs1/share/vim/vimfiles/indent/cmake.vim

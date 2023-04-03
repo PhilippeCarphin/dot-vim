@@ -22,3 +22,6 @@
 [submodule "pack/vendor/powerline"]
 	path = pack/vendor/start/powerline-repo
     url = https://github.com/powerline/powerline
+[submodule "pack/vendor/start/vim-fetch"]
+	path = pack/vendor/start/vim-fetch
+	url = git@github.com:wsdjeg/vim-fetch

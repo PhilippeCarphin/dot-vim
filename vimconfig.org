@@ -431,6 +431,17 @@ runtime macros/justify.vim
 #+end_src
 
 
+* Language specific commands
+
+Fortran makes you write =use, intrinsic :: iso_fortran_env= for every
+function or subroutine in a file instead of putting it at the top of the file
+so you end up writing it all the time.  The same goes for =iso_c_bindings=
+
+#+begin_src vimrc
+nnoremap <Space>ife ouse, intrinsic :: iso_fortran_env<ESC>==
+nnoremap <Space>icb ouse, intrinsic :: iso_c_binding<ESC>==
+#+end_src
+
 * Filetype associations
 
 This section generates the file =filetype.vim=.

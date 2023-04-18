@@ -112,3 +112,6 @@ endif
 
 runtime macros/justify.vim
 " set formatoptions+=t
+
+nnoremap <Space>ife ouse, intrinsic :: iso_fortran_env<ESC>==
+nnoremap <Space>icb ouse, intrinsic :: iso_c_binding<ESC>==

@@ -367,7 +367,7 @@ nnoremap <Up> <C-y>k
 nnoremap <Down> <C-e>j
 #+end_src
 
-*** Make arrows print quotes from The Shadow (1982) with Alec Baldwin
+*** Make arrows print quotes from The Shadow (1994) with Alec Baldwin
 #+begin_src vimrc
 nnoremap <Left> <ESC>:echoerr "Your mind is weak."<CR>
 nnoremap <Right> <ESC>:echoerr "Your mind is weak."<CR>

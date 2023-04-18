@@ -107,6 +107,7 @@ if version >= 900
     " Silent makes it not complain if the package doesn't exits in
     " .vim/pack/*/opt/
     silent! packadd YouCompleteMe
+    nnoremap gd :YcmCompleter GoToDefinition<CR>
 endif
 
 runtime macros/justify.vim

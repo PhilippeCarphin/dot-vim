@@ -345,6 +345,18 @@ successive keycodes sent by the terminal to communicate an arrow key.
 #+begin_src vimrc
 set timeoutlen=500 ttimeoutlen=50
 #+end_src
+
+
+*** Cursor position after paste
+
+Normally, the cursor ends on the last char of the pasted text but most of the
+time, you want it after the pasted text:
+
+#+begin_src vimrc
+nnoremap p pl
+nnoremap P Pl
+#+end_src
+
 *** Scrolling
 
 Up down move the cursor in one direction and scrolls the view in the other.

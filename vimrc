@@ -78,6 +78,10 @@ autocmd InsertLeave * if col('.') != CursorColumnI | call cursor(0, col('.')+1) 
 " set noesckeys
 
 set timeoutlen=500 ttimeoutlen=50
+
+nnoremap p pl
+nnoremap P Pl
+
 nnoremap <Up> <C-y>k
 nnoremap <Down> <C-e>j
 

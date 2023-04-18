@@ -25,3 +25,6 @@
 [submodule "pack/vendor/start/vim-fetch"]
 	path = pack/vendor/start/vim-fetch
 	url = git@github.com:wsdjeg/vim-fetch
+[submodule "pack/vendor/start/vim-matchup"]
+	path = pack/vendor/start/vim-matchup
+	url = git@github.com:andymass/vim-matchup

@@ -293,10 +293,58 @@ As far as I know, the problem only happens on mac and on the various linux
 computers I have tried, the new powerline has not been an issue.
 
 ** Keys
+
+*** Leaving insert mode
+
 #+begin_src vimrc
 inoremap jk <ESC>
 #+end_src
 
+**** Cursor position after leaving insert mode
+
+99.99% of the time, I ended up pressing =l= after pressing =<ESC>= to leave
+insert mode.
+
+[[https://vim.fandom.com/wiki/Prevent_escape_from_moving_the_cursor_one_character_to_the_left#Programmatic_Alternative][This Vim Fandom answer]]
+gives the solution used below and also tells you that if you want this this
+behavior, then you dont care about consistency.  Hey Vim Fandom, you know
+what's very consistent?  The fact that I always press =l= after leaving
+insert mode!
+
+#+begin_src vimrc
+let CursorColumnI = 0 "the cursor column position in INSERT
+autocmd InsertEnter * let CursorColumnI = col('.')
+autocmd CursorMovedI * let CursorColumnI = col('.')
+autocmd InsertLeave * if col('.') != CursorColumnI | call cursor(0, col('.')+1) | endif
+#+end_src
+
+Because of the nature of 'ESC' and the fact that terminals implement things
+like function keys using =<ESC>[15~=, Vim waits a little while after <ESC>
+has been received to see if something like =[15~= follows.
+
+[[https://superuser.com/questions/1579208/delay-after-hitting-escape]]
+[[https://vi.stackexchange.com/questions/16148/slow-vim-escape-from-insert-mode]]
+
+This delay can be completely eliminated by telling vim that you will never
+use such keys.  In that case, =ESC= will always mean that the user pressed
+that key on the keyboard and there is no need for the delay.
+
+#+begin_src vimrc
+" set noesckeys
+#+end_src
+
+However I noticed that the arrow keys are implemented as an escape sequence.
+Although I never use them, sometimes, I do them by mistake and the behavior
+with =set noesckeys= is much more annoying than my =:echoerr "your mind is
+weak"= things.
+
+Instead, we can set =ttimeoutlen= to a very small value like 50ms and this is
+short enough that we cannot notice it, but longer than the time between
+successive keycodes sent by the terminal to communicate an arrow key.
+
+#+begin_src vimrc
+set timeoutlen=500 ttimeoutlen=50
+#+end_src
 *** Scrolling
 
 Up down move the cursor in one direction and scrolls the view in the other.

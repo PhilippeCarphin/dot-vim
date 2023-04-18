@@ -70,6 +70,14 @@ set laststatus=2
 
 inoremap jk <ESC>
 
+let CursorColumnI = 0 "the cursor column position in INSERT
+autocmd InsertEnter * let CursorColumnI = col('.')
+autocmd CursorMovedI * let CursorColumnI = col('.')
+autocmd InsertLeave * if col('.') != CursorColumnI | call cursor(0, col('.')+1) | endif
+
+" set noesckeys
+
+set timeoutlen=500 ttimeoutlen=50
 nnoremap <Up> <C-y>k
 nnoremap <Down> <C-e>j
 

@@ -88,10 +88,10 @@ nnoremap <Down> <C-e>j
 nnoremap <Left> <ESC>:echoerr "Your mind is weak."<CR>
 nnoremap <Right> <ESC>:echoerr "Your mind is weak."<CR>
 
-inoremap <Up> <ESC>:echoerr "Join me or die"<CR>
-inoremap <Down> <ESC>:echoerr "The clouded mind sees nothing"<CR>
-inoremap <Left> <ESC>:echoerr "Your mind is weak."<CR>
-inoremap <Right> <ESC>:echoerr "The clouded mind sees nothing"<CR>
+inoremap <Up> <C-O>:echoerr "Join me or die"<CR>
+inoremap <Down> <C-O>:echoerr "The clouded mind sees nothing"<CR>
+inoremap <Left> <C-O>:echoerr "Your mind is weak."<CR>
+inoremap <Right> <C-O>:echoerr "The clouded mind sees nothing"<CR>
 
 if $SSH_CLIENT == ""
     set clipboard=unnamed

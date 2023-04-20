@@ -33,7 +33,7 @@ Just start vim.
 
 * Doc
 
-The file =vimconfig.org= is the source of this vimrc.
+The file [[vimconfig.org]] is the source of this vimrc.
 
 It contains text describing the various options that I use.
 

@@ -28,3 +28,6 @@
 [submodule "pack/vendor/start/vim-matchup"]
 	path = pack/vendor/start/vim-matchup
 	url = git@github.com:andymass/vim-matchup
+[submodule "pack/vendor/start/vim-plugin-AnsiEsc"]
+	path = pack/vendor/start/vim-plugin-AnsiEsc
+	url = git@github.com:powerman/vim-plugin-AnsiEsc.git

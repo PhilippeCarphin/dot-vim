@@ -44,6 +44,7 @@ set textwidth=0
 
 set wrap
 set wrapmargin=0
+
 set colorcolumn=80
 
 nnoremap j gj
@@ -51,8 +52,9 @@ nnoremap k gk
 vnoremap j gj
 vnoremap k gk
 
-syntax on
 set scrolloff=5
+
+syntax on
 set hlsearch
 set number
 set showcmd " Display incomplete commands at the right
@@ -66,7 +68,7 @@ autocmd FileType markdown setlocal foldexpr=NestedMarkdownFolds()
 
 let g:org_todo_keywords=['TODO', 'GTD-IN', 'GTD-ACTION', 'GTD-PROJECT', 'GTD-NEXT-ACTION', 'GTD-WAITING', 'GTD-SOMEDAY-MAYBE', 'FEEDBACK', 'VERIFY', '|', 'DONE', 'GTD-DONE', 'GTD-REFERENCE', 'GTD-DELEGATED']
 
-let g:org_export_emacs="~/.local/bin/emacs"
+let g:org_export_emacs="/usr/bin/emacs"
 
 set laststatus=2
 
@@ -76,8 +78,6 @@ let CursorColumnI = 0 "the cursor column position in INSERT
 autocmd InsertEnter * let CursorColumnI = col('.')
 autocmd CursorMovedI * let CursorColumnI = col('.')
 autocmd InsertLeave * if col('.') != CursorColumnI | call cursor(0, col('.')+1) | endif
-
-" set noesckeys
 
 set timeoutlen=500 ttimeoutlen=50
 

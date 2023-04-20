@@ -62,10 +62,6 @@ autocmd BufReadPost COMMIT_EDITMSG,git-rebase-todo :0
 
 ** Indentation
 
-We use listchars to show unwanted whitespace characters: tabs are shown as =»~=
-when space is the preferred indentation and leading spaces are shown as =»= in
-=go= and =make= where real =\t= characters are the preferred indentation method.
-
 *** General
 
 #+begin_src vimrc
@@ -85,7 +81,9 @@ set softtabstop=4   " Sets the number of columns for a TAB.
 set expandtab       " Expand TABs to spaces.
 #+end_src
 
-Display unwanted whitespace characters by setting =listchars=.
+We use listchars to show unwanted whitespace characters: tabs are shown as =»~=
+when space is the preferred indentation and leading spaces are shown as =»= in
+=go= and =make= where real =\t= characters are the preferred indentation method.
 
 #+begin_src vimrc
 set listchars=tab:»~,extends:›,precedes:‹,nbsp:·,trail:·
@@ -101,12 +99,9 @@ autocmd FileType make,go setlocal tabstop=8 shiftwidth=8 softtabstop=0 noexpandt
 
 Change =listchars= to show indentation with spaces and display tabs normally.
 
-The system vim doesn't have the =lead= part for =listchars= so we have to use
-an if.  I don't know when it was introduced but I know vim 9.0 has it and vim
-8.2 doesn't.
-
-If we don't have vim 9, we show a dot for all spaces which is really not that
-bad.
+Previous versions of vim did not have a =lead= element for =listchars= so there
+was no way to differentiate between leading spaces and other spaces.  So in Vim
+<9, for go and make, we use a =·= for all spaces which is not so unpleasant.
 
 #+begin_src vimrc
 if version >= 900
@@ -157,6 +152,12 @@ autocmd FileType yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 
 *** Use AnsiEsc for =*.out= files
 
+The plugin
+[[https://github.com/powerman/vim-plugin-AnsiEsc][Ansi-Esc]]
+provides the command =AnsiEsc= that hides ANSI escape codes and colors the file
+according to these codes.  For file extensions that are likely to contain such
+codes such log files, we call this function on opening the file.
+
 #+begin_src vimrc
 autocmd BufRead *.out,*.log :AnsiEsc
 autocmd BufRead *.out,*.log setlocal nowrap
@@ -185,13 +186,26 @@ automatic hard wrapping while inserting.
 #+begin_src vimrc
 set wrap
 set wrapmargin=0
+#+end_src
+
+**** colorcolumn
+
+I prefer to never have text auto-wrap except in prose formats (non-code).
+
+This command colors the 80th column slightly differently so that I can avoid
+going over 80 characters, but also allows me to go over when I feel like it
+is peferable.
+
+#+begin_src vimrc
 set colorcolumn=80
 #+end_src
 
 **** Set j,k to move up and down visual lines
 
-This makes =j,k= move up and down display lines instead of moving by physical
-lines (i.e. defined by ='\n'=) in normal and visual modes.
+This makes =j,k= move up and down display lines instead of moving by logical
+lines (i.e. defined by ='\n'=) in normal and visual modes.  In visual *line*
+mode still selects logical lines but I prefer to have the cursor always move
+the same way.
 
 #+begin_src vimrc
 nnoremap j gj
@@ -202,9 +216,17 @@ vnoremap k gk
 
 ** MISC
 
+Keep the cursor 5 lines away from the top of the window.  Normally the window
+doesn't start scrolling until the cursor reaches the very top or the very bottom
+but with this, the text will start scrolling when the cursor gets within 5
+lines of the top of the window.  Once you have it, you can't live with out it!
+
+#+begin_src vimrc
+set scrolloff=5
+#+end_src
+
 #+begin_src vimrc
 syntax on
-set scrolloff=5
 set hlsearch
 set number
 set showcmd " Display incomplete commands at the right
@@ -233,7 +255,8 @@ autocmd FileType markdown setlocal foldexpr=NestedMarkdownFolds()
 
 Plugins :
 - https://github.com/jceb/vim-orgmode
-- https://github.com/tpope/vim-speeddating
+- https://github.com/tpope/vim-speeddating (not the thing where you go to meet
+  people, but a thing to work with dates really fast)
 
 Org todo keywords
 #+begin_src vimrc
@@ -242,7 +265,7 @@ let g:org_todo_keywords=['TODO', 'GTD-IN', 'GTD-ACTION', 'GTD-PROJECT', 'GTD-NEX
 
 Path to elisp backend
 #+begin_src vimrc
-let g:org_export_emacs="~/.local/bin/emacs"
+let g:org_export_emacs="/usr/bin/emacs"
 #+end_src
 
 ** Status line
@@ -331,8 +354,8 @@ This delay can be completely eliminated by telling vim that you will never
 use such keys.  In that case, =ESC= will always mean that the user pressed
 that key on the keyboard and there is no need for the delay.
 
-#+begin_src vimrc
-" set noesckeys
+#+begin_src vimrc :tangle no
+set noesckeys
 #+end_src
 
 However I noticed that the arrow keys are implemented as an escape sequence.
@@ -352,7 +375,8 @@ set timeoutlen=500 ttimeoutlen=50
 *** Cursor position after paste
 
 Normally, the cursor ends on the last char of the pasted text but most of the
-time, you want it after the pasted text:
+time, you want it after the pasted text.  For example, =P= to paste before
+the cursor then =D= to delete till end of line.
 
 #+begin_src vimrc
 nnoremap p pl
@@ -364,12 +388,14 @@ nnoremap P Pl
 Up down move the cursor in one direction and scrolls the view in the other.
 This has the effect that the cursor stays in the same place on the screen
 which is a good behavior for scrolling.
+
 #+begin_src vimrc
 nnoremap <Up> <C-y>k
 nnoremap <Down> <C-e>j
 #+end_src
 
 *** Make arrows print quotes from The Shadow (1994) with Alec Baldwin
+
 #+begin_src vimrc
 nnoremap <Left> <ESC>:echoerr "Your mind is weak."<CR>
 nnoremap <Right> <ESC>:echoerr "Your mind is weak."<CR>
@@ -385,6 +411,9 @@ inoremap <Right> <C-O>:echoerr "The clouded mind sees nothing"<CR>
 Tested on MacOS with Vim 8+
 
 Reference : =:help clipboard=
+
+You typically don't have access to the system clipboard when using Vim over an
+ssh connection
 #+begin_src vimrc
 if $SSH_CLIENT == ""
     set clipboard=unnamed
@@ -396,6 +425,9 @@ endif
 Fortran uses =object%attribute= to get a field of a struct (in Fortran they
 don't call it a struct, I think they call it a type).
 
+I made this as a joke back when I first started programming in Fortran.  Obviously
+the real solution is to get used to the language.
+
 #+begin_src vimrc
 " Funny thing to show '%' as '.' in Fortran files
 " autocmd FileType fortran set conceallevel=2
@@ -403,6 +435,8 @@ don't call it a struct, I think they call it a type).
 #+end_src
 
 ** YouCompleteMe
+
+Code completion engine for Vim.
 
 #+begin_src vimrc
 " Technically version > 8.1.2269 but I only encounter either vim 8.0 or vim 9+
@@ -431,7 +465,6 @@ it in commented.
 runtime macros/justify.vim
 " set formatoptions+=t
 #+end_src
-
 
 * Language specific commands
 

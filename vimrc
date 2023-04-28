@@ -97,6 +97,9 @@ inoremap <Right> <C-O>:echoerr "The clouded mind sees nothing"<CR>
 
 if $SSH_CLIENT == ""
     set clipboard=unnamed
+else
+    vmap <silent> xy "xy<CR>:wviminfo! ~/.viminfo<CR>
+    nmap <silent> xp :rviminfo! ~/.viminfo<CR>"xp
 endif
 
 " Funny thing to show '%' as '.' in Fortran files

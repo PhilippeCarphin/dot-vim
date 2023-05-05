@@ -62,7 +62,14 @@ set backspace=indent,eol,start " Usual backspace behavior
 set encoding=utf-8
 
 set t_Co=256 " Apparently this has to be set before setting the color scheme
-colorscheme molokai " Requires https://github.com/tomasr/molokai
+
+if $__editor_grayscale == ""
+    colorscheme molokai " Requires https://github.com/tomasr/molokai
+    packadd powerline-plugin
+else
+    colorscheme true-monochrome
+    highlight ColorColumn ctermbg=236
+endif
 
 autocmd FileType markdown setlocal foldexpr=NestedMarkdownFolds()
 
@@ -120,3 +127,4 @@ runtime macros/justify.vim
 
 nnoremap <Space>ife ouse, intrinsic :: iso_fortran_env<ESC>==
 nnoremap <Space>icb ouse, intrinsic :: iso_c_binding<ESC>==
+nnoremap <Space>ino oimplicit none<ESC>==

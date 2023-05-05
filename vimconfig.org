@@ -239,7 +239,22 @@ set encoding=utf-8
 
 #+begin_src vimrc
 set t_Co=256 " Apparently this has to be set before setting the color scheme
-colorscheme molokai " Requires https://github.com/tomasr/molokai
+#+end_src
+
+In order to experiment with not using color in my shell and editors, I have
+two environment variables which I set in my shell startup file
+=__editor_grayscale= and =__shell_grayscale=.  With the =true-monochrome=
+colorscheme, the color of the =colorcolumn= is red, so in that case, I
+explicitly set its color.
+
+#+begin_src vimrc
+if $__editor_grayscale == ""
+    colorscheme molokai " Requires https://github.com/tomasr/molokai
+    packadd powerline-plugin
+else
+    colorscheme true-monochrome
+    highlight ColorColumn ctermbg=236
+endif
 #+end_src
 
 ** Plugins

@@ -19,9 +19,6 @@
 [submodule "pack/vendor/vim-speeddating"]
 	path = pack/vendor/start/vim-speeddating
 	url = https://github.com/tpope/vim-speeddating
-[submodule "pack/vendor/powerline"]
-	path = pack/vendor/start/powerline-repo
-    url = https://github.com/powerline/powerline
 [submodule "pack/vendor/start/vim-fetch"]
 	path = pack/vendor/start/vim-fetch
 	url = git@github.com:wsdjeg/vim-fetch
@@ -31,3 +28,9 @@
 [submodule "pack/vendor/start/vim-plugin-AnsiEsc"]
 	path = pack/vendor/start/vim-plugin-AnsiEsc
 	url = git@github.com:powerman/vim-plugin-AnsiEsc.git
+[submodule "pack/vendor/start/true-monochrome"]
+	path = pack/vendor/start/true-monochrome
+	url = git@github.com:ryanpcmcquen/true-monochrome_vim.git
+[submodule "pack/vendor/opt/powerline-repo"]
+	path = pack/vendor/opt/powerline-repo
+	url = https://github.com/lokaltog/powerline

@@ -9,8 +9,8 @@ augroup filetypedetect
 
     autocmd BufRead,BufNewFile *.dot set filetype=sh
 
-    autocmd BufRead,BufNewFile */.profile.d/interactive/pre    set filetype=sh
-    autocmd BufRead,BufNewFile */.profile.d/interactive/post   set filetype=sh
+    autocmd BufRead,BufNewFile */.profile.d/*   set filetype=sh
+    autocmd BufRead,BufNewFile */.profile.d/*   set filetype=sh
 
     autocmd BufRead,BufNewFile */.profile.d/interactive/pack/* set filetype=sh
 

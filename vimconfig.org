@@ -558,8 +558,8 @@ override this:
 
 ** CMC profile files
 #+begin_src filetype
-    autocmd BufRead,BufNewFile */.profile.d/interactive/pre    set filetype=sh
-    autocmd BufRead,BufNewFile */.profile.d/interactive/post   set filetype=sh
+    autocmd BufRead,BufNewFile */.profile.d/*   set filetype=sh
+    autocmd BufRead,BufNewFile */.profile.d/*   set filetype=sh
 #+end_src
 ** Package file
 

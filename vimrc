@@ -1,8 +1,6 @@
 " This file was generated from vimconfig.org by using org-babel-tangle.
 " That file is 'tangled' to make this vimrc file which should be pointed to
 " by a link '~/.vimrc -> $this_file'
-" Vim config dir versionned at https://github.com/philippecarphin/dot-vim
-" The orgmode file can be viewed in the browser at https://github.com/philippecarphin/dot-vim/blob/master/vimconfig.org
 
 set nocompatible              " be iMproved, required
 filetype plugin indent on

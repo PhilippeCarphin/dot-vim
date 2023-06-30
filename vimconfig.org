@@ -1,35 +1,17 @@
+-*- org-src-preserve-indentation: t -*-
 #+TITLE: Vimrc file
 #+PROPERTY: header-args:vimrc :tangle vimrc :results none
 #+PROPERTY: header-args:filetype :tangle filetype.vim :results none
 #+OPTIONS: toc:2
 
-* Shell command to tangle
-
-To tangle from the shell, use this command:
-#+begin_src sh
-emacs --batch -l org --eval "(setq org-src-preserve-indentation t)" FILE -f org-babel-tangle
-#+end_src
-
-Note where the =FILE= appears in the command.
-
-It seems that it must appear before the =-f org-babel-tangle= argument.
-
-The manual =man emacs= says this about =-f=, =-l=, =-e, --eval=:
-
-#+begin_quote
-The following options are Lisp-oriented (these options are processed in the
-order encountered):
-#+end_quote
-
 * Header
 
+This just puts a comment header in the generated vimrc file.
 
 #+begin_src vimrc
 " This file was generated from vimconfig.org by using org-babel-tangle.
 " That file is 'tangled' to make this vimrc file which should be pointed to
 " by a link '~/.vimrc -> $this_file'
-" Vim config dir versionned at https://github.com/philippecarphin/dot-vim
-" The orgmode file can be viewed in the browser at https://github.com/philippecarphin/dot-vim/blob/master/vimconfig.org
 #+end_src
 
 * Fundamental
@@ -609,3 +591,26 @@ into a file in some subdirectory of =/tmp/= name the file =masetro_something=
 #+begin_src filetype
 augroup END
 #+end_src
+
+* Shell command to tangle
+
+To tangle from the shell, use this command:
+#+begin_src sh
+emacs --batch -l org --eval "(setq org-src-preserve-indentation t)" FILE -f org-babel-tangle
+#+end_src
+
+Note where the =FILE= appears in the command.
+
+It seems that it must appear before the =-f org-babel-tangle= argument.
+
+The manual =man emacs= says this about =-f=, =-l=, =-e, --eval=:
+
+#+begin_quote
+The following options are Lisp-oriented (these options are processed in the
+order encountered):
+#+end_quote
+
+Note the =(setq org-src-preserve-indentation t)= in the command.  For this to
+apply when tangling this file from Emacs with =C-c C-v C-t=, the line
+=-*- org-src-preserve-indentation: t -*-= sets the same variable to =t= for this
+file only.  It must be the first line of the file otherwise it has no effect.

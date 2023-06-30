@@ -234,6 +234,12 @@ set backspace=indent,eol,start " Usual backspace behavior
 set encoding=utf-8
 #+end_src
 
+** Leader key
+
+#+begin_src vimrc
+let mapleader = ' '
+#+end_src
+
 * Additional
 ** Color
 
@@ -434,8 +440,8 @@ ssh connection.
 if $SSH_CLIENT == ""
     set clipboard=unnamed
 else
-    vmap <silent> xy "xy<CR>:wviminfo! ~/.viminfo<CR>
-    nmap <silent> xp :rviminfo! ~/.viminfo<CR>"xp
+    vmap <silent> <leader>y "xy<CR>:wviminfo! ~/.viminfo<CR>
+    nmap <silent> <leader>p :rviminfo! ~/.viminfo<CR>"xp
 endif
 #+end_src
 
@@ -464,6 +470,11 @@ For this reason using =xy= and =xp= has the potiential to lose information in
 the viminfo file that would normally not have been lost.  Therefore it is
 better to create new mappings =xy= and =xp= instead of remapping =y= and =p=
 to always do this trick.
+
+** Break the habit of pressing =x= multiple times
+#+begin_src vimrc
+nnoremap <silent> xx :echoerr 'Pressing "x" more than once consecutively is a sign of weakness'<CR>
+#+end_src
 
 ** Display % as . in Fortran
 
@@ -509,6 +520,19 @@ it in commented.
 #+begin_src vimrc
 runtime macros/justify.vim
 " set formatoptions+=t
+#+end_src
+
+** Unhighlight searches
+
+For 10 years, I've been doing =/asdf<CR>= to unhighlight searches.
+
+This stops now! I'll try these few options and possibly just keep one when I
+find which one I like best.
+
+#+begin_src vimrc
+nnoremap <leader>c :noh<CR>
+nnoremap <ESC><ESC> :noh<CR>
+nnoremap <C-l> :noh<CR><C-l>
 #+end_src
 
 * Language specific commands

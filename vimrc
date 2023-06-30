@@ -61,6 +61,8 @@ set showcmd " Display incomplete commands at the right
 set backspace=indent,eol,start " Usual backspace behavior
 set encoding=utf-8
 
+let mapleader = ' '
+
 set t_Co=256 " Apparently this has to be set before setting the color scheme
 
 if $__editor_grayscale == ""
@@ -105,9 +107,11 @@ inoremap <Right> <C-O>:echoerr "The clouded mind sees nothing"<CR>
 if $SSH_CLIENT == ""
     set clipboard=unnamed
 else
-    vmap <silent> xy "xy<CR>:wviminfo! ~/.viminfo<CR>
-    nmap <silent> xp :rviminfo! ~/.viminfo<CR>"xp
+    vmap <silent> <leader>y "xy<CR>:wviminfo! ~/.viminfo<CR>
+    nmap <silent> <leader>p :rviminfo! ~/.viminfo<CR>"xp
 endif
+
+nnoremap <silent> xx :echoerr 'Pressing "x" more than once consecutively is a sign of weakness'<CR>
 
 " Funny thing to show '%' as '.' in Fortran files
 " autocmd FileType fortran set conceallevel=2
@@ -124,6 +128,10 @@ endif
 
 runtime macros/justify.vim
 " set formatoptions+=t
+
+nnoremap <leader>c :noh<CR>
+nnoremap <ESC><ESC> :noh<CR>
+nnoremap <C-l> :noh<CR><C-l>
 
 nnoremap <Space>ife ouse, intrinsic :: iso_fortran_env<ESC>==
 nnoremap <Space>icb ouse, intrinsic :: iso_c_binding<ESC>==

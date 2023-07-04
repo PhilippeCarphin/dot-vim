@@ -131,6 +131,23 @@ nnoremap <leader>c :noh<CR>
 nnoremap <ESC><ESC> :noh<CR>
 nnoremap <C-l> :noh<CR><C-l>
 
+function! TabMode(nb)
+    setlocal listchars=tab:\ \ ,lead:·,trail:·,precedes:←,extends:→
+    let &tabstop=a:nb    " Display width of \t character
+    set noexpandtab      " Don't expand tabs to spaces
+endfunction
+
+function! SpaceMode(nb)
+    setlocal listchars=tab:»~,extends:›,precedes:‹,nbsp:·,trail:·
+    let &tabstop=a:nb       " Display width of \t character
+    let &shiftwidth=a:nb    " Indents will have a width of 4.
+    let &softtabstop=a:nb   " Sets the number of columns for a TAB.
+    set expandtab           " Expand TABs to spaces.
+endfunction
+
+command Tabs :call TabMode(8)
+command Spaces :call SpaceMode(4)
+
 nnoremap <Space>ife ouse, intrinsic :: iso_fortran_env<ESC>==
 nnoremap <Space>icb ouse, intrinsic :: iso_c_binding<ESC>==
 nnoremap <Space>ino oimplicit none<ESC>==

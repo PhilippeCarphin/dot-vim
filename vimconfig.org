@@ -517,6 +517,48 @@ nnoremap <ESC><ESC> :noh<CR>
 nnoremap <C-l> :noh<CR><C-l>
 #+end_src
 
+** Switch tab settings
+Defines two functions to set groups of indentation related settings.  Note that
+vim functions are weird: it seems that I cannot access the value of an argument
+in a =set= command.  Instead, I have to do =let &<option>=a:<argument>=
+according  to [[https://vi.stackexchange.com/a/11534/7936][this stack overflow post]] and that's just one of the reasons why I
+like Emacs LISP better than Vimscript.
+
+These functions are useful for example when browsing code that is indented
+using tabs 
+
+=TabMode= displays tabs as =a:nb= spaces with and leading spaces are marked using
+=listchars= disables =expandtab=.
+
+#+begin_src vimrc 
+function! TabMode(nb)
+    setlocal listchars=tab:\ \ ,lead:·,trail:·,precedes:←,extends:→
+    let &tabstop=a:nb    " Display width of \t character
+    set noexpandtab      " Don't expand tabs to spaces
+endfunction
+#+end_src
+
+=SpaceMode= sets my preferred settings for indentation: tabs are expanded and
+leading tabs are displayed using =listchars=.
+
+#+begin_src vimrc 
+function! SpaceMode(nb)
+    setlocal listchars=tab:»~,extends:›,precedes:‹,nbsp:·,trail:·
+    let &tabstop=a:nb       " Display width of \t character
+    let &shiftwidth=a:nb    " Indents will have a width of 4.
+    let &softtabstop=a:nb   " Sets the number of columns for a TAB.
+    set expandtab           " Expand TABs to spaces.
+endfunction
+#+end_src
+
+And we add two shortcut commands to call these functions more easily.  I chose
+the argument 8 for =TabMode= because of the Linux style guide and 4 for
+=SpaceMode= because that matches my default settings.
+
+#+begin_src vimrc
+command Tabs :call TabMode(8)
+command Spaces :call SpaceMode(4)
+#+end_src
 * Language specific commands
 
 Fortran makes you write =use, intrinsic :: iso_fortran_env= for every

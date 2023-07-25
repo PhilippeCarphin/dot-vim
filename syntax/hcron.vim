@@ -11,6 +11,11 @@
 " * include "..." directive
 " * special $HCRON_* variable names
 " * comment lines
+"
+" Phil: I stumbled accross this file at
+" https://code.google.com/archive/p/hcron/downloads (hcron-vim.tgz)
+" (wget https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/hcron/hcron-vim.tgz)
+" but I couldn't find a more official or recent source for it.
 
 syn case match
 

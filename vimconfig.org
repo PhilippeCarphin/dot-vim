@@ -596,6 +596,14 @@ However these are not know by standard programs.
     autocmd BufRead,BufNewFile *.ftn,*.ftn90,*.cdk,*.cdk90,*.inc,*.hf set filetype=fortran
 #+end_src
 
+** HCRON files
+
+Any file under =~/.hcron= or files ending with =.hcron=.
+
+#+begin_src filetype
+    autocmd BufRead,BufNewFile */.hcron/*,*.hcron set filetype=hcron
+#+end_src
+
 ** '.dot' file from CMC
 
 The =.dot= extension is used to indicate that the script in question is meant

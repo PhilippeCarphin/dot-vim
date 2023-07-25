@@ -136,8 +136,10 @@ nnoremap <C-l> :noh<CR><C-l>
 
 function! TabMode(nb)
     setlocal listchars=tab:\ \ ,lead:·,trail:·,precedes:←,extends:→
-    let &tabstop=a:nb    " Display width of \t character
-    set noexpandtab      " Don't expand tabs to spaces
+    let &tabstop=a:nb     " Display width of \t character
+    let &shiftwidth=a:nb  " Indents will have a width of 4.
+    let &softtabstop=a:nb " Sets the number of columns for a TAB.
+    set noexpandtab       " Don't expand tabs to spaces
 endfunction
 
 function! SpaceMode(nb)

@@ -12,9 +12,6 @@ augroup filetypedetect
     autocmd BufRead,BufNewFile *.dot set filetype=sh
 
     autocmd BufRead,BufNewFile */.profile.d/*   set filetype=sh
-    autocmd BufRead,BufNewFile */.profile.d/*   set filetype=sh
-
-    autocmd BufRead,BufNewFile */.profile.d/interactive/pack/* set filetype=sh
 
     autocmd BufRead,BufNewFile *.def,*/.suites/*/*.cfg,/tmp/phc001/*/maestro* set filetype=sh
 

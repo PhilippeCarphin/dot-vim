@@ -102,6 +102,9 @@ inoremap <Down> <C-O>:echoerr "The clouded mind sees nothing"<CR>
 inoremap <Left> <C-O>:echoerr "Your mind is weak."<CR>
 inoremap <Right> <C-O>:echoerr "The clouded mind sees nothing"<CR>
 
+nnoremap <leader>cn :cnext<CR>
+nnoremap <leader>cp :cprev<CR>
+
 if $SSH_CLIENT == ""
     set clipboard=unnamed
 else

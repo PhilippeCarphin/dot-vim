@@ -409,6 +409,13 @@ inoremap <Left> <C-O>:echoerr "Your mind is weak."<CR>
 inoremap <Right> <C-O>:echoerr "The clouded mind sees nothing"<CR>
 #+end_src
 
+*** Shortcuts to navigate quickfix
+
+#+begin_src vimrc
+nnoremap <leader>cn :cnext<CR>
+nnoremap <leader>cp :cprev<CR>
+#+end_src
+
 ** Clipboard
 
 Tested on MacOS with Vim 8+

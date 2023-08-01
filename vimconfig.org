@@ -605,6 +605,12 @@ However these are not know by standard programs.
     autocmd BufRead,BufNewFile *.ftn,*.ftn90,*.cdk,*.cdk90,*.inc,*.hf set filetype=fortran
 #+end_src
 
+** Fortran namelist files
+
+#+begin_src filetype
+    autocmd BufRead,BufNewFile *.nml set filetype=fortran
+#+end_src
+
 ** HCRON files
 
 Any file under =~/.hcron= or files ending with =.hcron=.

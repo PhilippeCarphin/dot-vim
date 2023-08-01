@@ -7,6 +7,8 @@ augroup filetypedetect
 
     autocmd BufRead,BufNewFile *.ftn,*.ftn90,*.cdk,*.cdk90,*.inc,*.hf set filetype=fortran
 
+    autocmd BufRead,BufNewFile *.nml set filetype=fortran
+
     autocmd BufRead,BufNewFile */.hcron/*,*.hcron set filetype=hcron
 
     autocmd BufRead,BufNewFile *.dot set filetype=sh

@@ -77,6 +77,13 @@ let g:org_todo_keywords=['TODO', 'GTD-IN', 'GTD-ACTION', 'GTD-PROJECT', 'GTD-NEX
 
 let g:org_export_emacs="/usr/bin/emacs"
 
+let g:ctrlp_prompt_mappings = {
+            \ 'PrtSelectMove("k")': ['<C-p>'],
+            \ 'PrtSelectMove("j")': ['<C-n>'],
+            \ 'PrtHistory(-1)':     ['<down>'],
+            \ 'PrtHistory(1)':      ['<up>'],
+            \ }
+
 set laststatus=2
 
 inoremap jk <ESC>

@@ -34,3 +34,6 @@
 [submodule "pack/vendor/opt/powerline-repo"]
 	path = pack/vendor/opt/powerline-repo
 	url = https://github.com/lokaltog/powerline
+[submodule "pack/vendor/start/ctrlp.vim"]
+	path = pack/vendor/start/ctrlp.vim
+	url = git@github.com:ctrlpvim/ctrlp.vim

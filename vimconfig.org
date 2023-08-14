@@ -271,6 +271,29 @@ Path to elisp backend
 let g:org_export_emacs="/usr/bin/emacs"
 #+end_src
 
+*** CtrlP
+
+[[https://github.com/ctrlpvim/ctrlp.vim][CtrlP]] is a fuzzy finder for
+opening files in Vim that opens up a buffer where you can type and it fuzzy
+finds files.  The key to go into this buffer is =C-p=.  The following changes
+the keybindings that are active inside the fuzzy finding buffer.
+
+I'm very used to using =C-n=, =C-p= to go up and down in popup menus and I
+don't feel like the history is very useful here.
+
+#+begin_src vimrc
+let g:ctrlp_prompt_mappings = {
+            \ 'PrtSelectMove("k")': ['<C-p>'],
+            \ 'PrtSelectMove("j")': ['<C-n>'],
+            \ 'PrtHistory(-1)':     ['<down>'],
+            \ 'PrtHistory(1)':      ['<up>'],
+            \ }
+#+end_src
+
+Note, since the original mapping for =C-p= is ='PrtHistory(1)'=, it seems
+that I have to redefine the mapping for that history command as well.  Same
+for =C-n= and ='PrtHistory(-1)'=.
+
 ** Status line
 *** Always show status line
 

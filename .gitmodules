@@ -37,3 +37,6 @@
 [submodule "pack/vendor/start/ctrlp.vim"]
 	path = pack/vendor/start/ctrlp.vim
 	url = git@github.com:ctrlpvim/ctrlp.vim
+[submodule "pack/vendor/start/vim-ripgrep"]
+	path = pack/vendor/start/vim-ripgrep
+	url = git@github.com:jremmen/vim-ripgrep

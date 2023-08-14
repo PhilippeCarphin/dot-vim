@@ -294,6 +294,15 @@ Note, since the original mapping for =C-p= is ='PrtHistory(1)'=, it seems
 that I have to redefine the mapping for that history command as well.  Same
 for =C-n= and ='PrtHistory(-1)'=.
 
+Also, in the quickfix buffer, I use =C-p,C-n= to move up and down which would
+trigger this plugin.  So I remap the key to =C-f=.  Since I only use =C-u=,
+=C-d= to move up and down by chunks, I never use =C-f= and the 'f' evokes
+finding.
+
+#+begin_src vimrc
+let g:ctrlp_map = '<C-f>'
+#+end_src
+
 ** Status line
 *** Always show status line
 

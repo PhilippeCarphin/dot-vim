@@ -84,6 +84,8 @@ let g:ctrlp_prompt_mappings = {
             \ 'PrtHistory(1)':      ['<up>'],
             \ }
 
+let g:ctrlp_map = '<C-f>'
+
 set laststatus=2
 
 inoremap jk <ESC>

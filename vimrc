@@ -82,6 +82,8 @@ let g:ctrlp_prompt_mappings = {
             \ 'PrtSelectMove("j")': ['<C-n>'],
             \ 'PrtHistory(-1)':     ['<down>'],
             \ 'PrtHistory(1)':      ['<up>'],
+            \ 'AcceptSelection("t")': ['<CR>'],
+            \ 'AcceptSelection("e")': [''],
             \ }
 
 let g:ctrlp_map = '<C-f>'

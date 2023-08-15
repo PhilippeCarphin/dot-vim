@@ -278,8 +278,10 @@ opening files in Vim that opens up a buffer where you can type and it fuzzy
 finds files.  The key to go into this buffer is =C-p=.  The following changes
 the keybindings that are active inside the fuzzy finding buffer.
 
-I'm very used to using =C-n=, =C-p= to go up and down in popup menus and I
-don't feel like the history is very useful here.
+- I'm very used to using =C-n=, =C-p= to go up and down in popup menus and I
+  don't feel like the history is very useful here.
+- I always use tabs so I made =CR= the binding for opening in new tab. Again,
+  I have to take =CR= out of the original binding.
 
 #+begin_src vimrc
 let g:ctrlp_prompt_mappings = {
@@ -287,6 +289,8 @@ let g:ctrlp_prompt_mappings = {
             \ 'PrtSelectMove("j")': ['<C-n>'],
             \ 'PrtHistory(-1)':     ['<down>'],
             \ 'PrtHistory(1)':      ['<up>'],
+            \ 'AcceptSelection("t")': ['<CR>'],
+            \ 'AcceptSelection("e")': [''],
             \ }
 #+end_src
 

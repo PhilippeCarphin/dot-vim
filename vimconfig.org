@@ -481,11 +481,11 @@ else
 endif
 #+end_src
 
-When we are over an SSH connection we map =xy= in visual mode to yank to the =x=
-register and to update the viminfo file immediately.
+When we are over an SSH connection we map =<leader>y= in visual mode to yank
+to the =x= register and to update the viminfo file immediately.
 
-And to paste, we map =xy= to reread the viminfo file immediately and then past
-from the =x= register.
+And to paste, we map =<leader>y= to reread the viminfo file immediately and
+then past from the =x= register.
 
 This shows a bit of how the vim clipboard works (I'm probably commiting a
 gravesin by calling it "the vim clipboard").
@@ -502,10 +502,10 @@ Help on =wviminfo= shows that if =!= is not used, wviminfo will merge info of
 the running instance with what is in the =viminfo= file.  If however =!= is
 used, then stuff does get overwritten.
 
-For this reason using =xy= and =xp= has the potiential to lose information in
-the viminfo file that would normally not have been lost.  Therefore it is
-better to create new mappings =xy= and =xp= instead of remapping =y= and =p=
-to always do this trick.
+For this reason using =<leader>y= and =<leader>p= has the potiential to lose
+information in the viminfo file that would normally not have been lost.
+Therefore it is better to create new mappings =<leader>y= and =<leader>p=
+instead of remapping =y= and =p= to always do this trick.
 
 ** Break the habit of pressing =x= multiple times
 #+begin_src vimrc

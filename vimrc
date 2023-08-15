@@ -138,6 +138,9 @@ if version >= 900
     nnoremap gd :YcmCompleter GoToDefinition<CR>
 endif
 
+" Make sure to always check for a `.ycm_extra_conf.py` in new projects
+let g:ycm_confirm_extra_conf = 0
+
 runtime macros/justify.vim
 " set formatoptions+=t
 

@@ -530,6 +530,15 @@ if version >= 900
 endif
 #+end_src
 
+Disable confirmation of loading =.ycm_extra_conf.py=.  This could run someone
+else's code if I were to work on a project that came with a
+=.ycm_extra_conf.py=.  Therefore it is up to me to be careful with that.
+
+#+begin_src vimrc
+" Make sure to always check for a `.ycm_extra_conf.py` in new projects
+let g:ycm_confirm_extra_conf = 0
+#+end_src
+
 ** Command to justify text
 
 This loads a visual mode command =_j= that will justify a paragraph of text.

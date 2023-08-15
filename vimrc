@@ -116,6 +116,9 @@ inoremap <Right> <C-O>:echoerr "The clouded mind sees nothing"<CR>
 nnoremap <leader>cn :cnext<CR>
 nnoremap <leader>cp :cprev<CR>
 
+inoremap <C-a> <C-o>^
+inoremap <C-e> <C-o>$
+
 if $SSH_CLIENT == ""
     set clipboard=unnamed
 else

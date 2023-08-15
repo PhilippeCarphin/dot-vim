@@ -452,6 +452,17 @@ nnoremap <leader>cn :cnext<CR>
 nnoremap <leader>cp :cprev<CR>
 #+end_src
 
+*** Shell keys for moving to beginning and end of line
+
+My shell uses Emacs keybindings, most notably =C-a= and =C-e= to move to the
+beginning and end of the line.  Plus the normal mode Vim bindings are less
+convenient to type since I use CapsLock as a CTRL key.
+
+#+begin_src vimrc
+inoremap <C-a> <C-o>^
+inoremap <C-e> <C-o>$
+#+end_src
+
 ** Clipboard
 
 Tested on MacOS with Vim 8+

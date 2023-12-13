@@ -699,6 +699,20 @@ into a file in some subdirectory of =/tmp/= name the file =masetro_something=
     autocmd BufRead,BufNewFile *.def,*/.suites/*/*.cfg,/tmp/phc001/*/maestro* set filetype=sh
 #+end_src
 
+** fc tempfiles in BASH
+
+When using =fc= (fix command) or doing =C-x C-e= to edit a command, BASH
+creates a temporary file, opens it with your editor and waits for it to quit.
+It then runs the content of that file (like sourcing it).
+
+The file is named as if created by the command =mktemp bash-fc.XXXXXX --tmpdir=.
+
+Note that =C-x C-e= also creates a file named =bash-fc.XXXXXX=.
+
+#+begin_src filetype
+    autocmd BufRead,BufNewFile *bash-fc* set filetype=sh
+#+end_src
+
 
 #+begin_src filetype
 augroup END

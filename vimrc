@@ -170,6 +170,10 @@ endfunction
 command Tabs :call TabMode(8)
 command Spaces :call SpaceMode(4)
 
+inoremap :w<CR> <ESC>:w<CR>
+inoremap :wq<CR> <ESC>:wq<CR>
+inoremap :wqa<CR> <ESC>:wqa<CR>
+
 nnoremap <Space>ife ouse, intrinsic :: iso_fortran_env<ESC>==
 nnoremap <Space>icb ouse, intrinsic :: iso_c_binding<ESC>==
 nnoremap <Space>ino oimplicit none<ESC>==

@@ -624,6 +624,20 @@ the argument 8 for =TabMode= because of the Linux style guide and 4 for
 command Tabs :call TabMode(8)
 command Spaces :call SpaceMode(4)
 #+end_src
+
+** Doing =:w*= in insert mode
+
+It doesn't happen super often but often enough.  Especially when I have
+multiple tabs open.  Sometimes I want to do =:wqa= but sometimes I want to
+simply do =:wq= repeatedly to close all the tabs and one of them will be in
+insert mode.
+
+#+begin_src vimrc
+inoremap :w<CR> <ESC>:w<CR>
+inoremap :wq<CR> <ESC>:wq<CR>
+inoremap :wqa<CR> <ESC>:wqa<CR>
+#+end_src
+
 * Language specific commands
 
 Fortran makes you write =use, intrinsic :: iso_fortran_env= for every

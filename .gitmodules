@@ -40,3 +40,6 @@
 [submodule "pack/vendor/start/vim-ripgrep"]
 	path = pack/vendor/start/vim-ripgrep
 	url = git@github.com:jremmen/vim-ripgrep
+[submodule "pack/vendor/start/vim-applescript"]
+	path = pack/vendor/start/vim-applescript
+	url = git@github.com:mityu/vim-applescript

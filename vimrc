@@ -119,6 +119,16 @@ nnoremap <leader>cp :cprev<CR>
 inoremap <C-a> <C-o>^
 inoremap <C-e> <C-o>$
 
+nnoremap <C-w>/ :vsplit<CR><C-w>l
+nnoremap <C-w>- :split<CR><C-w>j
+inoremap <C-w>/ <C-o>:vsplit<CR><C-o><C-w>l
+inoremap <C-w>- <C-o>:split<CR><C-o><C-w>j
+
+inoremap <C-w>h <C-o><C-w>h
+inoremap <C-w>j <C-o><C-w>j
+inoremap <C-w>k <C-o><C-w>k
+inoremap <C-w>l <C-o><C-w>l
+
 if $SSH_CLIENT == ""
     set clipboard=unnamed
 else

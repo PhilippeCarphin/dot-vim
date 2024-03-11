@@ -463,6 +463,24 @@ inoremap <C-a> <C-o>^
 inoremap <C-e> <C-o>$
 #+end_src
 
+*** Tmux style pane functions
+
+#+begin_src vimrc
+nnoremap <C-w>/ :vsplit<CR><C-w>l
+nnoremap <C-w>- :split<CR><C-w>j
+inoremap <C-w>/ <C-o>:vsplit<CR><C-o><C-w>l
+inoremap <C-w>- <C-o>:split<CR><C-o><C-w>j
+#+end_src
+
+I never use =C-w= in insert mode to delete backwards one word and I'd rather
+have it do the same thing that it does :vsplitl
+#+begin_src vimrc
+inoremap <C-w>h <C-o><C-w>h
+inoremap <C-w>j <C-o><C-w>j
+inoremap <C-w>k <C-o><C-w>k
+inoremap <C-w>l <C-o><C-w>l
+#+end_src
+
 ** Clipboard
 
 Tested on MacOS with Vim 8+

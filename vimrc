@@ -119,6 +119,8 @@ nnoremap <leader>cp :cprev<CR>
 inoremap <C-a> <C-o>^
 inoremap <C-e> <C-o>$
 
+nnoremap <C-a> ^
+
 nnoremap <C-w>/ :vsplit<CR><C-w>l
 nnoremap <C-w>- :split<CR><C-w>j
 inoremap <C-w>/ <C-o>:vsplit<CR><C-o><C-w>l
@@ -183,6 +185,8 @@ command Spaces :call SpaceMode(4)
 inoremap :w<CR> <ESC>:w<CR>
 inoremap :wq<CR> <ESC>:wq<CR>
 inoremap :wqa<CR> <ESC>:wqa<CR>
+
+nnoremap <Leader>gf :tabe <cfile><CR>
 
 nnoremap <Space>ife ouse, intrinsic :: iso_fortran_env<ESC>==
 nnoremap <Space>icb ouse, intrinsic :: iso_c_binding<ESC>==

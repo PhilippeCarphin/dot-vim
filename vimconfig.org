@@ -463,6 +463,31 @@ inoremap <C-a> <C-o>^
 inoremap <C-e> <C-o>$
 #+end_src
 
+*** Preventing accidental number increments
+
+Since my TMUX prefix key is =C-a= in I have
+#+begin_src tmux
+bind C-a send-keys C-a
+#+end_src
+in my =~/.tmux.conf= so that I can still send a =C-a= to an application by
+pressing =C-a= twice.
+
+Occasionally, I hesitate between the =C-a= and the tmux key binding I want to
+use:  For example to enter copy-mode =C-a <hesitation> Enter=.  Occasionally
+I will do =C-a <hesitation> C-a Enter= either because of muscle memory or
+because I'm not sure if I cancelled the first =C-a=.
+
+This leads to doing =C-a= twice which sends =C-a= to the application.  If
+it's a shell no big deal, it sends my cursor to the start of the line and in
+most other cases it either does nothing or something that I can easily notice.
+
+But in Vim, in normal mode, =C-a= increments the number under the cursor
+which is both really easy to miss and can have disastrous consequences.
+
+#+begin_src vimrc
+nnoremap <C-a> ^
+#+end_src
+
 *** Tmux style pane functions
 
 #+begin_src vimrc
@@ -656,6 +681,16 @@ inoremap :wq<CR> <ESC>:wq<CR>
 inoremap :wqa<CR> <ESC>:wqa<CR>
 #+end_src
 
+** Going to files
+
+The normal mode =gf= and =gF= open the file under the cursor but only if it
+exists.  This mapping is a way to create the file if it doesn't exist but
+also to open it in a tab.
+
+#+begin_src vimrc
+nnoremap <Leader>gf :tabe <cfile><CR>
+#+end_src
+
 * Language specific commands
 
 Fortran makes you write =use, intrinsic :: iso_fortran_env= for every
@@ -670,6 +705,8 @@ nnoremap <Space>ino oimplicit none<ESC>==
 #+end_src
 
 * Filetype associations
+
+** Header
 
 This section generates the file =filetype.vim=.
 
@@ -744,11 +781,18 @@ Note that =C-x C-e= also creates a file named =bash-fc.XXXXXX=.
 #+begin_src filetype
     autocmd BufRead,BufNewFile *bash-fc* set filetype=sh
 #+end_src
+** Alternative Git configuration files
 
+#+begin_src filetype
+    autocmd BufRead,BufNewFile *gitconfig* set filetype=gitconfig
+#+end_src
 
+** Footer
 #+begin_src filetype
 augroup END
 #+end_src
+
+
 
 * Shell command to tangle
 

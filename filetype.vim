@@ -19,4 +19,6 @@ augroup filetypedetect
 
     autocmd BufRead,BufNewFile *bash-fc* set filetype=sh
 
+    autocmd BufRead,BufNewFile *gitconfig* set filetype=gitconfig
+
 augroup END

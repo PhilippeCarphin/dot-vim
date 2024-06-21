@@ -3081,6 +3081,13 @@ syn keyword cmakeKWinclude_guard contained
             \ GLOBAL
             \ TRUE
             \ __CURRENT_FILE_VAR__
+syn keyword cmakeKWmy_macro contained
+            \ FLAG1
+            \ FLAG2
+            \ BOSS
+            \ DIRECTOR
+            \ EMPLOYEES
+            \ INTERNS
 
 syn keyword cmakeKWinstall contained
             \ AFTER
@@ -3893,6 +3900,7 @@ syn keyword cmakeCommand
             \ include_guard
             \ include_regular_expression
             \ install
+            \ my_macro
             \ link_directories
             \ list
             \ load_cache
@@ -4051,6 +4059,7 @@ hi def link cmakeKWinclude_directories ModeMsg
 hi def link cmakeKWinclude_external_msproject ModeMsg
 hi def link cmakeKWinclude_guard ModeMsg
 hi def link cmakeKWinstall ModeMsg
+hi def link cmakeKWmy_macro ModeMsg
 hi def link cmakeKWinstall_files ModeMsg
 hi def link cmakeKWinstall_programs ModeMsg
 hi def link cmakeKWinstall_targets ModeMsg

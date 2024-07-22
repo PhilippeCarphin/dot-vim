@@ -693,15 +693,33 @@ nnoremap <Leader>gf :tabe <cfile><CR>
 
 * Language specific commands
 
-Fortran makes you write =use, intrinsic :: iso_fortran_env= for every
-function or subroutine in a file instead of putting it at the top of the file
-so you end up writing it all the time.  The same goes for =iso_c_bindings=
-and =implicit none=.
+This section tangles to files =ftplugin/<FILETYPE>.vim= for various values of
+=FILETYPE=.
 
-#+begin_src vimrc
-nnoremap <Space>ife ouse, intrinsic :: iso_fortran_env<ESC>==
-nnoremap <Space>icb ouse, intrinsic :: iso_c_binding<ESC>==
-nnoremap <Space>ino oimplicit none<ESC>==
+Using =<buffer>= in commands like =nnoremap <buffer> KEY ACTIONS= makes it so
+=KEY= is bound to =ACTION= only in the particular buffer.  This is important
+because without it, the =<Space>sb= would be the one for the most recently
+opened filetype in all buffers.
+
+** Fortran
+
+#+begin_src vimrc :tangle ftplugin/fortran.vim
+nnoremap <buffer> <Leader>ife ouse, intrinsic :: iso_fortran_env<ESC>==
+nnoremap <buffer> <Leader>icb ouse, intrinsic :: iso_c_binding<ESC>==
+nnoremap <buffer> <Leader>ino oimplicit none<ESC>==
+#+end_src
+
+** Python
+
+#+begin_src vimrc :tangle ftplugin/python.vim
+nnoremap <buffer> <Leader>sb ggi#!/usr/bin/env python3<CR><CR><ESC>
+#+end_src
+
+** BASH
+
+#+begin_src vimrc :tangle ftplugin/sh.vim
+nnoremap <buffer> <Leader>ssb ggi#!/bin/bash<CR><BS><CR>set -euEo pipefail<CR>shopt -s inherrit_errexit<CR><ESC>
+nnoremap <buffer> <Leader>sb ggi#!/bin/bash<CR><BS><CR><ESC>
 #+end_src
 
 * Filetype associations

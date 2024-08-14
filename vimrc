@@ -3,14 +3,14 @@
 " by a link '~/.vimrc -> $this_file'
 
 set nocompatible              " be iMproved, required
-filetype plugin indent on
 
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal!  g'\"" | endif
 
 autocmd BufReadPost COMMIT_EDITMSG,git-rebase-todo :0
 
 set autoindent
-set list
+
+filetype plugin indent on
 
 set tabstop=4       " Display width of \t character
 set shiftwidth=4    " Indents will have a width of 4.
@@ -187,7 +187,3 @@ inoremap :wq<CR> <ESC>:wq<CR>
 inoremap :wqa<CR> <ESC>:wqa<CR>
 
 nnoremap <Leader>gf :tabe <cfile><CR>
-
-nnoremap <Space>ife ouse, intrinsic :: iso_fortran_env<ESC>==
-nnoremap <Space>icb ouse, intrinsic :: iso_c_binding<ESC>==
-nnoremap <Space>ino oimplicit none<ESC>==

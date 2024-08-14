@@ -14,12 +14,40 @@ This just puts a comment header in the generated vimrc file.
 " by a link '~/.vimrc -> $this_file'
 #+end_src
 
+* Notes
+
+I only discovered this recently and maybe it depends on the version of vim
+but if you don't have a =~/.vimrc= but you do have a =~/.vim/vimrc=, vim will
+load that.
+
+** Acceptable builtin themes
+
+- desert
+- elflord
+- evening
+- habamax
+- industry
+- koehler
+- lunaperche
+- murphy
+- pablo
+- ron
+- slate
+- torte
+
+** Setting color of colorcolumn
+
+Some color schemes (not molokai) set a weird color for the ColorColumn, to
+set it to something else after loading such a color scheme, use
+#+begin_src vimrc :tangle no
+hi ColorColumn ctermbg=245
+#+end_src
+
 * Fundamental
 ** Be iMproved
 
 #+begin_src vimrc
 set nocompatible              " be iMproved, required
-filetype plugin indent on
 #+end_src
 
 ** Remember position in file
@@ -33,7 +61,7 @@ vim that does not have it.
 
 *** Exception for commit messages
 
-Git reuses =.git/COMMIT_EDITMSG= for when editing commit messages with the
+Git reuses =.git/COMMIT_EDITMSG= when editing commit messages with the
 editor.  In that context we always want the cursor to start on the first
 line.  We do the same thing for the =git-rebase-todo= file that is used for
 interactive rebases.
@@ -46,9 +74,31 @@ autocmd BufReadPost COMMIT_EDITMSG,git-rebase-todo :0
 
 *** General
 
+Set basic autoindent: this will just keep the indent level constant as you
+insert new lines.
 #+begin_src vimrc
 set autoindent
-set list
+#+end_src
+
+This however gives indentation based on the language such as increasing the
+indentation when it should. See =:help filetype=
+#+begin_comment
+command                         detection       plugin          indent
+:filetype on                    on              unchanged       unchanged
+:filetype off                   off             unchanged       unchanged
+:filetype plugin on             on              on              unchanged
+:filetype plugin off            unchanged       off             unchanged
+:filetype indent on             on              unchanged       on
+:filetype indent off            unchanged       unchanged       off
+:filetype plugin indent on      on              on              on
+:filetype plugin indent off     unchanged       off             off
+#+end_comment
+where /detection/ means filetype detection, /plugin/ means loading plugin
+files for specific file types, and /indent/ means loading indent files for
+specific file types.
+
+#+begin_src vimrc
+filetype plugin indent on
 #+end_src
 
 *** 4 spaces for everything
@@ -224,6 +274,12 @@ let mapleader = ' '
 
 * Additional
 ** Color
+
+This setting puts vim in 256 color mode.  Normally Vim looks at the value of
+the =TERM= environment variable.  This setting ensures that Vim is in 256
+color mode regardless of =TERM= which could be a bad idea if I were ever to
+encounter a terminal that can't do but that has never happened, the only
+thing that has happened is a badly set =TERM= variable.
 
 #+begin_src vimrc
 set t_Co=256 " Apparently this has to be set before setting the color scheme
@@ -718,10 +774,16 @@ nnoremap <buffer> <Leader>sb ggi#!/usr/bin/env python3<CR><CR><ESC>
 ** BASH
 
 #+begin_src vimrc :tangle ftplugin/sh.vim
-nnoremap <buffer> <Leader>ssb ggi#!/bin/bash<CR><BS><CR>set -euEo pipefail<CR>shopt -s inherrit_errexit<CR><ESC>
+nnoremap <buffer> <Leader>ssb ggi#!/bin/bash<CR><BS><CR>set -euEo pipefail<CR>shopt -s inherit_errexit<CR><ESC>
 nnoremap <buffer> <Leader>sb ggi#!/bin/bash<CR><BS><CR><ESC>
 #+end_src
 
+** CMake
+
+#+begin_src vimrc :tangle ftplugin/cmake.vim
+nnoremap <buffer> <Leader>sb ggicmake_minimum_required(VERSION 3.20)<CR><CR>project(X C Fortran)<CR><CR><ESC>
+nnoremap <buffer> <Leader>ch oinclude(CTest)<CR>add_custom_target(check COMMAND ${CMAKE_CTEST_COMMAND})<CR><CR><ESC>
+#+end_src
 * Filetype associations
 
 ** Header
@@ -803,6 +865,12 @@ Note that =C-x C-e= also creates a file named =bash-fc.XXXXXX=.
 
 #+begin_src filetype
     autocmd BufRead,BufNewFile *gitconfig* set filetype=gitconfig
+#+end_src
+
+** Alternative TMUX configuration files
+
+#+begin_src filetype
+    autocmd BufRead,BufNewFile *tmux.conf* set filetype=tmux
 #+end_src
 
 ** Footer

@@ -18,14 +18,7 @@ set softtabstop=4   " Sets the number of columns for a TAB.
 set expandtab       " Expand TABs to spaces.
 
 set listchars=tab:»~,extends:›,precedes:‹,nbsp:·,trail:·
-
-autocmd FileType make,go setlocal tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
-
-if version >= 900
-    autocmd FileType make,go setlocal listchars=tab:\ \ ,lead:·,trail:·,precedes:←,extends:→
-else
-    autocmd FileType make,go setlocal listchars=tab:\ \ ,space:·,trail:·,precedes:←,extends:→
-endif
+set list
 
 autocmd FileType yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 

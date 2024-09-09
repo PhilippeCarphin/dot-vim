@@ -117,64 +117,11 @@ We use listchars to show unwanted whitespace characters: tabs are shown as =»~=
 when space is the preferred indentation and leading spaces are shown as =»= in
 =go= and =make= where real =\t= characters are the preferred indentation method.
 
+
 #+begin_src vimrc
 set listchars=tab:»~,extends:›,precedes:‹,nbsp:·,trail:·
+set list
 #+end_src
-
-*** Tabs for go and make
-
-Display tabs 4 spaces wide and don't convert to spaces.
-
-#+begin_src vimrc
-autocmd FileType make,go setlocal tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
-#+end_src
-
-Change =listchars= to show indentation with spaces and display tabs normally.
-
-Previous versions of vim did not have a =lead= element for =listchars= so there
-was no way to differentiate between leading spaces and other spaces.  So in Vim
-<9, for go and make, we use a =·= for all spaces which is not so unpleasant.
-
-#+begin_src vimrc
-if version >= 900
-    autocmd FileType make,go setlocal listchars=tab:\ \ ,lead:·,trail:·,precedes:←,extends:→
-else
-    autocmd FileType make,go setlocal listchars=tab:\ \ ,space:·,trail:·,precedes:←,extends:→
-endif
-#+end_src
-
-**** Alternative for leading whitespace in vim < 9
-
-This [[https://stackoverflow.com/a/40498439][solution by rodrigo]] is an
-alternative that I decided not to use but I'm documenting my use of it here
-since I had to figure out some things to make it work.
-
-Another solution is to highlight spaces at the beginning of the line.
-
-We create a highlight group =WhiteSpaceBol=
-
-#+begin_src vimrc :tangle no
-highlight WhiteSpaceBol ctermbg=red
-#+end_src
-
-and have it match white space at the beginning of the line for Makefiles and
-Go files.
-
-#+begin_src vimrc :tangle no
-autocmd FileType make,go match WhiteSpaceBol /^ \+/
-#+end_src
-
-For this to work, the definition of the highlight group needs to come after
-the loading of the colorscheme in the =~/.vimrc= file and the =match= needs
-to come after the highlight group has been defined.  Because it's in an
-=autocmd=, it can come before in the =.vimrc= file.
-
-If I wanted to use this, I would need to move the =highlight WhiteSpaceBol
-ctermbg=red= somewhere else in the file.
-
-However, I decided that I didn't like it that much and having =space:·= in
-listchars works just fine.
-
 
 *** Two spaces for yaml
 
@@ -748,14 +695,54 @@ nnoremap <Leader>gf :tabe <cfile><CR>
 #+end_src
 
 * Language specific commands
+** Go
+Highlight space vs tab errors by requesting from the syntax file.
+#+begin_src vimrc :tangle ftplugin/go.vim
+let g:go_highlight_space_tab_error = 1
+#+end_src
+this setting is used in =share/vim*/syntax/go.vim= to decide whether
+or not to highlight tab/space errors.
 
-This section tangles to files =ftplugin/<FILETYPE>.vim= for various values of
-=FILETYPE=.
+Set indentation stuff.  Most important is noexpandtab to get real tab
+characters.
+#+begin_src vimrc :tangle ftplugin/go.vim
+setlocal tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
+#+end_src
 
-Using =<buffer>= in commands like =nnoremap <buffer> KEY ACTIONS= makes it so
-=KEY= is bound to =ACTION= only in the particular buffer.  This is important
-because without it, the =<Space>sb= would be the one for the most recently
-opened filetype in all buffers.
+Set list chars.  No list char for tabs.  Vim 9+ has =lead= for leading
+spaces.  For previous versions of Vim, we only have =space= which includes
+spaces inside the line.
+
+In any case, because the syntax highlighting shows the tab/space errors
+well, we turn off the =list= option.
+#+begin_src vimrc :tangle ftplugin/go.vim
+setlocal nolist
+if version >= 900
+    setlocal listchars=tab:\ \ ,lead:·,trail:·,precedes:←,extends:→
+else
+    setlocal listchars=tab:\ \ ,space:·,trail:·,precedes:←,extends:→
+endif
+#+end_src
+
+** Make
+
+Same as Go, I didn't find a way to reuse the code so I'm just repeating here.
+
+Like Go, no need to enable listchars since =syntax/make.vim= also has a thing
+to highlight wrongly indented lines except no need to enable anything.
+
+#+begin_src vimrc :tangle ftplugin/go.vim
+setlocal tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
+#+end_src
+
+#+begin_src vimrc :tangle ftplugin/make.vim
+setlocal nolist
+if version >= 900
+    setlocal listchars=tab:\ \ ,lead:·,trail:·,precedes:←,extends:→
+else
+    setlocal listchars=tab:\ \ ,space:·,trail:·,precedes:←,extends:→
+endif
+#+end_src
 
 ** Fortran
 
@@ -773,10 +760,48 @@ nnoremap <buffer> <Leader>sb ggi#!/usr/bin/env python3<CR><CR><ESC>
 
 ** BASH
 
+
 #+begin_src vimrc :tangle ftplugin/sh.vim
 nnoremap <buffer> <Leader>ssb ggi#!/bin/bash<CR><BS><CR>set -euEo pipefail<CR>shopt -s inherit_errexit<CR><ESC>
 nnoremap <buffer> <Leader>sb ggi#!/bin/bash<CR><BS><CR><ESC>
 #+end_src
+
+*** About different types of highlightings for shell scripts
+
+I've long wondered why =$(= and =)= were highlighted as errors in some shell
+scritps that were missing a =#!/bin/bash= but not all the time.
+
+I've found out and here is a good place to record the knowledge.
+
+When any bash, sh, ksh script is opened by Vim, the file
+=share/vim/vim*/syntax/sh.vim= is executed.  It defines syntax highlighting
+rules for shell scripts including things to highlight as errors.
+
+Because shells are not all the same, this starts by attempting to determine
+which shell the script is for.  The rest of the file defines the syntax with
+some =if= statements based on the results of trying to guess the target shell
+of the script.
+
+To determine the shell, it looks at the first line for a =#!=.  If there
+isn't one, it assumes the script will be run by =/bin/sh=.
+
+If there is no =#!= or it is =#!/bin/sh=, then the syntax file attemps to
+guess what shell =/bin/sh= is.  On many systems nowadays, =/bin/sh= is a link
+to either =bash= or =dash=.  By resolving the link, =sh.vim= can know the
+shell.
+
+On MacOS, the platform of choice for my personal computers, =sh= is not a
+link to anything so the final result is that old-school Bourne Shell
+highlighting is used.
+
+**** Solution and why I don't use it
+
+We *could* fix this by putting =let g:is_posix= in this file
+(=ftplugin/sh.vim=).
+
+I think that it is an error to omit a =#!= and I want to notice when I forget
+to do it.  Threrefore, I use =$(= and its closing =)= being highlighted in
+purple as a reminder that I should have one.
 
 ** CMake
 

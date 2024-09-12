@@ -870,7 +870,7 @@ override this:
 When we ask maestro open a listing, it will decompress the stored listing
 into a file in some subdirectory of =/tmp/= name the file =masetro_something=
 #+begin_src filetype
-    autocmd BufRead,BufNewFile *.def,*/.suites/*/*.cfg,/tmp/phc001/*/maestro* set filetype=sh
+    autocmd BufRead,BufNewFile *.tsk,*.def,*/.suites/*/*.cfg,/tmp/phc001/*/maestro* set filetype=sh
 #+end_src
 
 ** fc tempfiles in BASH

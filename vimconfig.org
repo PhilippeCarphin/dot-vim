@@ -695,6 +695,37 @@ nnoremap <Leader>gf :tabe <cfile><CR>
 #+end_src
 
 * Language specific commands
+** Default filetype
+I would have liked it if doing =vim file_without_extension= would set the
+filetype to =sh= only if no filetype was detected so that my =<Leader>sb= and
+=<Leader>ssb= set in =ftplugin/sh.vim= would be active.
+
+I tried the following:
+#+begin_src vimrc :tangle no
+autocmd BufNewFile,BufRead * if (expand('%:t') !~ '\.') && (expand('%:t') !~ '[mM]akefile') && (getline(1) !~ '^#!*') | let b:is_bash=1 | let b:is_sh=0  | setfiletype sh | endif
+#+end_src
+but this would set the filetype to =sh= in situations where I didn't want it
+to.  Makefiles are an example for which I added an exception but after trying
+this out for a while, it became clear that it wasn't worth it.
+
+The simple way to solve this is to just have this:
+#+begin_src vimrc
+nnoremap <buffer> <Leader>ssb ggi#!/usr/bin/env -S bash -o errexit -o nounset -o errtrace -o pipefail -O inherit_errexit -O nullglob -O extglob<CR><BS><CR><ESC>
+nnoremap <buffer> <Leader>sb ggi#!/bin/bash<CR><BS><CR><ESC>
+#+end_src
+in my =vimrc= so that when no filetype is detected, these keys insert the
+BASH shebangs.
+
+If a different filetype is detected, then the keys set in the
+=ftplugin/<X>.vim= will override these values.
+
+Most of the time that I create an empty text file with no extension for which
+I want to insert a shebang, it will be BASH.  In the rarer cases like a
+Python file, then I can just write it by hand.
+
+In both cases, after I have a shebang, I can do =:e= at which point the
+filetype will be detected from the shebang.
+
 ** Go
 Highlight space vs tab errors by requesting from the syntax file.
 #+begin_src vimrc :tangle ftplugin/go.vim
@@ -760,9 +791,8 @@ nnoremap <buffer> <Leader>sb ggi#!/usr/bin/env python3<CR><CR><ESC>
 
 ** BASH
 
-
 #+begin_src vimrc :tangle ftplugin/sh.vim
-nnoremap <buffer> <Leader>ssb ggi#!/bin/bash<CR><BS><CR>set -euEo pipefail<CR>shopt -s inherit_errexit<CR><ESC>
+nnoremap <buffer> <Leader>ssb ggi#!/usr/bin/env -S bash -o errexit -o nounset -o errtrace -o pipefail -O inherit_errexit -O nullglob -O extglob<CR><BS><CR><ESC>
 nnoremap <buffer> <Leader>sb ggi#!/bin/bash<CR><BS><CR><ESC>
 #+end_src
 

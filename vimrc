@@ -181,5 +181,17 @@ inoremap :wqa<CR> <ESC>:wqa<CR>
 
 nnoremap <Leader>gf :tabe <cfile><CR>
 
+" Insert mode cursor
+let &t_SI = "\<Esc>]12;green\x7"
+" Replace mode cursor
+let &t_SR = "\<ESC>]12;red\x7"
+" Exit insert mode (all other modes)
+let &t_EI = "\<Esc>]12;yellow\x7"
+" This makes the cursor blue at the start but it seems =t_EI= gets sent immediately
+silent !echo -ne "\033]12;blue\007"
+" reset cursor when vim exits
+" use \003]12;gray\007 for gnome-terminal
+autocmd VimLeave * silent !echo -ne "\033]112\007"
+
 nnoremap <buffer> <Leader>ssb ggi#!/usr/bin/env -S bash -o errexit -o nounset -o errtrace -o pipefail -O inherit_errexit -O nullglob -O extglob<CR><BS><CR><ESC>
 nnoremap <buffer> <Leader>sb ggi#!/bin/bash<CR><BS><CR><ESC>

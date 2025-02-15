@@ -694,6 +694,33 @@ also to open it in a tab.
 nnoremap <Leader>gf :tabe <cfile><CR>
 #+end_src
 
+** Color cursor
+
+Described in =runtime/doc/term.txt=, these are codes to send to the terminal
+when entering insert mode, entering replace mode, and exiting those two
+modes.
+
+#+begin_src vimrc
+" Insert mode cursor
+let &t_SI = "\<Esc>]12;green\x7"
+" Replace mode cursor
+let &t_SR = "\<ESC>]12;red\x7"
+" Exit insert mode (all other modes)
+let &t_EI = "\<Esc>]12;yellow\x7"
+" This makes the cursor blue at the start but it seems =t_EI= gets sent immediately
+silent !echo -ne "\033]12;blue\007"
+" reset cursor when vim exits
+" use \003]12;gray\007 for gnome-terminal
+autocmd VimLeave * silent !echo -ne "\033]112\007"
+#+end_src
+
+Answer found in [[https://vim.fandom.com/wiki/Configuring_the_cursor]]
+and
+[[https://www.linuxquestions.org/questions/programming-9/vim-can%27t-change-cursor-color-4175593194/]]
+and I only knew it was possible because of
+[[https://emacs.stackexchange.com/q/14929/19972]]
+
+
 * Language specific commands
 ** Default filetype
 I would have liked it if doing =vim file_without_extension= would set the

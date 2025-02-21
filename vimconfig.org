@@ -566,6 +566,9 @@ don't call it a struct, I think they call it a type).
 I made this as a joke back when I first started programming in Fortran.  Obviously
 the real solution is to get used to the language.
 
+I'm tangling it commented so I can uncomment it quickly if I want to show
+someone this sillyness.
+
 #+begin_src vimrc
 " Funny thing to show '%' as '.' in Fortran files
 " autocmd FileType fortran set conceallevel=2
@@ -701,24 +704,40 @@ when entering insert mode, entering replace mode, and exiting those two
 modes.
 
 #+begin_src vimrc
-" Insert mode cursor
 let &t_SI = "\<Esc>]12;green\x7"
-" Replace mode cursor
 let &t_SR = "\<ESC>]12;red\x7"
-" Exit insert mode (all other modes)
 let &t_EI = "\<Esc>]12;yellow\x7"
-" This makes the cursor blue at the start but it seems =t_EI= gets sent immediately
 silent !echo -ne "\033]12;blue\007"
-" reset cursor when vim exits
-" use \003]12;gray\007 for gnome-terminal
 autocmd VimLeave * silent !echo -ne "\033]112\007"
 #+end_src
 
-Answer found in [[https://vim.fandom.com/wiki/Configuring_the_cursor]]
-and
+- =t_SI= gets output when entering insert mode,
+- =t_SR= gets output when entering replace mode
+- =t_EI= gets output when leaving insert or replace mode
+
+The =silent !echo ...= turns the cursor blue during startup.  Files that have a
+mark set in =~/.viminfo= start with a yellow cursor and files that don't start
+with a blue cursor.  So it's like when a file has a position saved in viminfo,
+goint to that place outputs =t_EI=.
+
+And obviously, the =autocmd VimLeave= sets the cursor to its default.
+
+Answer found in [[https://vim.fandom.com/wiki/Configuring_the_cursor]] and
 [[https://www.linuxquestions.org/questions/programming-9/vim-can%27t-change-cursor-color-4175593194/]]
 and I only knew it was possible because of
 [[https://emacs.stackexchange.com/q/14929/19972]]
+
+Terminals where this works
+
+| Terminal emulator | Works or not |
+|-------------------+--------------|
+| Konsole           | Yes          |
+| Mate Terminal     | No           |
+| Terminal.app      | Only in TMUX |
+| iTerm.app         | Only in TMUX |
+| VSCode shell      | Only in TMUX |
+| Windows Terminal  | Yes          |
+| Windows CMD       | Yes          |
 
 
 * Language specific commands

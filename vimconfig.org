@@ -238,7 +238,7 @@ two environment variables which I set in my shell startup file
 colorscheme, the color of the =colorcolumn= is red, so in that case, I
 explicitly set its color.
 
-#+begin_src vimrc
+#+begin_src vimrc :tangle no
 if $__editor_grayscale == ""
     colorscheme molokai " Requires https://github.com/tomasr/molokai
     packadd powerline-plugin
@@ -246,6 +246,11 @@ else
     colorscheme true-monochrome
     highlight ColorColumn ctermbg=236
 endif
+#+end_src
+
+#+begin_src vimrc :tangle vimrc
+colorscheme molokai " Requires https://github.com/tomasr/molokai
+packadd powerline-plugin
 #+end_src
 
 ** Plugins

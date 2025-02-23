@@ -56,13 +56,8 @@ let mapleader = ' '
 
 set t_Co=256 " Apparently this has to be set before setting the color scheme
 
-if $__editor_grayscale == ""
-    colorscheme molokai " Requires https://github.com/tomasr/molokai
-    packadd powerline-plugin
-else
-    colorscheme true-monochrome
-    highlight ColorColumn ctermbg=236
-endif
+colorscheme molokai " Requires https://github.com/tomasr/molokai
+packadd powerline-plugin
 
 autocmd FileType markdown setlocal foldexpr=NestedMarkdownFolds()
 

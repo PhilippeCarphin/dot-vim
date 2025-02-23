@@ -176,11 +176,13 @@ inoremap :wqa<CR> <ESC>:wqa<CR>
 
 nnoremap <Leader>gf :tabe <cfile><CR>
 
-let &t_SI = "\<Esc>]12;green\x7"
+let &t_SI = "\<Esc>]12;green\x7\<Esc>[6 q"
 let &t_SR = "\<ESC>]12;red\x7"
-let &t_EI = "\<Esc>]12;yellow\x7"
+let &t_EI = "\<Esc>]12;yellow\x7\<Esc>[2 q"
 silent !echo -ne "\033]12;blue\007"
 autocmd VimLeave * silent !echo -ne "\033]112\007"
+autocmd VimSuspend * silent !echo -ne "\033]112\007"
+autocmd VimResume * silent !echo -ne "\033]12;blue\007"
 
 nnoremap <buffer> <Leader>ssb ggi#!/usr/bin/env -S bash -o errexit -o nounset -o errtrace -o pipefail -O inherit_errexit -O nullglob -O extglob<CR><BS><CR><ESC>
 nnoremap <buffer> <Leader>sb ggi#!/bin/bash<CR><BS><CR><ESC>

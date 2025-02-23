@@ -704,35 +704,64 @@ nnoremap <Leader>gf :tabe <cfile><CR>
 
 ** Color cursor
 
+Make the cursor change color and shape depending on the mode.  Green bar in
+insert mode, red box in replace mode, yellow box in other modes.  Note that this
+only works if the terminal emulator responds to these codes.
+
+#+begin_src vimrc
+let &t_SI = "\<Esc>]12;green\x7\<Esc>[6 q"
+let &t_SR = "\<ESC>]12;red\x7"
+let &t_EI = "\<Esc>]12;yellow\x7\<Esc>[2 q"
+silent !echo -ne "\033]12;blue\007"
+autocmd VimLeave * silent !echo -ne "\033]112\007"
+autocmd VimSuspend * silent !echo -ne "\033]112\007"
+autocmd VimResume * silent !echo -ne "\033]12;blue\007"
+#+end_src
+
 Described in =runtime/doc/term.txt=, these are codes to send to the terminal
 when entering insert mode, entering replace mode, and exiting those two
 modes.
 
-#+begin_src vimrc
-let &t_SI = "\<Esc>]12;green\x7"
-let &t_SR = "\<ESC>]12;red\x7"
-let &t_EI = "\<Esc>]12;yellow\x7"
-silent !echo -ne "\033]12;blue\007"
-autocmd VimLeave * silent !echo -ne "\033]112\007"
-#+end_src
-
 - =t_SI= gets output when entering insert mode,
 - =t_SR= gets output when entering replace mode
 - =t_EI= gets output when leaving insert or replace mode
+
+The autocommands set the cursor back to default when leaving vim.  =VimLeave=
+for when we quit, =VimSuspend= when doing =C-z= to put Vim in the background,
+and =VimResume= when putting Vim back to the foreground.  Note that when
+foregrounding Vim, I set the cursor to a yellow box.
 
 The =silent !echo ...= turns the cursor blue during startup.  Files that have a
 mark set in =~/.viminfo= start with a yellow cursor and files that don't start
 with a blue cursor.  So it's like when a file has a position saved in viminfo,
 goint to that place outputs =t_EI=.
 
-And obviously, the =autocmd VimLeave= sets the cursor to its default.
+While browsing the [[https://emacs.stackexchange.com]], I found
+[[https://emacs.stackexchange.com/questions/14929/how-do-i-set-cursor-colours-per-evil-state-in-the-non-gui-text-terminal/83102#83102][a question about cursor colors in the terminal]] where I discovered that it was
+sometimes possible (depending on the terminal emulator) for terminal programs to
+change the cursor color.  I made it work for Emacs as we can see in my answer on
+that question.
 
-Answer found in [[https://vim.fandom.com/wiki/Configuring_the_cursor]] and
-[[https://www.linuxquestions.org/questions/programming-9/vim-can%27t-change-cursor-color-4175593194/]]
-and I only knew it was possible because of
-[[https://emacs.stackexchange.com/q/14929/19972]]
+For Vim, I found
+- [[https://vim.fandom.com/wiki/Configuring_the_cursor]]
+- [[https://www.linuxquestions.org/questions/programming-9/vim-can%27t-change-cursor-color-4175593194/]]
+- =:help t_EI= (=:help terminal-options=) in Vim shows the available settings.
 
-Terminals where this works
+Later, trying spacemacs to figure out how it was doing some other thing, I
+noticed that it changes the shape of the cursor to a bar in insert mode.
+So I looked for how they do it and found this [[https://github.com/syl20bnr/spacemacs/issues/7112#issuecomment-389855491][issue on Spacemacs repo]]
+which cites [[https://vt100.net/docs/vt510-rm/DECSCUSR][the VT100 documentation]].
+
+Codes used here:
+
+| Code            | Effect                                           |
+|-----------------+--------------------------------------------------|
+| =\033]12;_\007= | Set cursor color using the name of the color     |
+| =\033[6 q=      | Make the cursor a vertical bar                   |
+| =\033[2 q=      | Make the cursor a box                            |
+| =\033[112\007=  | Set the cursor back to default (color and shape) |
+
+Terminal emulators that respond to these codes:
 
 | Terminal emulator | Works or not |
 |-------------------+--------------|

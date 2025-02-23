@@ -418,6 +418,12 @@ successive keycodes sent by the terminal to communicate an arrow key.
 set timeoutlen=500 ttimeoutlen=50
 #+end_src
 
+Note however that other programs like TMUX also do this.  So if I have Vim open
+in a TMUX pane, then when I press =ESC=, TMUX waits for the rest of the escape
+sequence if there is one, then forwards an =ESC= to Vim.  Vim then waits for the
+rest of an escape sequence, then leaves insert mode.  The point is that this
+delay value is not the only one in play.
+
 
 *** Cursor position after paste
 
@@ -430,6 +436,10 @@ nnoremap p pl
 nnoremap P Pl
 #+end_src
 
+This has a drawback which is that if the end of the pasted text is at the end of
+the line, pressing =l= sends a bell to the terminal.  I turn off the bell in all
+the terminal emulators I use so it doesn't affect me.
+
 *** Scrolling
 
 Up down move the cursor in one direction and scrolls the view in the other.
@@ -440,6 +450,9 @@ which is a good behavior for scrolling.
 nnoremap <Up> <C-y>k
 nnoremap <Down> <C-e>j
 #+end_src
+
+Sometimes I want to rest my chin in my left hand with my right hand on the mouse
+as I peruse text and it's nice to be able to use the scroll wheel for that.
 
 *** Make arrows print quotes from The Shadow (1994) with Alec Baldwin
 
@@ -934,7 +947,6 @@ if exists("did_load_filetypes")
 endif
 augroup filetypedetect
 #+end_src
-
 
 ** Non-standard fortran file extensions
 

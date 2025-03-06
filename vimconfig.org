@@ -484,7 +484,7 @@ inoremap <C-a> <C-o>^
 inoremap <C-e> <C-o>$
 #+end_src
 
-*** Preventing accidental number increments
+*** Preventing accidental number increments and decrements
 
 Since my TMUX prefix key is =C-a= in I have
 #+begin_src tmux
@@ -507,7 +507,11 @@ which is both really easy to miss and can have disastrous consequences.
 
 #+begin_src vimrc
 nnoremap <C-a> ^
+nnoremap <C-x> <Nop>
 #+end_src
+
+Some of my Emacs reflexes make me use =C-x= in vim which decreases the next
+number.  So I also disable =C-x=
 
 *** Tmux style pane functions
 
@@ -526,50 +530,6 @@ inoremap <C-w>j <C-o><C-w>j
 inoremap <C-w>k <C-o><C-w>k
 inoremap <C-w>l <C-o><C-w>l
 #+end_src
-
-** Clipboard
-
-Tested on MacOS with Vim 8+
-
-Reference : =:help clipboard=
-
-You typically don't have access to the system clipboard when using Vim over an
-ssh connection.
-
-#+begin_src vimrc
-if $SSH_CLIENT == ""
-    set clipboard=unnamed
-else
-    vmap <silent> <leader>y "xy<CR>:wviminfo! ~/.viminfo<CR>
-    nmap <silent> <leader>p :rviminfo! ~/.viminfo<CR>"xp
-endif
-#+end_src
-
-When we are over an SSH connection we map =<leader>y= in visual mode to yank
-to the =x= register and to update the viminfo file immediately.
-
-And to paste, we map =<leader>y= to reread the viminfo file immediately and
-then past from the =x= register.
-
-This shows a bit of how the vim clipboard works (I'm probably commiting a
-gravesin by calling it "the vim clipboard").
-
-The contents of registers do get stored in the =~/.viminfo= file but not when
-we yank.  And the content of the =~/.viminfo= file is not read when we paste.
-
-We can natively yank-paste between instances of Vim but we have to yank in
-one instance then quit so the viminfo file gets updated, then if we start
-another instance after we quit the first one, at its startup, it will read
-the updated viminfo file which will know about the text we yanked.
-
-Help on =wviminfo= shows that if =!= is not used, wviminfo will merge info of
-the running instance with what is in the =viminfo= file.  If however =!= is
-used, then stuff does get overwritten.
-
-For this reason using =<leader>y= and =<leader>p= has the potiential to lose
-information in the viminfo file that would normally not have been lost.
-Therefore it is better to create new mappings =<leader>y= and =<leader>p=
-instead of remapping =y= and =p= to always do this trick.
 
 ** Break the habit of pressing =x= multiple times
 #+begin_src vimrc
@@ -786,6 +746,39 @@ Terminal emulators that respond to these codes:
 | Windows Terminal  | Yes          |
 | Windows CMD       | Yes          |
 
+
+** OSC52 copying
+
+The plugin [[https://github.com/ojroques/vim-oscyank][vim-oscyank]] adds some
+functions that send text to the system clipboard assuming that the terminal
+emulator supports it.
+
+This works over SSH because the control sequence requesting to put a string
+in the system clipboard is read by the local terminal emulator.
+
+Since TMUX is between the running program and the terminal emulator, it has
+power over this.  The [[https://github.com/tmux/tmux/wiki/Clipboard][set-clipboard]] option decides
+whether or not TMUX will forward the OSC52 sequence it receives from the
+program to the terminal emulator.
+
+#+begin_src conf :tangle no
+set -g set-clipboard on
+#+end_src
+
+In nested TMUX sessions, if all the TMUX's have =set-clipboard= set to =on=,
+a program's OSC52 sequence will make its way to the terminal emulator.
+
+When TMUX gets an OSC52, (assuming =set-clipboard= has the value =on= or
+=external=), then it will set its own paste buffer.
+
+See =man tmux= and look for =set-clipboard= for a short description of the
+behavior.
+
+#+begin_src vimrc
+nmap <leader>y <Plug>OSCYankOperator
+nmap <leader>yy <leader>c_
+vmap <leader>y <Plug>OSCYankVisual
+#+end_src
 
 * Language specific commands
 ** Default filetype

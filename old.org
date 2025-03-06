@@ -1,0 +1,48 @@
+#+TITLE: Old thing I want to keep notes about
+
+* Old thing I want to keep notes about
+
+** Clipboard
+
+Tested on MacOS with Vim 8+
+
+Reference : =:help clipboard=
+
+You typically don't have access to the system clipboard when using Vim over an
+ssh connection.
+
+#+begin_src vimrc
+if $SSH_CLIENT == ""
+    set clipboard=unnamed
+else
+    vmap <silent> <leader>y "xy<CR>:wviminfo! ~/.viminfo<CR>
+    nmap <silent> <leader>p :rviminfo! ~/.viminfo<CR>"xp
+endif
+#+end_src
+
+When we are over an SSH connection we map =<leader>y= in visual mode to yank
+to the =x= register and to update the viminfo file immediately.
+
+And to paste, we map =<leader>y= to reread the viminfo file immediately and
+then past from the =x= register.
+
+This shows a bit of how the vim clipboard works (I'm probably commiting a
+gravesin by calling it "the vim clipboard").
+
+The contents of registers do get stored in the =~/.viminfo= file but not when
+we yank.  And the content of the =~/.viminfo= file is not read when we paste.
+
+We can natively yank-paste between instances of Vim but we have to yank in
+one instance then quit so the viminfo file gets updated, then if we start
+another instance after we quit the first one, at its startup, it will read
+the updated viminfo file which will know about the text we yanked.
+
+Help on =wviminfo= shows that if =!= is not used, wviminfo will merge info of
+the running instance with what is in the =viminfo= file.  If however =!= is
+used, then stuff does get overwritten.
+
+For this reason using =<leader>y= and =<leader>p= has the potiential to lose
+information in the viminfo file that would normally not have been lost.
+Therefore it is better to create new mappings =<leader>y= and =<leader>p=
+instead of remapping =y= and =p= to always do this trick.
+

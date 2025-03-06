@@ -46,3 +46,6 @@
 [submodule "pack/vendor/start/vim-searchindex"]
 	path = pack/vendor/start/vim-searchindex
 	url = git@github.com:google/vim-searchindex
+[submodule "pack/vendor/start/vim-oscyank"]
+	path = pack/vendor/start/vim-oscyank
+	url = https://github.com/ojroques/vim-oscyank

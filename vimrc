@@ -108,6 +108,7 @@ inoremap <C-a> <C-o>^
 inoremap <C-e> <C-o>$
 
 nnoremap <C-a> ^
+nnoremap <C-x> <Nop>
 
 nnoremap <C-w>/ :vsplit<CR><C-w>l
 nnoremap <C-w>- :split<CR><C-w>j
@@ -118,13 +119,6 @@ inoremap <C-w>h <C-o><C-w>h
 inoremap <C-w>j <C-o><C-w>j
 inoremap <C-w>k <C-o><C-w>k
 inoremap <C-w>l <C-o><C-w>l
-
-if $SSH_CLIENT == ""
-    set clipboard=unnamed
-else
-    vmap <silent> <leader>y "xy<CR>:wviminfo! ~/.viminfo<CR>
-    nmap <silent> <leader>p :rviminfo! ~/.viminfo<CR>"xp
-endif
 
 nnoremap <silent> xx :echoerr 'Pressing "x" more than once consecutively is a sign of weakness'<CR>
 
@@ -183,6 +177,10 @@ silent !echo -ne "\033]12;blue\007"
 autocmd VimLeave * silent !echo -ne "\033]112\007"
 autocmd VimSuspend * silent !echo -ne "\033]112\007"
 autocmd VimResume * silent !echo -ne "\033]12;blue\007"
+
+nmap <leader>y <Plug>OSCYankOperator
+nmap <leader>yy <leader>c_
+vmap <leader>y <Plug>OSCYankVisual
 
 nnoremap <buffer> <Leader>ssb ggi#!/usr/bin/env -S bash -o errexit -o nounset -o errtrace -o pipefail -O inherit_errexit -O nullglob -O extglob<CR><BS><CR><ESC>
 nnoremap <buffer> <Leader>sb ggi#!/bin/bash<CR><BS><CR><ESC>

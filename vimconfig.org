@@ -1,7 +1,6 @@
 -*- org-src-preserve-indentation: t -*-
 #+TITLE: Vimrc file
 #+PROPERTY: header-args:vimrc :tangle vimrc :results none
-#+PROPERTY: header-args:filetype :tangle filetype.vim :results none
 #+OPTIONS: toc:2
 
 * Header
@@ -774,11 +773,39 @@ When TMUX gets an OSC52, (assuming =set-clipboard= has the value =on= or
 See =man tmux= and look for =set-clipboard= for a short description of the
 behavior.
 
+This function is meant to be used as described in
+[[https://vimdoc.sourceforge.net/htmldoc/map.html#:map-operator][mapping an operator]] section of the vim help.
+
 #+begin_src vimrc
-nmap <leader>y <Plug>OSCYankOperator
-nmap <leader>yy <leader>c_
-vmap <leader>y <Plug>OSCYankVisual
+function! MyOSCYankAndNormalYank(type, ...)
+    if a:0  " Invoked from Visual mode, use '< and '> marks.
+        silent exe "normal! `<" . a:type . "`>y"
+        let t='v'
+    elseif a:type == 'line'
+        silent exe "normal! '[V']y"
+        let t='V'
+    elseif a:type == 'block'
+        silent exe "normal! `[\<C-V>`]y"
+        let t=''
+    else
+        silent exe "normal! `[v`]y"
+        let t='v'
+    endif
+    call OSCYank(getreg("+"))
+endfunction
 #+end_src
+
+The bindings below call this function.  Note that the underscore makes makes
+the operator operate on the current line.
+
+#+begin_src vimrc
+nmap <silent> y :set opfunc=MyOSCYankAndNormalYank<CR>g@
+nmap <silent> yy y_
+vmap <silent> y :<C-U>call MyOSCYankAndNormalYank(visualmode(), 1)<CR>
+#+end_src
+
+- [[https://stackoverflow.com/a/38720453/5795941][vimscript: How do I save and restore a register]]
+- [[https://vi.stackexchange.com/a/19746/7936][Why is the underscore command useful]]
 
 * Language specific commands
 ** Default filetype

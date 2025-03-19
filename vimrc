@@ -178,9 +178,26 @@ autocmd VimLeave * silent !echo -ne "\033]112\007"
 autocmd VimSuspend * silent !echo -ne "\033]112\007"
 autocmd VimResume * silent !echo -ne "\033]12;blue\007"
 
-nmap <leader>y <Plug>OSCYankOperator
-nmap <leader>yy <leader>c_
-vmap <leader>y <Plug>OSCYankVisual
+function! MyOSCYankAndNormalYank(type, ...)
+    if a:0  " Invoked from Visual mode, use '< and '> marks.
+        silent exe "normal! `<" . a:type . "`>y"
+        let t='v'
+    elseif a:type == 'line'
+        silent exe "normal! '[V']y"
+        let t='V'
+    elseif a:type == 'block'
+        silent exe "normal! `[\<C-V>`]y"
+        let t=''
+    else
+        silent exe "normal! `[v`]y"
+        let t='v'
+    endif
+    call OSCYank(getreg("+"))
+endfunction
+
+nmap <silent> y :set opfunc=MyOSCYankAndNormalYank<CR>g@
+nmap <silent> yy y_
+vmap <silent> y :<C-U>call MyOSCYankAndNormalYank(visualmode(), 1)<CR>
 
 nnoremap <buffer> <Leader>ssb ggi#!/usr/bin/env -S bash -o errexit -o nounset -o errtrace -o pipefail -O inherit_errexit -O nullglob -O extglob<CR><BS><CR><ESC>
 nnoremap <buffer> <Leader>sb ggi#!/bin/bash<CR><BS><CR><ESC>

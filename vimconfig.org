@@ -684,7 +684,7 @@ only works if the terminal emulator responds to these codes.
 let &t_SI = "\<Esc>]12;green\x7\<Esc>[6 q"
 let &t_SR = "\<ESC>]12;red\x7"
 let &t_EI = "\<Esc>]12;yellow\x7\<Esc>[2 q"
-silent !echo -ne "\033]12;blue\007"
+autocmd VimEnter * silent !echo -ne "\033]12;blue\007"
 autocmd VimLeave * silent !echo -ne "\033]112\007"
 autocmd VimSuspend * silent !echo -ne "\033]112\007"
 autocmd VimResume * silent !echo -ne "\033]12;blue\007"

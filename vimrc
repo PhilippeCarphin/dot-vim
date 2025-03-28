@@ -181,16 +181,12 @@ autocmd VimResume * silent !echo -ne "\033]12;blue\007"
 function! MyOSCYankAndNormalYank(type, ...)
     if a:0  " Invoked from Visual mode, use '< and '> marks.
         silent exe "normal! `<" . a:type . "`>y"
-        let t='v'
     elseif a:type == 'line'
         silent exe "normal! '[V']y"
-        let t='V'
     elseif a:type == 'block'
         silent exe "normal! `[\<C-V>`]y"
-        let t=''
     else
         silent exe "normal! `[v`]y"
-        let t='v'
     endif
     call OSCYank(getreg("+"))
 endfunction

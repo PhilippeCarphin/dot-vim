@@ -684,11 +684,14 @@ only works if the terminal emulator responds to these codes.
 let &t_SI = "\<Esc>]12;green\x7\<Esc>[6 q"
 let &t_SR = "\<ESC>]12;red\x7"
 let &t_EI = "\<Esc>]12;yellow\x7\<Esc>[2 q"
-autocmd VimEnter * silent !echo -ne "\033]12;blue\007"
+autocmd VimEnter * silent !echo -e "\033]12;blue\007"
 autocmd VimLeave * silent !echo -ne "\033]112\007"
 autocmd VimSuspend * silent !echo -ne "\033]112\007"
 autocmd VimResume * silent !echo -ne "\033]12;blue\007"
 #+end_src
+
+Note that the =-n= was taken off the =echo= command for =VimEnter= because
+otherwise it somehow messed with some other escape codes.
 
 Described in =runtime/doc/term.txt=, these are codes to send to the terminal
 when entering insert mode, entering replace mode, and exiting those two

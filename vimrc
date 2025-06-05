@@ -120,6 +120,9 @@ inoremap <C-w>j <C-o><C-w>j
 inoremap <C-w>k <C-o><C-w>k
 inoremap <C-w>l <C-o><C-w>l
 
+nnoremap é /
+nnoremap É ?
+
 nnoremap <silent> xx :echoerr 'Pressing "x" more than once consecutively is a sign of weakness'<CR>
 
 " Funny thing to show '%' as '.' in Fortran files

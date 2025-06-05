@@ -530,6 +530,13 @@ inoremap <C-w>k <C-o><C-w>k
 inoremap <C-w>l <C-o><C-w>l
 #+end_src
 
+*** French language keyboard
+
+#+begin_src vimrc
+nnoremap é /
+nnoremap É ?
+#+end_src
+
 ** Break the habit of pressing =x= multiple times
 #+begin_src vimrc
 nnoremap <silent> xx :echoerr 'Pressing "x" more than once consecutively is a sign of weakness'<CR>

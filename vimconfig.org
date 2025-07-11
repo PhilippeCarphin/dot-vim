@@ -829,6 +829,21 @@ vmap <silent> y :<C-U>call MyOSCYankAndNormalYank(visualmode(), 1)<CR>
 - [[https://stackoverflow.com/a/38720453/5795941][vimscript: How do I save and restore a register]]
 - [[https://vi.stackexchange.com/a/19746/7936][Why is the underscore command useful]]
 
+** Special listchars
+
+Commands to show all known invisible characters on demand
+
+#+begin_src vimrc
+function! ListAll()
+    setlocal listchars=tab:»~,lead:·,trail:·,precedes:←,extends:→,space:·,eol:$,nbsp:=
+endfunction
+function! ListDefault()
+    setlocal listchars=tab:»~,extends:›,precedes:‹,nbsp:·,trail:·
+endfunction
+command ListAll :call ListAll()
+command ListDefault :call ListDefault()
+#+end_src
+
 * Language specific commands
 ** Default filetype
 I would have liked it if doing =vim file_without_extension= would set the

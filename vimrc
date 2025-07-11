@@ -201,5 +201,14 @@ nmap <silent> y :set opfunc=MyOSCYankAndNormalYank<CR>g@
 nmap <silent> yy y_
 vmap <silent> y :<C-U>call MyOSCYankAndNormalYank(visualmode(), 1)<CR>
 
+function! ListAll()
+    setlocal listchars=tab:»~,lead:·,trail:·,precedes:←,extends:→,space:·,eol:$,nbsp:=
+endfunction
+function! ListDefault()
+    setlocal listchars=tab:»~,extends:›,precedes:‹,nbsp:·,trail:·
+endfunction
+command ListAll :call ListAll()
+command ListDefault :call ListDefault()
+
 nnoremap <buffer> <Leader>ssb ggi#!/usr/bin/env -S bash -o errexit -o nounset -o errtrace -o pipefail -O inherit_errexit -O nullglob -O extglob<CR><BS><CR><ESC>
 nnoremap <buffer> <Leader>sb ggi#!/bin/bash<CR><BS><CR><ESC>

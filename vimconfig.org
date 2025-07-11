@@ -1014,6 +1014,33 @@ purple as a reminder that I should have one.
 nnoremap <buffer> <Leader>sb ggicmake_minimum_required(VERSION 3.20)<CR><CR>project(X C Fortran)<CR><CR><ESC>
 nnoremap <buffer> <Leader>ch oinclude(CTest)<CR>add_custom_target(check COMMAND ${CMAKE_CTEST_COMMAND})<CR><CR><ESC>
 #+end_src
+** Org
+
+*** Surround visual selection with =#+begin_src=, =#+end_src= tags
+[[https://vimhelp.org/visual.txt.html][:h visual]]
+
+Using =`>= after leaving visual mode moves to the end of the visual selection
+and =`<= moves to the start.
+
+#+begin_src vimrc :tangle ftplugin/org.vim
+vnoremap <C-s> <ESC>`>a<CR>#+end_src<ESC>`<i#+begin_src <CR><ESC>kA
+#+end_src
+
+So this is just moving to the end, insert some text, move to the start,
+insert some text and we end by putting ourself in insert mode at the end of
+the =#+begin_src= line to write the language.
+
+I tried to make the key be =<C-c>,= like in Emacs but it doesn't let me
+rebind =C-c=.
+
+*** Failed attempt
+
+This [[https://vi.stackexchange.com/a/15479/7936][Stack Overflow Answer]]
+doen't work when the selection is multiple lines.
+
+#+begin_src vimrc :tangle no
+vnoremap <C-s> :s/\%V.*\%V/#+begin_src\r&\r#+end_src/<CR>
+#+end_src
 * Filetype associations
 
 ** Header

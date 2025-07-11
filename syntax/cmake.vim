@@ -3088,6 +3088,8 @@ syn keyword cmakeKWmy_macro contained
             \ DIRECTOR
             \ EMPLOYEES
             \ INTERNS
+syn keyword cmakeKWec_git_version contained
+            \ FIRST_PARENT
 
 syn keyword cmakeKWinstall contained
             \ AFTER
@@ -3872,6 +3874,7 @@ syn keyword cmakeCommand
             \ ctest_update
             \ ctest_upload
             \ define_property
+            \ ec_git_version
             \ enable_language
             \ enable_testing
             \ endblock
@@ -4031,6 +4034,7 @@ hi def link cmakeKWctest_update ModeMsg
 hi def link cmakeKWctest_upload ModeMsg
 hi def link cmakeKWdefine_property ModeMsg
 hi def link cmakeKWdoxygen_add_docs ModeMsg
+hi def link cmakeKWec_git_version ModeMsg
 hi def link cmakeKWenable_language ModeMsg
 hi def link cmakeKWenable_testing ModeMsg
 hi def link cmakeKWexec_program ModeMsg

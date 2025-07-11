@@ -941,6 +941,30 @@ nnoremap <buffer> <Leader>sb ggi#!/usr/bin/env python3<CR><CR><ESC>
 
 ** BASH
 
+Add shebang and super-shebang.
+
+Also =sso= to add the same options as the super
+shebang but as =set=/=shopt= commands:
+#+begin_src bash :tangle no
+set -o errexit             # Exit when any command fails or any error happens
+set -o nounset             # Dereferencing unbound variables is an error
+set -o errtrace            # Trap on ERR is inherited by functions and subshells
+set -o pipefail            # A pipe fails if any command of the pipe fails
+shopt -s inherit_errexit   # Subshells inherit the errexit setting
+shopt -s nullglob          # A glob that matches nothing expands to nothing
+shopt -s extglob           # Activate extra globbing options
+#+end_src
+this is useful to activate the options somewhere else than at the very start
+of the script if for example we need to source a script that would trigger
+=errexit= because of things like dereferencing unbound variables.
+
+In =man bash= subshells =(...)= and command substitution =$(...)= are two
+different things but in the above, I use "subshell" to mean both.
+
+All the non-glob options are to make BASH more like languages like Python
+where if anything bad happens, an exception and the program stops right then
+and there.
+
 #+begin_src vimrc :tangle ftplugin/sh.vim
 nnoremap <buffer> <Leader>ssb ggi#!/usr/bin/env -S bash -o errexit -o nounset -o errtrace -o pipefail -O inherit_errexit -O nullglob -O extglob<CR><BS><CR><ESC>
 nnoremap <buffer> <Leader>sb ggi#!/usr/bin/env bash<CR><BS><CR><ESC>

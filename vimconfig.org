@@ -532,10 +532,23 @@ inoremap <C-w>l <C-o><C-w>l
 
 *** French language keyboard
 
+The first thing I do when I open a file (therefore before I notice that
+I'm in the CMS keyboard) is to search for something to position myself where I
+want to go.
+
+This leads to me pressing 'é' which does nothing but then when I try to enter
+what I want to search for, I end up making a bunch of modifications to the file.
+
+When I open a file, it's easy to undo everything but when I'm coming back to an
+already opened file, then it's a bit more annoying.
+
 #+begin_src vimrc
 nnoremap é /
 nnoremap É ?
 #+end_src
+
+In any case, I only use Vim in EN_US keyboard so I only need to remap the keys
+for which it is annoying if I use the CMS keyboard ones without noticing.
 
 ** Break the habit of pressing =x= multiple times
 #+begin_src vimrc

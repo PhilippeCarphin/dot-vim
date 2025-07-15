@@ -933,6 +933,19 @@ nnoremap <buffer> <Leader>icb ouse, intrinsic :: iso_c_binding<ESC>==
 nnoremap <buffer> <Leader>ino oimplicit none<ESC>==
 #+end_src
 
+Set free form for Fortran syntax highlighting.
+
+#+begin_src vimrc :tangle ftplugin/fortran.vim
+let fortran_free_source=1
+#+end_src
+
+Someone also had this in his config with the Fortran free from thing.
+
+#+begin_src vimrc :tangle ftplugin/fortran.vim
+let fortran_more_precise=1
+#+end_src
+
+
 ** Python
 
 #+begin_src vimrc :tangle ftplugin/python.vim

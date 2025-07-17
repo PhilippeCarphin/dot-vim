@@ -52,6 +52,8 @@ set showcmd " Display incomplete commands at the right
 set backspace=indent,eol,start " Usual backspace behavior
 set encoding=utf-8
 
+set shortmess-=S
+
 let mapleader = ' '
 
 set t_Co=256 " Apparently this has to be set before setting the color scheme

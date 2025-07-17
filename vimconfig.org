@@ -212,6 +212,17 @@ set backspace=indent,eol,start " Usual backspace behavior
 set encoding=utf-8
 #+end_src
 
+** Show search hit count and index
+
+I used to use the plugin
+[[https://github.com/google/vim-searchindex][vim-searchindex]] for this but
+this does what I want which is to show the =[i/N]= where =i= is the index of
+the match that I'm on and =N= is the total number of matches.
+
+#+begin_src vimrc
+set shortmess-=S
+#+end_src
+
 ** Leader key
 
 #+begin_src vimrc

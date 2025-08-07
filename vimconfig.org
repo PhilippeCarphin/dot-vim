@@ -229,6 +229,14 @@ set shortmess-=S
 let mapleader = ' '
 #+end_src
 
+** Allow hidden buffers
+
+Suggested by [[https://vi.stackexchange.com/questions/3364/open-filename-under-cursor-like-gf-but-in-a-new-tab-or-split][this vi.stackexchange post]] when looking for how to make =gf= open files in a new tab.
+
+#+begin_src vimrc
+set hidden
+#+end_src
+
 * Additional
 ** Color
 
@@ -560,6 +568,14 @@ nnoremap É ?
 
 In any case, I only use Vim in EN_US keyboard so I only need to remap the keys
 for which it is annoying if I use the CMS keyboard ones without noticing.
+
+*** =gf= opens in new tab
+
+Suggested by [[https://vi.stackexchange.com/questions/3364/open-filename-under-cursor-like-gf-but-in-a-new-tab-or-split][this vi.stackexchange post]]
+
+#+begin_src vimrc
+nnoremap gf <C-w>gf
+#+end_src
 
 ** Break the habit of pressing =x= multiple times
 #+begin_src vimrc

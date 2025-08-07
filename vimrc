@@ -56,6 +56,8 @@ set shortmess-=S
 
 let mapleader = ' '
 
+set hidden
+
 set t_Co=256 " Apparently this has to be set before setting the color scheme
 
 colorscheme molokai " Requires https://github.com/tomasr/molokai
@@ -124,6 +126,8 @@ inoremap <C-w>l <C-o><C-w>l
 
 nnoremap é /
 nnoremap É ?
+
+nnoremap gf <C-w>gf
 
 nnoremap <silent> xx :echoerr 'Pressing "x" more than once consecutively is a sign of weakness'<CR>
 

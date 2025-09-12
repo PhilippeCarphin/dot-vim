@@ -46,3 +46,6 @@
 [submodule "pack/vendor/start/vim-oscyank"]
 	path = pack/vendor/start/vim-oscyank
 	url = https://github.com/ojroques/vim-oscyank
+[submodule "pack/vendor/start/blamer.nvim"]
+	path = pack/vendor/start/blamer.nvim
+	url = https://github.com/APZelos/blamer.nvim

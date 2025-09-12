@@ -86,6 +86,8 @@ let g:ctrlp_prompt_mappings = {
 
 let g:ctrlp_map = '<C-f>'
 
+let g:blamer_enabled=1
+
 set laststatus=2
 
 inoremap jk <ESC>

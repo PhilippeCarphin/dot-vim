@@ -339,6 +339,17 @@ finding.
 let g:ctrlp_map = '<C-f>'
 #+end_src
 
+
+*** Blamer
+
+Plugin: https://github.com/APZelos/blamer.nvim
+
+#+begin_src vimrc
+let g:blamer_enabled=1
+#+end_src
+
+Can be toggled on and off with =:BlamerToggle=.
+
 ** Status line
 *** Always show status line
 

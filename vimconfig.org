@@ -873,19 +873,25 @@ vmap <silent> y :<C-U>call MyOSCYankAndNormalYank(visualmode(), 1)<CR>
 - [[https://stackoverflow.com/a/38720453/5795941][vimscript: How do I save and restore a register]]
 - [[https://vi.stackexchange.com/a/19746/7936][Why is the underscore command useful]]
 
-** Special listchars
+** Super list chars
 
-Commands to show all known invisible characters on demand
+For =~/.ssh/authorized_keys=, make listchars pop very intensely.
+
+Set =listchars= to basically everything including regular spaces because a
+rogue space character coming from pasting and joining can be easy to miss.
+
+To make the listchars pop even more, =SpecialKey= group is spaces and tabs
+and the =NonText= group is the newline character and maybe others.
 
 #+begin_src vimrc
-function! ListAll()
-    setlocal listchars=tab:»~,lead:·,trail:·,precedes:←,extends:→,space:·,eol:$,nbsp:=
+function! SuperList()
+    colorscheme elflord
+    setlocal listchars=tab:»~,extends:›,precedes:‹,nbsp:·,trail:·,space:\ ,eol:$
+    hi SpecialKey ctermfg=cyan ctermbg=blue
+    hi NonText ctermfg=cyan
+    hi Comment ctermfg=darkgrey
 endfunction
-function! ListDefault()
-    setlocal listchars=tab:»~,extends:›,precedes:‹,nbsp:·,trail:·
-endfunction
-command ListAll :call ListAll()
-command ListDefault :call ListDefault()
+autocmd BufReadPost authorized_keys :call SuperList()
 #+end_src
 
 * Language specific commands

@@ -345,10 +345,14 @@ let g:ctrlp_map = '<C-f>'
 Plugin: https://github.com/APZelos/blamer.nvim
 
 #+begin_src vimrc
-let g:blamer_enabled=1
+let g:blamer_enabled=0
+let g:blamer_show_in_insert_modes=0
 #+end_src
 
 Can be toggled on and off with =:BlamerToggle=.
+
+It kind of causes weird things in the terminal vim so I'm going to leave it
+off for now.
 
 ** Status line
 *** Always show status line

@@ -137,6 +137,7 @@ nnoremap é /
 nnoremap É ?
 
 nnoremap gf <C-w>gf
+vnoremap gf <C-w>gf
 
 nnoremap <silent> xx :echoerr 'Pressing "x" more than once consecutively is a sign of weakness'<CR>
 

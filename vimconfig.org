@@ -596,7 +596,13 @@ Suggested by [[https://vi.stackexchange.com/questions/3364/open-filename-under-c
 
 #+begin_src vimrc
 nnoremap gf <C-w>gf
+vnoremap gf <C-w>gf
 #+end_src
+
+something nice about this is that it doesn't require the file to be saved.
+
+We can also do =set hidden= which allows having hidden buffers with unsaved
+changes but I work with tabs anyway.
 
 ** Break the habit of pressing =x= multiple times
 #+begin_src vimrc

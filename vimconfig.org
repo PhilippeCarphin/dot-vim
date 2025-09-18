@@ -1253,3 +1253,58 @@ Note the =(setq org-src-preserve-indentation t)= in the command.  For this to
 apply when tangling this file from Emacs with =C-c C-v C-t=, the line
 =-*- org-src-preserve-indentation: t -*-= sets the same variable to =t= for this
 file only.  It must be the first line of the file otherwise it has no effect.
+
+
+* Syntax files
+
+** Shell syntax
+
+Looking at =/usr/share/vim/vim80/syntax/syntax.sh=, we see
+
+#+begin_src vimrc :tangle no
+ShFoldHereDoc syn region shHereDoc matchgroup=shHereDoc03 start="<<-\s*\z([^ \t0-9|>]\+\)"                     matchgroup=shHereDoc03 end="^\s*\z1\s*$"	contains=@shDblQuoteList
+ShFoldHereDoc syn region shHereDoc matchgroup=shHereDoc04 start="<<-\s*'\z([^'0-9]\+\)'"                       matchgroup=shHereDoc04 end="^\s*\z1\s*$"
+ShFoldHereDoc syn region shHereDoc matchgroup=shHereDoc05 start="<<\s*'\z([^'0-9]\+\)'"                        matchgroup=shHereDoc05 end="^\z1\s*$"
+#+end_src
+
+This handles every type of heredoc, the first one
+
+This with the actual file containing =shHereDoc01= to =shHereDoc15= to handle
+every type of heredoc.  In the ones shown here, =shHereDoc03= matches
+#+begin_src shell
+<<- DELIM
+...
+	DELIM
+#+end_src
+where we have the start defined by
+- The string =<<-=
+- Zero or more whitespace characters =\s*=
+- An atom composed of only letters dashes and underscores: =\z([^ \t0-9|>]\+\)=
+and the end defined by
+- Beginning of line =^=
+- Zero or more whitespace characters =\s*=
+- The thing we matched with =\z=: =\z1=
+- Zero or more whitespace characters =\s*=
+- The end of the line
+
+And the =shHereDoc05= does not allow whitespace between the start of the line
+and the end marker because that one is started with =<<= rather than =<<-=
+
+This is all good but it's incorrect.
+
+- For the end part of the =<<-= type heredocs, there can only be tabs between
+  the beginning of the line and the marker.
+- For the end part of all the types of heredoc, there can't be spaces after the
+  marker.
+
+So the following are incorrect (underscores represent spaces)
+
+#+begin_src shell
+cat <<- DELIM
+DELIM____
+
+cat <<-DELIM
+____DELIM
+#+end_src
+
+This was fixed in vim91 so my =after/syntax/sh.vim= is a copy of that file.

@@ -1257,6 +1257,16 @@ file only.  It must be the first line of the file otherwise it has no effect.
 
 * Syntax files
 
+** Generic
+
+[[This stack over flow post][https://vi.stackexchange.com/a/47189/7936]]
+about highlighting on top of listchars.  It turns out that using the latest
+=sh.vim= file is better for catching bad heredocs so this is not necessary
+
+#+begin_src vimrc :tangle no
+match Error "\( \+\t\@1=\)\|\(\t\@1<= \+\)"
+#+end_src
+
 ** Shell syntax
 
 Looking at =/usr/share/vim/vim80/syntax/syntax.sh=, we see
@@ -1308,3 +1318,4 @@ ____DELIM
 #+end_src
 
 This was fixed in vim91 so my =after/syntax/sh.vim= is a copy of that file.
+

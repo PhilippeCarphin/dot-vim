@@ -972,7 +972,7 @@ Same as Go, I didn't find a way to reuse the code so I'm just repeating here.
 Like Go, no need to enable listchars since =syntax/make.vim= also has a thing
 to highlight wrongly indented lines except no need to enable anything.
 
-#+begin_src vimrc :tangle ftplugin/go.vim
+#+begin_src vimrc :tangle ftplugin/make.vim
 setlocal tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
 #+end_src
 

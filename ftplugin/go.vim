@@ -8,5 +8,3 @@ if version >= 900
 else
     setlocal listchars=tab:\ \ ,space:·,trail:·,precedes:←,extends:→
 endif
-
-setlocal tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab

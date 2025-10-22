@@ -82,6 +82,8 @@ let g:ctrlp_map = '<C-f>'
 let g:blamer_enabled=0
 let g:blamer_show_in_insert_modes=0
 
+let g:show_spaces_that_precede_tabs=1
+
 set laststatus=2
 
 inoremap jk <ESC>

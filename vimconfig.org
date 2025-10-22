@@ -351,6 +351,11 @@ Can be toggled on and off with =:BlamerToggle=.
 
 It kind of causes weird things in the terminal vim so I'm going to leave it
 off for now.
+*** Whitespace
+
+#+begin_src vimrc
+let g:show_spaces_that_precede_tabs=1
+#+end_src
 
 ** Status line
 *** Always show status line

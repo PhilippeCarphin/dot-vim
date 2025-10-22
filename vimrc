@@ -33,12 +33,6 @@ autocmd BufRead *.out,*.log setlocal nowrap
 
 set textwidth=0
 
-" This doesn't work but I tried it with autocmd filetype and it seemed to
-" work
-" au BufRead,BufNewFile *.md setlocal textwidth=80
-" au BufRead,BufNewFile *.org setlocal textwidth=80
-" au BufRead,BufNewFile *.txt setlocal textwidth=80
-
 set wrap
 
 set colorcolumn=80

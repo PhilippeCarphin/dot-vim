@@ -40,7 +40,6 @@ set textwidth=0
 " au BufRead,BufNewFile *.txt setlocal textwidth=80
 
 set wrap
-set wrapmargin=0
 
 set colorcolumn=80
 

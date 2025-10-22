@@ -169,7 +169,6 @@ automatic hard wrapping while inserting.
 
 #+begin_src vimrc
 set wrap
-set wrapmargin=0
 #+end_src
 
 **** colorcolumn

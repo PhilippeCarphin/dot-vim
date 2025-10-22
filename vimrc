@@ -28,8 +28,8 @@ set list
 
 autocmd FileType yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 
-autocmd BufRead *.out,*.log :AnsiEsc
-autocmd BufRead *.out,*.log setlocal nowrap
+autocmd BufRead *.out,*.log,*maestro_tid* :AnsiEsc
+autocmd BufRead *.out,*.log,*maestro_tid* setlocal nowrap
 
 set textwidth=0
 

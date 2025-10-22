@@ -143,8 +143,8 @@ according to these codes.  For file extensions that are likely to contain such
 codes such log files, we call this function on opening the file.
 
 #+begin_src vimrc
-autocmd BufRead *.out,*.log :AnsiEsc
-autocmd BufRead *.out,*.log setlocal nowrap
+autocmd BufRead *.out,*.log,*maestro_tid* :AnsiEsc
+autocmd BufRead *.out,*.log,*maestro_tid* setlocal nowrap
 #+end_src
 
 ** Wrapping

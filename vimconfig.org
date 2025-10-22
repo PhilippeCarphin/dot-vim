@@ -1129,12 +1129,15 @@ let g:markdown_fenced_languages = ['python', 'bash=sh', 'fortran', 'c', 'lisp', 
 Use =Tab= and =S-Tab= to expand and collapse markdown folds.  It seems like
 this could go in =ftplugin/markdown.vim=, I don't remember if I tried it.
 
-#+begin_src vimrc
-autocmd FileType markdown setlocal foldexpr=NestedMarkdownFolds()
-autocmd FileType markdown nnoremap <S-Tab> zA
-autocmd FileType markdown nnoremap <Tab> za
+#+begin_src vimrc :tangle ftplugin/markdown.vim
+setlocal foldexpr=NestedMarkdownFolds()
+nnoremap <S-Tab> zA
+nnoremap <Tab> za
 #+end_src
 
+#+begin_src vimrc :tangle ftplugin/markdown.vim
+setlocal textwidth=80
+#+end_src
 
 * Filetype associations
 

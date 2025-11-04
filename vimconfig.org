@@ -241,6 +241,29 @@ Suggested by [[https://vi.stackexchange.com/questions/3364/open-filename-under-c
 set hidden
 #+end_src
 
+** Completion options
+
+The default is just ~wildmode=full~ which is annoying because if you have
+#+begin_src sh :tangle no
+hello_a_long_suffix
+hello_b_long_suffix
+...
+hello_z_long_suffix
+#+end_src
+then doing =:tabe he<TAB>= will complete to =:tabe hello_a_long_suffix= and
+if you wanted =hello_z_long_suffix=, then you can press TAB 25 times (or in
+this case SHIFT-TAB once) or backspace till you get =:tabe hello_=, then add
+a 'z', and finally press TAB and open the file.
+
+With =longest=, VIM will only complete the longest common prefix of the
+current candidate list.
+
+Keeping =full= in there makes the =wildmenu= continue to pop up.
+
+#+begin_src vimrc
+set wildmode=longest:full
+#+end_src
+
 * Additional
 ** Color
 

@@ -1173,6 +1173,13 @@ nnoremap <buffer> <Leader>ssb ggi#include <stdlib.h><CR>#include <stdio.h><CR><C
 nnoremap <buffer> <Leader>f o<ESC>iint TODO(){<CR>fprintf(stderr, "%s(): begin\n", __func__);<CR>return 0;<CR>}<ESC>?TODO<CR>cw
 #+end_src
 
+** Fortran
+
+#+begin_src vimrc :tangle ftplugin/fortran.vim
+nnoremap <buffer> <Leader>ssb ggiprogram main<CR><CR>implicit none<CR><CR>call greet("World")<CR><CR>contains<CR>subroutine greet(name)<CR>character(len=*), intent(in) :: name<CR><CR>write(*,'("Hello ", a)') name<CR><CR><BS>end subroutine<CR><ESC>iend program<ESC>^i<BS><BS><ESC>
+nnoremap <buffer> <Leader>ssm ggimodule my_mod<CR>implicit none<CR><CR>integer :: mod_var = 0<CR><CR>contains<CR><CR>subroutine greet(name) bind(C, name="greet")<CR>character(len=*), intent(in) :: name<CR>write(*,'("Hello ", a)') name<CR><BS>end subroutine<CR><CR><BS><BS>end module<ESC>
+#+end_src
+
 * Filetype associations
 
 ** Header

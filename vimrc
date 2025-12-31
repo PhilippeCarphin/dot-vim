@@ -219,6 +219,8 @@ nmap <silent> y :set opfunc=MyOSCYankAndNormalYank<CR>g@
 nmap <silent> yy y_
 vmap <silent> y :<C-U>call MyOSCYankAndNormalYank(visualmode(), 1)<CR>
 
+set clipboard=unnamed
+
 function! SuperList()
     colorscheme elflord
     setlocal listchars=tab:»~,extends:›,precedes:‹,nbsp:·,trail:·,space:\ ,eol:$

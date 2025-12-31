@@ -964,6 +964,23 @@ endif
 and later I had problems that were resolved by using register 0 no matter
 what which is just simpler.
 
+*** Addition for MacOS/local
+
+I only use vim on Linux through an SSH connection and locally on MacOS so I
+don't know which it is.
+
+Vim 'OSCYank' doesn't seem to work on local MacOS but adding this:
+
+#+begin_src vimrc
+set clipboard=unnamed
+#+end_src
+
+either makes OSCYank work or has Vim set my system clipoard.  When I get back on
+Linux, I'll have to see if this doesn't break anything.
+
+See [[https://vim.fandom.com/wiki/Accessing_the_system_clipboard][Vim Fandom Accessing the System Clipboard]].  It talks about "+" and "*" being
+the same on some systems and different on others.
+
 ** Super list chars
 
 For =~/.ssh/authorized_keys=, make listchars pop very intensely.

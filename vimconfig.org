@@ -923,11 +923,49 @@ and the =NonText= group is the newline character and maybe others.
 function! SuperList()
     colorscheme elflord
     setlocal listchars=tab:»~,extends:›,precedes:‹,nbsp:·,trail:·,space:\ ,eol:$
+    set colorcolumn=0
     hi SpecialKey ctermfg=cyan ctermbg=blue
     hi NonText ctermfg=cyan
     hi Comment ctermfg=darkgrey
 endfunction
 autocmd BufReadPost authorized_keys :call SuperList()
+#+end_src
+
+** Hexmode
+
+[[https://vim.fandom.com/wiki/Improved_hex_editing]]
+
+#+begin_src vimrc
+function ToggleHex()
+  let l:modified=&mod
+  let l:oldreadonly=&readonly
+  let &readonly=0
+  let l:oldmodifiable=&modifiable
+  let &modifiable=1
+  if !exists("b:editHex") || !b:editHex
+    let b:oldft=&ft
+    let b:oldbin=&bin
+    setlocal binary
+    silent :e
+    let &ft="xxd"
+    let b:editHex=1
+    %!xxd
+  else
+    let &ft=b:oldft
+    if !b:oldbin
+      setlocal nobinary
+    endif
+    let b:editHex=0
+    %!xxd -r
+  endif
+  let &mod=l:modified
+  let &readonly=l:oldreadonly
+  let &modifiable=l:oldmodifiable
+endfunction
+nnoremap <C-H> :Hexmode<CR>
+inoremap <C-H> <Esc>:Hexmode<CR>
+vnoremap <C-H> :<C-U>Hexmode<CR>
+command -bar Hexmode call ToggleHex()
 #+end_src
 
 * Language specific commands

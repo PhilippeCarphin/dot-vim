@@ -630,6 +630,13 @@ something nice about this is that it doesn't require the file to be saved.
 We can also do =set hidden= which allows having hidden buffers with unsaved
 changes but I work with tabs anyway.
 
+*** Reload vimrc
+
+#+begin_src vimrc
+nnoremap <Leader>r :source ~/.vim/vimrc<CR>:echoerr "Loaded vimrc"<CR>
+nnoremap <Leader>v :tabe ~/.vim/vimrc<CR>
+#+end_src
+
 ** Break the habit of pressing =x= multiple times
 #+begin_src vimrc
 nnoremap <silent> xx :echoerr 'Pressing "x" more than once consecutively is a sign of weakness'<CR>
@@ -908,6 +915,15 @@ vmap <silent> y :<C-U>call MyOSCYankAndNormalYank(visualmode(), 1)<CR>
 
 - [[https://stackoverflow.com/a/38720453/5795941][vimscript: How do I save and restore a register]]
 - [[https://vi.stackexchange.com/a/19746/7936][Why is the underscore command useful]]
+
+*** Fix for MacOS
+
+On MacOS, I had to add this and I don't understand why.  In any case it
+doesn't have any negative effect on Linux.
+
+#+begin_src vimrc
+set clipboard=unnamed
+#+end_src
 
 ** Super list chars
 

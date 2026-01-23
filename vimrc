@@ -136,6 +136,9 @@ nnoremap É ?
 nnoremap gf <C-w>gf
 vnoremap gf <C-w>gf
 
+nnoremap <Leader>r :source ~/.vim/vimrc<CR>:echoerr "Loaded vimrc"<CR>
+nnoremap <Leader>v :tabe ~/.vim/vimrc<CR>
+
 nnoremap <silent> xx :echoerr 'Pressing "x" more than once consecutively is a sign of weakness'<CR>
 
 " Funny thing to show '%' as '.' in Fortran files
@@ -213,6 +216,8 @@ endfunction
 nmap <silent> y :set opfunc=MyOSCYankAndNormalYank<CR>g@
 nmap <silent> yy y_
 vmap <silent> y :<C-U>call MyOSCYankAndNormalYank(visualmode(), 1)<CR>
+
+set clipboard=unnamed
 
 function! SuperList()
     colorscheme elflord

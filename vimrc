@@ -117,6 +117,8 @@ nnoremap <leader>cp :cprev<CR>
 inoremap <C-a> <C-o>^
 inoremap <C-e> <C-o>$
 
+cnoremap <C-g> <C-c>
+
 nnoremap <C-a> ^
 nnoremap <C-x> <Nop>
 

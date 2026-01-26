@@ -549,6 +549,12 @@ inoremap <C-a> <C-o>^
 inoremap <C-e> <C-o>$
 #+end_src
 
+*** Use =C-g= to cancel like in Emacs
+
+#+begin_src vimrc
+cnoremap <C-g> <C-c>
+#+end_src
+
 *** Preventing accidental number increments and decrements
 
 Since my TMUX prefix key is =C-a= in I have

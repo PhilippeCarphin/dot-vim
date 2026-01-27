@@ -921,14 +921,18 @@ vmap <silent> y :<C-U>call MyOSCYankAndNormalYank(visualmode(), 1)<CR>
 
 - [[https://stackoverflow.com/a/38720453/5795941][vimscript: How do I save and restore a register]]
 - [[https://vi.stackexchange.com/a/19746/7936][Why is the underscore command useful]]
+- [[https://invisible-island.net/xterm/ctlseqs/ctlseqs.html#h3-Operating-System-Commands][XTerm control sequences (the defacto standard)]]
 
 *** Fix for MacOS
 
-On MacOS, I had to add this and I don't understand why.  In any case it
-doesn't have any negative effect on Linux.
+On MacOS, I had to add this and I don't understand why.  This doesn't work
+when Vim is running through an SSH connection without X forwarding hence this
+if.
 
 #+begin_src vimrc
-set clipboard=unnamed
+if $SSH_CLIENT == ""
+    set clipboard=unnamed
+endif
 #+end_src
 
 ** Super list chars

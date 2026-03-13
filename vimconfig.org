@@ -907,7 +907,7 @@ function! MyOSCYankAndNormalYank(type, ...)
     else
         silent exe "normal! `[v`]y"
     endif
-    call OSCYank(getreg("+"))
+    call OSCYank(getreg("0"))
 endfunction
 #+end_src
 
@@ -924,17 +924,29 @@ vmap <silent> y :<C-U>call MyOSCYankAndNormalYank(visualmode(), 1)<CR>
 - [[https://vi.stackexchange.com/a/19746/7936][Why is the underscore command useful]]
 - [[https://invisible-island.net/xterm/ctlseqs/ctlseqs.html#h3-Operating-System-Commands][XTerm control sequences (the defacto standard)]]
 
-*** Fix for MacOS
+*** Value of =clipboard= and choice of register
 
-On MacOS, I had to add this and I don't understand why.  This doesn't work
-when Vim is running through an SSH connection without X forwarding hence this
-if.
+Right now I have register =getreg("0")= used in the function.  This seems to work
+everywhere.
 
-#+begin_src vimrc
+I started out with =getger("+")= however.  With that setting, I needed to
+have ~set clipboard=unnamed~.  When I tried this at work on Windows in an SSH
+connection to a Linux machine it didn't work giving the message
+
+#+begin_src sh :tangle no
+'W23: Clipboard register not available, using register 0'
+#+end_src
+
+I think this is because there is no X server.  So I did this:
+
+#+begin_src vimrc :tangle no
 if $SSH_CLIENT == ""
     set clipboard=unnamed
 endif
 #+end_src
+
+and later I had problems that were resolved by using register 0 no matter
+what which is just simpler.
 
 ** Super list chars
 

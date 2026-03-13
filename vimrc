@@ -212,16 +212,12 @@ function! MyOSCYankAndNormalYank(type, ...)
     else
         silent exe "normal! `[v`]y"
     endif
-    call OSCYank(getreg("+"))
+    call OSCYank(getreg("0"))
 endfunction
 
 nmap <silent> y :set opfunc=MyOSCYankAndNormalYank<CR>g@
 nmap <silent> yy y_
 vmap <silent> y :<C-U>call MyOSCYankAndNormalYank(visualmode(), 1)<CR>
-
-if $SSH_CLIENT == ""
-    set clipboard=unnamed
-endif
 
 function! SuperList()
     colorscheme elflord

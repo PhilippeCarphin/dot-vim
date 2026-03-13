@@ -122,6 +122,10 @@ We use listchars to show unwanted whitespace characters: tabs are shown as =»~=
 when space is the preferred indentation and leading spaces are shown as =»= in
 =go= and =make= where real =\t= characters are the preferred indentation method.
 
+On my linode machine, I got errors because the following listchars use
+unicode characters.  With =LC_ALL= unset, vim would say "too many characters
+for =extends= probably because that little =›= is more than one byte.  This
+does not happen when =LC_ALL= is set to something like =en_CA.UTF-8=.
 
 #+begin_src vimrc
 set listchars=tab:»~,extends:›,precedes:‹,nbsp:·,trail:·

@@ -856,7 +856,7 @@ Terminal emulators that respond to these codes:
 
 | Terminal emulator | Works or not |
 |-------------------+--------------|
-| Konsole           | Yes          |
+| Konsole           | Yes(*)       |
 | Mate Terminal     | No           |
 | Terminal.app      | Only in TMUX |
 | iTerm.app         | Only in TMUX |
@@ -864,6 +864,7 @@ Terminal emulators that respond to these codes:
 | Windows Terminal  | Yes          |
 | Windows CMD       | Yes          |
 
+(*): The version has to be recent enough I think.
 
 ** OSC52 copying
 

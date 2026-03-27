@@ -48,6 +48,12 @@ set it to something else after loading such a color scheme, use
 hi ColorColumn ctermbg=245
 #+end_src
 
+
+** Builtin bindings that I want to remember
+
+| Key    | Mode   | Action           | Instead of                 |
+|--------+--------+------------------+----------------------------|
+| =gwip= | Normal | Refill paragraph | Visual select then do =gq= |
 * Fundamental
 ** Be iMproved
 

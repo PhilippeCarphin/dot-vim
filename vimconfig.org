@@ -653,6 +653,12 @@ nnoremap <Leader>r :source ~/.vim/vimrc<CR>:echoerr "Loaded vimrc"<CR>
 nnoremap <Leader>v :tabe ~/.vim/vimrc<CR>
 #+end_src
 
+*** Read in insert mode
+
+#+begin_src vimrc
+inoremap C-r C-o:r!
+#+end_src
+
 ** Break the habit of pressing =x= multiple times
 #+begin_src vimrc
 nnoremap <silent> xx :echoerr 'Pressing "x" more than once consecutively is a sign of weakness'<CR>

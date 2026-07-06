@@ -141,6 +141,8 @@ vnoremap gf <C-w>gf
 nnoremap <Leader>r :source ~/.vim/vimrc<CR>:echoerr "Loaded vimrc"<CR>
 nnoremap <Leader>v :tabe ~/.vim/vimrc<CR>
 
+inoremap C-r C-o:r!
+
 nnoremap <silent> xx :echoerr 'Pressing "x" more than once consecutively is a sign of weakness'<CR>
 
 " Funny thing to show '%' as '.' in Fortran files
@@ -263,5 +265,4 @@ vnoremap <C-H> :<C-U>Hexmode<CR>
 command -bar Hexmode call ToggleHex()
 
 nnoremap <buffer> <Leader>ssb ggi#!/usr/bin/env -S bash -o errexit -o nounset -o errtrace -o pipefail -O inherit_errexit -O nullglob -O extglob<CR><BS><CR><ESC>
-nnoremap <buffer> <Leader>sb ggi#!/bin/bash<CR><BS><CR><ESC>
-inoremap <C-r> <C-o>:r!
+nnoremap <buffer> <Leader>sb ggi#!/usr/bin/env bash<CR><BS><CR><ESC>

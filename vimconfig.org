@@ -1057,7 +1057,7 @@ this out for a while, it became clear that it wasn't worth it.
 The simple way to solve this is to just have this:
 #+begin_src vimrc
 nnoremap <buffer> <Leader>ssb ggi#!/usr/bin/env -S bash -o errexit -o nounset -o errtrace -o pipefail -O inherit_errexit -O nullglob -O extglob<CR><BS><CR><ESC>
-nnoremap <buffer> <Leader>sb ggi#!/bin/bash<CR><BS><CR><ESC>
+nnoremap <buffer> <Leader>sb ggi#!/usr/bin/env bash<CR><BS><CR><ESC>
 #+end_src
 in my =vimrc= so that when no filetype is detected, these keys insert the
 BASH shebangs.

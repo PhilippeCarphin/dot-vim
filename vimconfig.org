@@ -308,6 +308,18 @@ colorscheme molokai " Requires https://github.com/tomasr/molokai
 packadd powerline-plugin
 #+end_src
 
+*** Builtin themes
+
+For systems where I don't want to bring in plugins and all that stuff, here
+is a quick list of the builtin themes organized in categories:
+
+| Type                              | Themes                                       |
+|-----------------------------------+----------------------------------------------|
+| White background                  | delek, morning, zellner                      |
+| Grey background lower contrast    | desert, evening, habamax, lunaperche, slate  |
+| Black background, higher contrast | elflort, industry, koehler, torte, wildcharm |
+
+
 ** Plugins
 *** Markdown nested folding
 
@@ -940,47 +952,6 @@ vmap <silent> y :<C-U>call MyOSCYankAndNormalYank(visualmode(), 1)<CR>
 - [[https://vi.stackexchange.com/a/19746/7936][Why is the underscore command useful]]
 - [[https://invisible-island.net/xterm/ctlseqs/ctlseqs.html#h3-Operating-System-Commands][XTerm control sequences (the defacto standard)]]
 
-*** Value of =clipboard= and choice of register
-
-Right now I have register =getreg("0")= used in the function.  This seems to work
-everywhere.
-
-I started out with =getger("+")= however.  With that setting, I needed to
-have ~set clipboard=unnamed~.  When I tried this at work on Windows in an SSH
-connection to a Linux machine it didn't work giving the message
-
-#+begin_src sh :tangle no
-'W23: Clipboard register not available, using register 0'
-#+end_src
-
-I think this is because there is no X server.  So I did this:
-
-#+begin_src vimrc :tangle no
-if $SSH_CLIENT == ""
-    set clipboard=unnamed
-endif
-#+end_src
-
-and later I had problems that were resolved by using register 0 no matter
-what which is just simpler.
-
-*** Addition for MacOS/local
-
-I only use vim on Linux through an SSH connection and locally on MacOS so I
-don't know which it is.
-
-Vim 'OSCYank' doesn't seem to work on local MacOS but adding this:
-
-#+begin_src vimrc
-set clipboard=unnamed
-#+end_src
-
-either makes OSCYank work or has Vim set my system clipoard.  When I get back on
-Linux, I'll have to see if this doesn't break anything.
-
-See [[https://vim.fandom.com/wiki/Accessing_the_system_clipboard][Vim Fandom Accessing the System Clipboard]].  It talks about "+" and "*" being
-the same on some systems and different on others.
-
 ** Super list chars
 
 For =~/.ssh/authorized_keys=, make listchars pop very intensely.
@@ -1477,3 +1448,58 @@ ____DELIM
 
 This was fixed in vim91 so my =after/syntax/sh.vim= is a copy of that file.
 
+
+* APPENDIX
+
+** Notes about the =clipboard= setting for OSCYank
+
+While experimenting with OSCYank on various machines: MacOS and Linux (at
+work always accessed over SSH without X Forwarding).  I changed stuff to make
+it work on one machine then it wouldn't work on the other and vice versa.
+
+Changing the =clipboard= setting would make a difference until I ended up
+using register 0 in the function for =MyOSCYankAndNormalYank()=.
+
+I'm keeping the following sections but they are no longer relevant and none
+of their SRC blocks go into my vimrc.
+
+*** Value of =clipboard= and choice of register
+
+Right now I have register =getreg("0")= used in the function.  This seems to work
+everywhere.
+
+I started out with =getger("+")= however.  With that setting, I needed to
+have ~set clipboard=unnamed~.  When I tried this at work on Windows in an SSH
+connection to a Linux machine it didn't work giving the message
+
+#+begin_src sh :tangle no
+'W23: Clipboard register not available, using register 0'
+#+end_src
+
+I think this is because there is no X server.  So I did this:
+
+#+begin_src vimrc :tangle no
+if $SSH_CLIENT == ""
+    set clipboard=unnamed
+endif
+#+end_src
+
+and later I had problems that were resolved by using register 0 no matter
+what which is just simpler.
+
+*** Addition for MacOS/local
+
+I only use vim on Linux through an SSH connection and locally on MacOS so I
+don't know which it is.
+
+Vim 'OSCYank' doesn't seem to work on local MacOS but adding this:
+
+#+begin_src vimrc :tangle no
+set clipboard=unnamed
+#+end_src
+
+either makes OSCYank work or has Vim set my system clipoard.  When I get back on
+Linux, I'll have to see if this doesn't break anything.
+
+See [[https://vim.fandom.com/wiki/Accessing_the_system_clipboard][Vim Fandom Accessing the System Clipboard]].  It talks about "+" and "*" being
+the same on some systems and different on others.

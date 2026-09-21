@@ -138,7 +138,7 @@ nnoremap É ?
 nnoremap gf <C-w>gf
 vnoremap gf <C-w>gf
 
-nnoremap <Leader>r :source ~/.vim/vimrc<CR>:echoerr "Loaded vimrc"<CR>
+nnoremap <Leader>sv :source ~/.vim/vimrc<CR>:echoerr "Loaded vimrc"<CR>
 nnoremap <Leader>v :tabe ~/.vim/vimrc<CR>
 
 inoremap C-r C-o:r!
@@ -220,8 +220,6 @@ endfunction
 nmap <silent> y :set opfunc=MyOSCYankAndNormalYank<CR>g@
 nmap <silent> yy y_
 vmap <silent> y :<C-U>call MyOSCYankAndNormalYank(visualmode(), 1)<CR>
-
-" set clipboard=unnamed
 
 function! SuperList()
     colorscheme elflord

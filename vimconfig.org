@@ -661,7 +661,7 @@ changes but I work with tabs anyway.
 *** Reload vimrc
 
 #+begin_src vimrc
-nnoremap <Leader>r :source ~/.vim/vimrc<CR>:echoerr "Loaded vimrc"<CR>
+nnoremap <Leader>sv :source ~/.vim/vimrc<CR>:echoerr "Loaded vimrc"<CR>
 nnoremap <Leader>v :tabe ~/.vim/vimrc<CR>
 #+end_src
 

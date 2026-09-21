@@ -262,5 +262,7 @@ inoremap <C-H> <Esc>:Hexmode<CR>
 vnoremap <C-H> :<C-U>Hexmode<CR>
 command -bar Hexmode call ToggleHex()
 
+set mouse=a
+
 nnoremap <buffer> <Leader>ssb ggi#!/usr/bin/env -S bash -o errexit -o nounset -o errtrace -o pipefail -O inherit_errexit -O nullglob -O extglob<CR><BS><CR><ESC>
 nnoremap <buffer> <Leader>sb ggi#!/usr/bin/env bash<CR><BS><CR><ESC>

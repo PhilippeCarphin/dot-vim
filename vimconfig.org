@@ -1011,6 +1011,14 @@ vnoremap <C-H> :<C-U>Hexmode<CR>
 command -bar Hexmode call ToggleHex()
 #+end_src
 
+** Mouse mode
+
+Activate mouse mode.
+
+#+begin_src vimrc
+set mouse=a
+#+end_src
+
 * Language specific commands
 ** Default filetype
 I would have liked it if doing =vim file_without_extension= would set the

@@ -1,0 +1,1 @@
+nnoremap <buffer> <Leader>sb ggi<!doctype html><CR><html><CR><head><CR><title>Title</title><CR><link rel="stylesheet" href="..."><CR><script src="..."></script><CR></head><CR><body><CR><H1>Hello</H1><CR><p>Hello World!</p><CR></body><CR></html><ESC>

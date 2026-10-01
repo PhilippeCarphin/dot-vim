@@ -153,8 +153,8 @@ according to these codes.  For file extensions that are likely to contain such
 codes such log files, we call this function on opening the file.
 
 #+begin_src vimrc
-autocmd BufRead *.out,*.log,*maestro_tid* :AnsiEsc
-autocmd BufRead *.out,*.log,*maestro_tid* setlocal nowrap
+autocmd BufRead *.o,*.out,*.log :AnsiEsc
+autocmd BufRead *.o,*.out,*.log setlocal nowrap
 #+end_src
 
 ** Wrapping
@@ -943,9 +943,13 @@ The bindings below call this function.  Note that the underscore makes makes
 the operator operate on the current line.
 
 #+begin_src vimrc
-nmap <silent> y :set opfunc=MyOSCYankAndNormalYank<CR>g@
-nmap <silent> yy y_
-vmap <silent> y :<C-U>call MyOSCYankAndNormalYank(visualmode(), 1)<CR>
+if has('gui_running')
+    set clipboard=unnamedplus
+else
+    nmap <silent> y :set opfunc=MyOSCYankAndNormalYank<CR>g@
+    nmap <silent> yy y_
+    vmap <silent> y :<C-U>call MyOSCYankAndNormalYank(visualmode(), 1)<CR>
+endif
 #+end_src
 
 - [[https://stackoverflow.com/a/38720453/5795941][vimscript: How do I save and restore a register]]
@@ -1393,8 +1397,20 @@ override this:
 
 When we ask maestro open a listing, it will decompress the stored listing
 into a file in some subdirectory of =/tmp/= name the file =masetro_something=
-#+begin_src filetype
+#+begin_src vimrc :tangle filetype.vim
     autocmd BufRead,BufNewFile *.tsk,*.def,*/.suites/*/*.cfg,/tmp/phc001/*/maestro* set filetype=sh
+    autocmd BufRead */maestro_tid* set lines=90 columns=200
+    autocmd BufRead */maestro_tid* setlocal nowrap
+    autocmd BufRead */maestro_tid* :$
+#+end_src
+
+The only reason I would have gvim open is because xflow opened it so this
+applies only to Maestro.
+#+begin_src vimrc :tangle no
+if has('gui_running')
+    set lines=90
+    set columns=200
+endif
 #+end_src
 
 ** fc tempfiles in BASH
@@ -1572,3 +1588,32 @@ Linux, I'll have to see if this doesn't break anything.
 
 See [[https://vim.fandom.com/wiki/Accessing_the_system_clipboard][Vim Fandom Accessing the System Clipboard]].  It talks about "+" and "*" being
 the same on some systems and different on others.
+
+
+** Extra
+
++autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
++autocmd FileType * syntax sync fromstart
+
+
+
+
+** Loading YCM later
+
+I tried some stuff to load YCM later since it seems to take a log of time
+#+begin_src vimrc :tangle no
+function! LoadYCM()
+    if version >= 900
+        " Silent makes it not complain if the package doesn't exits in
+        " .vim/pack/*/opt/
+        silent! packadd YouCompleteMe
+        nnoremap gd :YcmCompleter GoToDefinition<CR>
+    endif
+endfunction
+call LoadYCM()
+augroup DeferStartup
+    au!
+    autocmd VimEnter * call LoadYCM()
+augroup END
+#+end_src
+

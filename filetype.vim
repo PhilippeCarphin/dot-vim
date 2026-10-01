@@ -16,6 +16,9 @@ augroup filetypedetect
     autocmd BufRead,BufNewFile */.profile.d/*   set filetype=sh
 
     autocmd BufRead,BufNewFile *.tsk,*.def,*/.suites/*/*.cfg,/tmp/phc001/*/maestro* set filetype=sh
+    autocmd BufRead */maestro_tid* set lines=90 columns=200
+    autocmd BufRead */maestro_tid* setlocal nowrap
+    autocmd BufRead */maestro_tid* :$
 
     autocmd BufRead,BufNewFile *bash-fc* set filetype=sh
 

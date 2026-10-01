@@ -28,8 +28,8 @@ set list
 
 autocmd FileType yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 
-autocmd BufRead *.out,*.log,*maestro_tid* :AnsiEsc
-autocmd BufRead *.out,*.log,*maestro_tid* setlocal nowrap
+autocmd BufRead *.o,*.out,*.log :AnsiEsc
+autocmd BufRead *.o,*.out,*.log setlocal nowrap
 
 set textwidth=0
 
@@ -217,9 +217,13 @@ function! MyOSCYankAndNormalYank(type, ...)
     call OSCYank(getreg("0"))
 endfunction
 
-nmap <silent> y :set opfunc=MyOSCYankAndNormalYank<CR>g@
-nmap <silent> yy y_
-vmap <silent> y :<C-U>call MyOSCYankAndNormalYank(visualmode(), 1)<CR>
+if has('gui_running')
+    set clipboard=unnamedplus
+else
+    nmap <silent> y :set opfunc=MyOSCYankAndNormalYank<CR>g@
+    nmap <silent> yy y_
+    vmap <silent> y :<C-U>call MyOSCYankAndNormalYank(visualmode(), 1)<CR>
+endif
 
 function! SuperList()
     colorscheme elflord

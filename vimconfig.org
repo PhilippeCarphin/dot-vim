@@ -1020,6 +1020,45 @@ set mouse=a
 #+end_src
 
 * Language specific commands
+** Insert templates based on filetype
+
+I want to be able to edit the templates with the proper syntax highlighting
+so I need the template to be =*.py=, not =*.python=.  This requires a mapping
+but since =get(dict, key, default)= we can just use the filetype itself if the
+key is not in the map.
+#+begin_src vimrc
+let s:filetype_to_extension = {
+      \ 'cmake': 'cmake',
+      \ 'fortran': 'f90',
+      \ 'make': 'mk',
+      \ 'markdown': 'md',
+      \ 'python': 'py',
+      \ 'rust': 'rs',
+      \ }
+#+end_src
+
+Read in =~/.vim/templates/template.${ext}= where =ext= is obtained from the
+filetype.  If there is no filetype, then the extension of the file is used.
+
+#+begin_src vimrc
+function! InsertTemplate()
+    let l:ext = (&filetype != '') ? get(s:filetype_to_extension, &filetype, &filetype) : &filetype
+    let l:template_file = expand('~/.vim/templates/template.') . l:ext
+    if !filereadable(l:template_file)
+        echo 'No template file template.' . l:ext . ' in ~/.vim/templates/'
+        return
+    endif
+    execute '0read ' . l:template_file
+endfunction
+#+end_src
+
+And we bind it to =<Leader>t=
+
+#+begin_src vimrc
+nnoremap <Leader>t :call InsertTemplate()<CR>
+#+end_src
+
+
 ** Default filetype
 I would have liked it if doing =vim file_without_extension= would set the
 filetype to =sh= only if no filetype was detected so that my =<Leader>sb= and

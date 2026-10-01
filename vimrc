@@ -264,5 +264,26 @@ command -bar Hexmode call ToggleHex()
 
 set mouse=a
 
+let s:filetype_to_extension = {
+      \ 'cmake': 'cmake',
+      \ 'fortran': 'f90',
+      \ 'make': 'mk',
+      \ 'markdown': 'md',
+      \ 'python': 'py',
+      \ 'rust': 'rs',
+      \ }
+
+function! InsertTemplate()
+    let l:ext = (&filetype != '') ? get(s:filetype_to_extension, &filetype, &filetype) : &filetype
+    let l:template_file = expand('~/.vim/templates/template.') . l:ext
+    if !filereadable(l:template_file)
+        echo 'No template file template.' . l:ext . ' in ~/.vim/templates/'
+        return
+    endif
+    execute '0read ' . l:template_file
+endfunction
+
+nnoremap <Leader>t :call InsertTemplate()<CR>
+
 nnoremap <buffer> <Leader>ssb ggi#!/usr/bin/env -S bash -o errexit -o nounset -o errtrace -o pipefail -O inherit_errexit -O nullglob -O extglob<CR><BS><CR><ESC>
 nnoremap <buffer> <Leader>sb ggi#!/usr/bin/env bash<CR><BS><CR><ESC>

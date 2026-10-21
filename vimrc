@@ -226,14 +226,26 @@ else
 endif
 
 function! SuperList()
-    colorscheme elflord
-    setlocal listchars=tab:»~,extends:›,precedes:‹,nbsp:·,trail:·,space:\ ,eol:$
-    set colorcolumn=0
-    hi SpecialKey ctermfg=cyan ctermbg=blue
-    hi NonText ctermfg=cyan
-    hi Comment ctermfg=darkgrey
+    let bn = bufnr("%")
+    if !exists("s:super_list_enabled_{bn}")
+        let s:super_list_enabled_{bn} = 0
+    endif
+    if s:super_list_enabled_{bn}
+        setlocal listchars=tab:»~,extends:›,precedes:‹,nbsp:·,trail:·
+        setlocal colorcolumn=80
+        colorscheme molokai
+        let s:super_list_enabled_{bn} = 0
+    else
+        colorscheme elflord
+        setlocal colorcolumn=0
+        setlocal listchars=tab:»~,extends:›,precedes:‹,nbsp:·,trail:·,space:\ ,eol:$
+        hi SpecialKey ctermfg=cyan ctermbg=blue
+        hi NonText ctermfg=cyan
+        let s:super_list_enabled_{bn} = 1
+    endif
 endfunction
 autocmd BufReadPost authorized_keys :call SuperList()
+command SuperList call SuperList()
 
 function ToggleHex()
   let l:modified=&mod

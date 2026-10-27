@@ -143,6 +143,9 @@ nnoremap <Leader>v :tabe ~/.vim/vimrc<CR>
 
 inoremap C-r C-o:r!
 
+nnoremap <S-Tab> zA
+nnoremap <Tab> za
+
 nnoremap <silent> xx :echoerr 'Pressing "x" more than once consecutively is a sign of weakness'<CR>
 
 " Funny thing to show '%' as '.' in Fortran files

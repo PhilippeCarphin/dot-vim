@@ -199,13 +199,14 @@ nnoremap <Leader>gf :tabe <cfile><CR>
 let &t_SI = "\<Esc>]12;green\x7\<Esc>[6 q"
 let &t_SR = "\<ESC>]12;red\x7"
 let &t_EI = "\<Esc>]12;yellow\x7\<Esc>[2 q"
-autocmd VimEnter * silent !echo -e "\033[2 q\033]12;blue\007"
 autocmd VimLeave * silent !echo -ne "\033]112\007"
 
 if version >= 900
     autocmd VimSuspend * silent !echo -ne "\033]112\007"
     autocmd VimResume * silent !echo -ne "\033]12;blue\007"
 endif
+
+autocmd VimEnter * silent !echo -e "\033[2 q\033]12;blue\007"
 
 def MyOSCYankAndNormalYank(type: string, ...rest: list<number>): void
     if len(rest) > 0  # Invoked from Visual mode, use '< and '> marks.

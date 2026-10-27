@@ -1546,6 +1546,21 @@ This was fixed in vim91 so my =after/syntax/sh.vim= is a copy of that file.
 
 * APPENDIX
 
+** Highlighting vim9 comments as errors
+
+How many times have I commented a line with a =#=, seen it highlighted as
+a legit comment only to be surprised by an error from my vimrc!  Oh my god
+why!!!!  Give me a break, can't you make it voluntary or something.
+
+This will at least highlight whole-line comments, not those appearing after
+a command.  This should prevent me from blowing my brains out until I adapt
+to vim9script.
+
+#+begin_src vimrc
+autocmd BufReadPost *.vim,vimrc,.vimrc syn match vimCommentError display "^ *#.*"
+autocmd BufReadPost *.vim,vimrc,.vimrc hi def link vimCommentError Error
+#+end_src
+
 ** Notes about the =clipboard= setting for OSCYank
 
 While experimenting with OSCYank on various machines: MacOS and Linux (at

@@ -171,21 +171,21 @@ nnoremap <leader>c :noh<CR>
 nnoremap <ESC><ESC> :noh<CR>
 nnoremap <C-l> :noh<CR><C-l>
 
-function! TabMode(nb)
+def TabMode(nb: number): void
     setlocal listchars=tab:\ \ ,lead:·,trail:·,precedes:←,extends:→
-    let &tabstop=a:nb     " Display width of \t character
-    let &shiftwidth=a:nb  " Indents will have a width of 4.
-    let &softtabstop=a:nb " Sets the number of columns for a TAB.
-    set noexpandtab       " Don't expand tabs to spaces
-endfunction
+    &tabstop = nb         # Display width of \t character
+    &shiftwidth = nb      # Indents will have a width of 4.
+    &softtabstop = nb     # Sets the number of columns for a TAB.
+    set noexpandtab       # Don't expand tabs to spaces
+enddef
 
-function! SpaceMode(nb)
+def SpaceMode(nb: number): void
     setlocal listchars=tab:»~,extends:›,precedes:‹,nbsp:·,trail:·
-    let &tabstop=a:nb       " Display width of \t character
-    let &shiftwidth=a:nb    " Indents will have a width of 4.
-    let &softtabstop=a:nb   " Sets the number of columns for a TAB.
-    set expandtab           " Expand TABs to spaces.
-endfunction
+    &tabstop = nb           # Display width of \t character
+    &shiftwidth = nb        # Indents will have a width of 4.
+    &softtabstop = nb       # Sets the number of columns for a TAB.
+    set expandtab           # Expand TABs to spaces.
+enddef
 
 command Tabs :call TabMode(8)
 command Spaces :call SpaceMode(4)
@@ -207,18 +207,18 @@ if version >= 900
     autocmd VimResume * silent !echo -ne "\033]12;blue\007"
 endif
 
-function! MyOSCYankAndNormalYank(type, ...)
-    if a:0  " Invoked from Visual mode, use '< and '> marks.
-        silent exe "normal! `<" . a:type . "`>y"
-    elseif a:type == 'line'
+def MyOSCYankAndNormalYank(type: string, ...rest: list<number>): void
+    if len(rest) > 0  # Invoked from Visual mode, use '< and '> marks.
+        silent exe "normal! `<" .. type .. "`>y"
+    elseif type == 'line'
         silent exe "normal! '[V']y"
-    elseif a:type == 'block'
+    elseif type == 'block'
         silent exe "normal! `[\<C-V>`]y"
     else
         silent exe "normal! `[v`]y"
     endif
-    call OSCYank(getreg("0"))
-endfunction
+    legacy call OSCYank(getreg("0"))
+enddef
 
 if has('gui_running')
     set clipboard=unnamedplus
@@ -228,58 +228,26 @@ else
     vmap <silent> y :<C-U>call MyOSCYankAndNormalYank(visualmode(), 1)<CR>
 endif
 
-function! SuperList()
-    let bn = bufnr("%")
-    if !exists("s:super_list_enabled_{bn}")
-        let s:super_list_enabled_{bn} = 0
+def SuperList(): void
+    if !exists("g:super_list_enabled")
+        g:super_list_enabled = 0
     endif
-    if s:super_list_enabled_{bn}
+    if g:super_list_enabled
         setlocal listchars=tab:»~,extends:›,precedes:‹,nbsp:·,trail:·
         setlocal colorcolumn=80
         colorscheme molokai
-        let s:super_list_enabled_{bn} = 0
+        g:super_list_enabled = 0
     else
         colorscheme elflord
         setlocal colorcolumn=0
         setlocal listchars=tab:»~,extends:›,precedes:‹,nbsp:·,trail:·,space:\ ,eol:$
         hi SpecialKey ctermfg=cyan ctermbg=blue
         hi NonText ctermfg=cyan
-        let s:super_list_enabled_{bn} = 1
+        g:super_list_enabled = 1
     endif
-endfunction
+enddef
 autocmd BufReadPost authorized_keys :call SuperList()
 command SuperList call SuperList()
-
-function ToggleHex()
-  let l:modified=&mod
-  let l:oldreadonly=&readonly
-  let &readonly=0
-  let l:oldmodifiable=&modifiable
-  let &modifiable=1
-  if !exists("b:editHex") || !b:editHex
-    let b:oldft=&ft
-    let b:oldbin=&bin
-    setlocal binary
-    silent :e
-    let &ft="xxd"
-    let b:editHex=1
-    %!xxd
-  else
-    let &ft=b:oldft
-    if !b:oldbin
-      setlocal nobinary
-    endif
-    let b:editHex=0
-    %!xxd -r
-  endif
-  let &mod=l:modified
-  let &readonly=l:oldreadonly
-  let &modifiable=l:oldmodifiable
-endfunction
-nnoremap <C-H> :Hexmode<CR>
-inoremap <C-H> <Esc>:Hexmode<CR>
-vnoremap <C-H> :<C-U>Hexmode<CR>
-command -bar Hexmode call ToggleHex()
 
 set mouse=a
 
@@ -292,7 +260,7 @@ let s:filetype_to_extension = {
       \ 'rust': 'rs',
       \ }
 
-function! InsertTemplate()
+def InsertTemplate(): void
     let l:ext = (&filetype != '') ? get(s:filetype_to_extension, &filetype, &filetype) : &filetype
     let l:template_file = expand('~/.vim/templates/template.') . l:ext
     if !filereadable(l:template_file)
@@ -300,7 +268,7 @@ function! InsertTemplate()
         return
     endif
     execute '0read ' . l:template_file
-endfunction
+enddef
 
 nnoremap <Leader>t :call InsertTemplate()<CR>
 

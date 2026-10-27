@@ -759,37 +759,37 @@ nnoremap <C-l> :noh<CR><C-l>
 ** Switch tab settings
 Defines two functions to set groups of indentation related settings.  Note that
 vim functions are weird: it seems that I cannot access the value of an argument
-in a =set= command.  Instead, I have to do =let &<option>=a:<argument>=
+in a =set= command.  Instead, I have to do =&<option> = <argument>=
 according  to [[https://vi.stackexchange.com/a/11534/7936][this stack overflow post]] and that's just one of the reasons why I
 like Emacs LISP better than Vimscript.
 
 These functions are useful for example when browsing code that is indented
 using tabs 
 
-=TabMode= displays tabs as =a:nb= spaces with and leading spaces are marked using
+=TabMode= displays tabs as =nb= spaces with and leading spaces are marked using
 =listchars= disables =expandtab=.
 
 #+begin_src vimrc 
-function! TabMode(nb)
+def TabMode(nb: number): void
     setlocal listchars=tab:\ \ ,lead:·,trail:·,precedes:←,extends:→
-    let &tabstop=a:nb     " Display width of \t character
-    let &shiftwidth=a:nb  " Indents will have a width of 4.
-    let &softtabstop=a:nb " Sets the number of columns for a TAB.
-    set noexpandtab       " Don't expand tabs to spaces
-endfunction
+    &tabstop = nb         # Display width of \t character
+    &shiftwidth = nb      # Indents will have a width of 4.
+    &softtabstop = nb     # Sets the number of columns for a TAB.
+    set noexpandtab       # Don't expand tabs to spaces
+enddef
 #+end_src
 
 =SpaceMode= sets my preferred settings for indentation: tabs are expanded and
 leading tabs are displayed using =listchars=.
 
 #+begin_src vimrc 
-function! SpaceMode(nb)
+def SpaceMode(nb: number): void
     setlocal listchars=tab:»~,extends:›,precedes:‹,nbsp:·,trail:·
-    let &tabstop=a:nb       " Display width of \t character
-    let &shiftwidth=a:nb    " Indents will have a width of 4.
-    let &softtabstop=a:nb   " Sets the number of columns for a TAB.
-    set expandtab           " Expand TABs to spaces.
-endfunction
+    &tabstop = nb           # Display width of \t character
+    &shiftwidth = nb        # Indents will have a width of 4.
+    &softtabstop = nb       # Sets the number of columns for a TAB.
+    set expandtab           # Expand TABs to spaces.
+enddef
 #+end_src
 
 And we add two shortcut commands to call these functions more easily.  I chose
@@ -934,18 +934,18 @@ This function is meant to be used as described in
 [[https://vimdoc.sourceforge.net/htmldoc/map.html#:map-operator][mapping an operator]] section of the vim help.
 
 #+begin_src vimrc
-function! MyOSCYankAndNormalYank(type, ...)
-    if a:0  " Invoked from Visual mode, use '< and '> marks.
-        silent exe "normal! `<" . a:type . "`>y"
-    elseif a:type == 'line'
+def MyOSCYankAndNormalYank(type: string, ...rest: list<number>): void
+    if len(rest) > 0  # Invoked from Visual mode, use '< and '> marks.
+        silent exe "normal! `<" .. type .. "`>y"
+    elseif type == 'line'
         silent exe "normal! '[V']y"
-    elseif a:type == 'block'
+    elseif type == 'block'
         silent exe "normal! `[\<C-V>`]y"
     else
         silent exe "normal! `[v`]y"
     endif
-    call OSCYank(getreg("0"))
-endfunction
+    legacy call OSCYank(getreg("0"))
+enddef
 #+end_src
 
 The bindings below call this function.  Note that the underscore makes makes
@@ -976,64 +976,26 @@ To make the listchars pop even more, =SpecialKey= group is spaces and tabs
 and the =NonText= group is the newline character and maybe others.
 
 #+begin_src vimrc
-function! SuperList()
-    let bn = bufnr("%")
-    if !exists("s:super_list_enabled_{bn}")
-        let s:super_list_enabled_{bn} = 0
+def SuperList(): void
+    if !exists("g:super_list_enabled")
+        g:super_list_enabled = 0
     endif
-    if s:super_list_enabled_{bn}
+    if g:super_list_enabled
         setlocal listchars=tab:»~,extends:›,precedes:‹,nbsp:·,trail:·
         setlocal colorcolumn=80
         colorscheme molokai
-        let s:super_list_enabled_{bn} = 0
+        g:super_list_enabled = 0
     else
         colorscheme elflord
         setlocal colorcolumn=0
         setlocal listchars=tab:»~,extends:›,precedes:‹,nbsp:·,trail:·,space:\ ,eol:$
         hi SpecialKey ctermfg=cyan ctermbg=blue
         hi NonText ctermfg=cyan
-        let s:super_list_enabled_{bn} = 1
+        g:super_list_enabled = 1
     endif
-endfunction
+enddef
 autocmd BufReadPost authorized_keys :call SuperList()
 command SuperList call SuperList()
-#+end_src
-
-** Hexmode
-
-[[https://vim.fandom.com/wiki/Improved_hex_editing]]
-
-#+begin_src vimrc
-function ToggleHex()
-  let l:modified=&mod
-  let l:oldreadonly=&readonly
-  let &readonly=0
-  let l:oldmodifiable=&modifiable
-  let &modifiable=1
-  if !exists("b:editHex") || !b:editHex
-    let b:oldft=&ft
-    let b:oldbin=&bin
-    setlocal binary
-    silent :e
-    let &ft="xxd"
-    let b:editHex=1
-    %!xxd
-  else
-    let &ft=b:oldft
-    if !b:oldbin
-      setlocal nobinary
-    endif
-    let b:editHex=0
-    %!xxd -r
-  endif
-  let &mod=l:modified
-  let &readonly=l:oldreadonly
-  let &modifiable=l:oldmodifiable
-endfunction
-nnoremap <C-H> :Hexmode<CR>
-inoremap <C-H> <Esc>:Hexmode<CR>
-vnoremap <C-H> :<C-U>Hexmode<CR>
-command -bar Hexmode call ToggleHex()
 #+end_src
 
 ** Mouse mode
@@ -1066,7 +1028,7 @@ Read in =~/.vim/templates/template.${ext}= where =ext= is obtained from the
 filetype.  If there is no filetype, then the extension of the file is used.
 
 #+begin_src vimrc
-function! InsertTemplate()
+def InsertTemplate(): void
     let l:ext = (&filetype != '') ? get(s:filetype_to_extension, &filetype, &filetype) : &filetype
     let l:template_file = expand('~/.vim/templates/template.') . l:ext
     if !filereadable(l:template_file)
@@ -1074,7 +1036,7 @@ function! InsertTemplate()
         return
     endif
     execute '0read ' . l:template_file
-endfunction
+enddef
 #+end_src
 
 And we bind it to =<Leader>t=
@@ -1627,14 +1589,14 @@ the same on some systems and different on others.
 
 I tried some stuff to load YCM later since it seems to take a log of time
 #+begin_src vimrc :tangle no
-function! LoadYCM()
+def LoadYCM(): void
     if version >= 900
-        " Silent makes it not complain if the package doesn't exits in
-        " .vim/pack/*/opt/
+        # Silent makes it not complain if the package doesn't exits in
+        # .vim/pack/*/opt/
         silent! packadd YouCompleteMe
         nnoremap gd :YcmCompleter GoToDefinition<CR>
     endif
-endfunction
+enddef
 call LoadYCM()
 augroup DeferStartup
     au!

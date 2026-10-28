@@ -8,15 +8,16 @@
 This just puts a comment header in the generated vimrc file.
 
 #+begin_src vimrc
-" This file was generated from vimconfig.org by using org-babel-tangle.
-"
-"     emacs --batch \
-"           --eval "(setq org-src-preserve-indentation t)" \
-"           vimconfig.org \
-"           -f org-babel-tangle
-"
-" That file is 'tangled' to make this vimrc file which should be pointed to
-" by a link '~/.vimrc -> $this_file'
+vim9script
+# This file was generated from vimconfig.org by using org-babel-tangle.
+#
+#     emacs --batch \
+#           --eval "(setq org-src-preserve-indentation t)" \
+#           vimconfig.org \
+#           -f org-babel-tangle
+#
+# That file is 'tangled' to make this vimrc file which should be pointed to
+# by a link '~/.vimrc -> $this_file'
 #+end_src
 
 * Notes
@@ -58,7 +59,7 @@ hi ColorColumn ctermbg=245
 ** Be iMproved
 
 #+begin_src vimrc
-set nocompatible              " be iMproved, required
+set nocompatible              # be iMproved, required
 #+end_src
 
 ** Remember position in file
@@ -118,10 +119,10 @@ Allways use 4 spaces, if a file does contain real =\t= characters, display them
 4 spaces wide
 
 #+begin_src vimrc
-set tabstop=4       " Display width of \t character
-set shiftwidth=4    " Indents will have a width of 4.
-set softtabstop=4   " Sets the number of columns for a TAB.
-set expandtab       " Expand TABs to spaces.
+set tabstop=4       # Display width of \t character
+set shiftwidth=4    # Indents will have a width of 4.
+set softtabstop=4   # Sets the number of columns for a TAB.
+set expandtab       # Expand TABs to spaces.
 #+end_src
 
 We use listchars to show unwanted whitespace characters: tabs are shown as =»~=
@@ -221,8 +222,8 @@ set scrolloff=5
 syntax on
 set hlsearch
 set number
-set showcmd " Display incomplete commands at the right
-set backspace=indent,eol,start " Usual backspace behavior
+set showcmd # Display incomplete commands at the right
+set backspace=indent,eol,start # Usual backspace behavior
 set encoding=utf-8
 #+end_src
 
@@ -240,7 +241,7 @@ set shortmess-=S
 ** Leader key
 
 #+begin_src vimrc
-let mapleader = ' '
+g:mapleader = ' '
 #+end_src
 
 ** Allow hidden buffers
@@ -284,7 +285,7 @@ encounter a terminal that can't do but that has never happened, the only
 thing that has happened is a badly set =TERM= variable.
 
 #+begin_src vimrc
-set t_Co=256 " Apparently this has to be set before setting the color scheme
+set t_Co=256 # Apparently this has to be set before setting the color scheme
 #+end_src
 
 In order to experiment with not using color in my shell and editors, I have
@@ -295,7 +296,7 @@ explicitly set its color.
 
 #+begin_src vimrc :tangle no
 if $__editor_grayscale == ""
-    colorscheme molokai " Requires https://github.com/tomasr/molokai
+    colorscheme molokai # Requires https://github.com/tomasr/molokai
     packadd powerline-plugin
 else
     colorscheme true-monochrome
@@ -304,7 +305,7 @@ endif
 #+end_src
 
 #+begin_src vimrc :tangle vimrc
-colorscheme molokai " Requires https://github.com/tomasr/molokai
+colorscheme molokai # Requires https://github.com/tomasr/molokai
 packadd powerline-plugin
 #+end_src
 
@@ -338,12 +339,12 @@ Plugins :
 
 Org todo keywords
 #+begin_src vimrc
-let g:org_todo_keywords=['TODO', 'GTD-IN', 'GTD-ACTION', 'GTD-PROJECT', 'GTD-NEXT-ACTION', 'GTD-WAITING', 'GTD-SOMEDAY-MAYBE', 'FEEDBACK', 'VERIFY', '|', 'DONE', 'GTD-DONE', 'GTD-REFERENCE', 'GTD-DELEGATED']
+g:org_todo_keywords = ['TODO', 'GTD-IN', 'GTD-ACTION', 'GTD-PROJECT', 'GTD-NEXT-ACTION', 'GTD-WAITING', 'GTD-SOMEDAY-MAYBE', 'FEEDBACK', 'VERIFY', '|', 'DONE', 'GTD-DONE', 'GTD-REFERENCE', 'GTD-DELEGATED']
 #+end_src
 
 Path to elisp backend
 #+begin_src vimrc
-let g:org_export_emacs="/usr/bin/emacs"
+g:org_export_emacs = "/usr/bin/emacs"
 #+end_src
 
 *** CtrlP
@@ -359,7 +360,7 @@ the keybindings that are active inside the fuzzy finding buffer.
   I have to take =CR= out of the original binding.
 
 #+begin_src vimrc
-let g:ctrlp_prompt_mappings = {
+g:ctrlp_prompt_mappings = {
             \ 'PrtSelectMove("k")': ['<C-p>'],
             \ 'PrtSelectMove("j")': ['<C-n>'],
             \ 'PrtHistory(-1)':     ['<down>'],
@@ -379,7 +380,7 @@ trigger this plugin.  So I remap the key to =C-f=.  Since I only use =C-u=,
 finding.
 
 #+begin_src vimrc
-let g:ctrlp_map = '<C-f>'
+g:ctrlp_map = '<C-f>'
 #+end_src
 
 
@@ -388,8 +389,8 @@ let g:ctrlp_map = '<C-f>'
 Plugin: https://github.com/APZelos/blamer.nvim
 
 #+begin_src vimrc
-let g:blamer_enabled=0
-let g:blamer_show_in_insert_modes=0
+g:blamer_enabled = 0
+g:blamer_show_in_insert_modes = 0
 #+end_src
 
 Can be toggled on and off with =:BlamerToggle=.
@@ -399,7 +400,7 @@ off for now.
 *** Whitespace
 
 #+begin_src vimrc
-let g:show_spaces_that_precede_tabs=1
+g:show_spaces_that_precede_tabs = 1
 #+end_src
 
 ** Status line
@@ -471,10 +472,10 @@ what's very consistent?  The fact that I always press =l= after leaving
 insert mode!
 
 #+begin_src vimrc
-let CursorColumnI = 0 "the cursor column position in INSERT
-autocmd InsertEnter * let CursorColumnI = col('.')
-autocmd CursorMovedI * let CursorColumnI = col('.')
-autocmd InsertLeave * if col('.') != CursorColumnI | call cursor(0, col('.')+1) | endif
+var CursorColumnI = 0 # the cursor column position in INSERT
+autocmd InsertEnter * CursorColumnI = col('.')
+autocmd CursorMovedI * CursorColumnI = col('.')
+autocmd InsertLeave * if col('.') != CursorColumnI | cursor(0, col('.') + 1) | endif
 #+end_src
 
 Because of the nature of 'ESC' and the fact that terminals implement things
@@ -697,9 +698,9 @@ I'm tangling it commented so I can uncomment it quickly if I want to show
 someone this sillyness.
 
 #+begin_src vimrc
-" Funny thing to show '%' as '.' in Fortran files
-" autocmd FileType fortran set conceallevel=2
-" autocmd FileType fortran call matchadd('Conceal', '%', 10, -1, {'conceal': '.'})
+# Funny thing to show '%' as '.' in Fortran files
+# autocmd FileType fortran set conceallevel=2
+# autocmd FileType fortran call matchadd('Conceal', '%', 10, -1, {'conceal': '.'})
 #+end_src
 
 ** YouCompleteMe
@@ -707,11 +708,11 @@ someone this sillyness.
 Code completion engine for Vim.
 
 #+begin_src vimrc
-" Technically version > 8.1.2269 but I only encounter either vim 8.0 or vim 9+
-" so this is easier
-if version >= 900
-    " Silent makes it not complain if the package doesn't exits in
-    " .vim/pack/*/opt/
+# Technically version > 8.1.2269 but I only encounter either vim 8.0 or vim 9+
+# so this is easier
+if v:version >= 900
+    # Silent makes it not complain if the package doesn't exits in
+    # .vim/pack/*/opt/
     silent! packadd YouCompleteMe
     nnoremap gd :YcmCompleter GoToDefinition<CR>
 endif
@@ -722,8 +723,8 @@ else's code if I were to work on a project that came with a
 =.ycm_extra_conf.py=.  Therefore it is up to me to be careful with that.
 
 #+begin_src vimrc
-" Make sure to always check for a `.ycm_extra_conf.py` in new projects
-let g:ycm_confirm_extra_conf = 0
+# Make sure to always check for a `.ycm_extra_conf.py` in new projects
+g:ycm_confirm_extra_conf = 0
 #+end_src
 
 ** Command to justify text
@@ -740,7 +741,7 @@ it in commented.
 
 #+begin_src vimrc
 runtime macros/justify.vim
-" set formatoptions+=t
+# set formatoptions+=t
 #+end_src
 
 ** Unhighlight searches
@@ -831,12 +832,12 @@ insert mode, red box in replace mode, yellow box in other modes.  Note that this
 only works if the terminal emulator responds to these codes.
 
 #+begin_src vimrc
-let &t_SI = "\<Esc>]12;green\x7\<Esc>[6 q"
-let &t_SR = "\<ESC>]12;red\x7"
-let &t_EI = "\<Esc>]12;yellow\x7\<Esc>[2 q"
+&t_SI = "\<Esc>]12;green\x7\<Esc>[6 q"
+&t_SR = "\<ESC>]12;red\x7"
+&t_EI = "\<Esc>]12;yellow\x7\<Esc>[2 q"
 autocmd VimLeave * silent !echo -ne "\033]112\007"
 
-if version >= 900
+if v:version >= 900
     autocmd VimSuspend * silent !echo -ne "\033]112\007"
     autocmd VimResume * silent !echo -ne "\033]12;blue\007"
 endif
@@ -947,7 +948,7 @@ This function is meant to be used as described in
 [[https://vimdoc.sourceforge.net/htmldoc/map.html#:map-operator][mapping an operator]] section of the vim help.
 
 #+begin_src vimrc
-def MyOSCYankAndNormalYank(type: string, ...rest: list<number>): void
+def g:MyOSCYankAndNormalYank(type: string, ...rest: list<number>): void
     if len(rest) > 0  # Invoked from Visual mode, use '< and '> marks.
         silent exe "normal! `<" .. type .. "`>y"
     elseif type == 'line'
@@ -968,9 +969,9 @@ the operator operate on the current line.
 if has('gui_running')
     set clipboard=unnamedplus
 else
-    nmap <silent> y :set opfunc=MyOSCYankAndNormalYank<CR>g@
+    nmap <silent> y :set opfunc=g:MyOSCYankAndNormalYank<CR>g@
     nmap <silent> yy y_
-    vmap <silent> y :<C-U>call MyOSCYankAndNormalYank(visualmode(), 1)<CR>
+    vmap <silent> y :<C-U>call g:MyOSCYankAndNormalYank(visualmode(), 1)<CR>
 endif
 #+end_src
 
@@ -989,7 +990,7 @@ To make the listchars pop even more, =SpecialKey= group is spaces and tabs
 and the =NonText= group is the newline character and maybe others.
 
 #+begin_src vimrc
-def SuperList(): void
+def g:SuperList(): void
     if !exists("g:super_list_enabled")
         g:super_list_enabled = 0
     endif
@@ -1007,8 +1008,8 @@ def SuperList(): void
         g:super_list_enabled = 1
     endif
 enddef
-autocmd BufReadPost authorized_keys :call SuperList()
-command SuperList call SuperList()
+autocmd BufReadPost authorized_keys :call g:SuperList()
+command SuperList call g:SuperList()
 #+end_src
 
 ** Mouse mode
@@ -1027,7 +1028,7 @@ so I need the template to be =*.py=, not =*.python=.  This requires a mapping
 but since =get(dict, key, default)= we can just use the filetype itself if the
 key is not in the map.
 #+begin_src vimrc
-let s:filetype_to_extension = {
+g:filetype_to_extension = {
       \ 'cmake': 'cmake',
       \ 'fortran': 'f90',
       \ 'make': 'mk',
@@ -1041,21 +1042,21 @@ Read in =~/.vim/templates/template.${ext}= where =ext= is obtained from the
 filetype.  If there is no filetype, then the extension of the file is used.
 
 #+begin_src vimrc
-def InsertTemplate(): void
-    let l:ext = (&filetype != '') ? get(s:filetype_to_extension, &filetype, &filetype) : &filetype
-    let l:template_file = expand('~/.vim/templates/template.') . l:ext
-    if !filereadable(l:template_file)
-        echo 'No template file template.' . l:ext . ' in ~/.vim/templates/'
+def g:InsertTemplate(): void
+    var ext = (&filetype != '') ? get(g:filetype_to_extension, &filetype, &filetype) : &filetype
+    var template_file = expand('~/.vim/templates/template.') .. ext
+    if !filereadable(template_file)
+        echo 'No template file template.' .. ext .. ' in ~/.vim/templates/'
         return
     endif
-    execute '0read ' . l:template_file
+    execute ':0read ' .. template_file
 enddef
 #+end_src
 
 And we bind it to =<Leader>t=
 
 #+begin_src vimrc
-nnoremap <Leader>t :call InsertTemplate()<CR>
+nnoremap <Leader>t :call g:InsertTemplate()<CR>
 #+end_src
 
 
@@ -1543,7 +1544,7 @@ work always accessed over SSH without X Forwarding).  I changed stuff to make
 it work on one machine then it wouldn't work on the other and vice versa.
 
 Changing the =clipboard= setting would make a difference until I ended up
-using register 0 in the function for =MyOSCYankAndNormalYank()=.
+using register 0 in the function for =g:MyOSCYankAndNormalYank()=.
 
 I'm keeping the following sections but they are no longer relevant and none
 of their SRC blocks go into my vimrc.

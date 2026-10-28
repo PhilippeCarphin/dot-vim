@@ -1,14 +1,15 @@
-" This file was generated from vimconfig.org by using org-babel-tangle.
-"
-"     emacs --batch \
-"           --eval "(setq org-src-preserve-indentation t)" \
-"           vimconfig.org \
-"           -f org-babel-tangle
-"
-" That file is 'tangled' to make this vimrc file which should be pointed to
-" by a link '~/.vimrc -> $this_file'
+vim9script
+# This file was generated from vimconfig.org by using org-babel-tangle.
+#
+#     emacs --batch \
+#           --eval "(setq org-src-preserve-indentation t)" \
+#           vimconfig.org \
+#           -f org-babel-tangle
+#
+# That file is 'tangled' to make this vimrc file which should be pointed to
+# by a link '~/.vimrc -> $this_file'
 
-set nocompatible              " be iMproved, required
+set nocompatible              # be iMproved, required
 
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal!  g'\"" | endif
 
@@ -18,10 +19,10 @@ set autoindent
 
 filetype plugin indent on
 
-set tabstop=4       " Display width of \t character
-set shiftwidth=4    " Indents will have a width of 4.
-set softtabstop=4   " Sets the number of columns for a TAB.
-set expandtab       " Expand TABs to spaces.
+set tabstop=4       # Display width of \t character
+set shiftwidth=4    # Indents will have a width of 4.
+set softtabstop=4   # Sets the number of columns for a TAB.
+set expandtab       # Expand TABs to spaces.
 
 set listchars=tab:»~,extends:›,precedes:‹,nbsp:·,trail:·
 set list
@@ -47,30 +48,30 @@ set scrolloff=5
 syntax on
 set hlsearch
 set number
-set showcmd " Display incomplete commands at the right
-set backspace=indent,eol,start " Usual backspace behavior
+set showcmd # Display incomplete commands at the right
+set backspace=indent,eol,start # Usual backspace behavior
 set encoding=utf-8
 
 set shortmess-=S
 
-let mapleader = ' '
+g:mapleader = ' '
 
 set hidden
 
 set wildmode=longest:full
 
-set t_Co=256 " Apparently this has to be set before setting the color scheme
+set t_Co=256 # Apparently this has to be set before setting the color scheme
 
-colorscheme molokai " Requires https://github.com/tomasr/molokai
+colorscheme molokai # Requires https://github.com/tomasr/molokai
 packadd powerline-plugin
 
 autocmd FileType markdown setlocal foldexpr=NestedMarkdownFolds()
 
-let g:org_todo_keywords=['TODO', 'GTD-IN', 'GTD-ACTION', 'GTD-PROJECT', 'GTD-NEXT-ACTION', 'GTD-WAITING', 'GTD-SOMEDAY-MAYBE', 'FEEDBACK', 'VERIFY', '|', 'DONE', 'GTD-DONE', 'GTD-REFERENCE', 'GTD-DELEGATED']
+g:org_todo_keywords = ['TODO', 'GTD-IN', 'GTD-ACTION', 'GTD-PROJECT', 'GTD-NEXT-ACTION', 'GTD-WAITING', 'GTD-SOMEDAY-MAYBE', 'FEEDBACK', 'VERIFY', '|', 'DONE', 'GTD-DONE', 'GTD-REFERENCE', 'GTD-DELEGATED']
 
-let g:org_export_emacs="/usr/bin/emacs"
+g:org_export_emacs = "/usr/bin/emacs"
 
-let g:ctrlp_prompt_mappings = {
+g:ctrlp_prompt_mappings = {
             \ 'PrtSelectMove("k")': ['<C-p>'],
             \ 'PrtSelectMove("j")': ['<C-n>'],
             \ 'PrtHistory(-1)':     ['<down>'],
@@ -79,21 +80,21 @@ let g:ctrlp_prompt_mappings = {
             \ 'AcceptSelection("e")': [''],
             \ }
 
-let g:ctrlp_map = '<C-f>'
+g:ctrlp_map = '<C-f>'
 
-let g:blamer_enabled=0
-let g:blamer_show_in_insert_modes=0
+g:blamer_enabled = 0
+g:blamer_show_in_insert_modes = 0
 
-let g:show_spaces_that_precede_tabs=1
+g:show_spaces_that_precede_tabs = 1
 
 set laststatus=2
 
 inoremap jk <ESC>
 
-let CursorColumnI = 0 "the cursor column position in INSERT
-autocmd InsertEnter * let CursorColumnI = col('.')
-autocmd CursorMovedI * let CursorColumnI = col('.')
-autocmd InsertLeave * if col('.') != CursorColumnI | call cursor(0, col('.')+1) | endif
+var CursorColumnI = 0 # the cursor column position in INSERT
+autocmd InsertEnter * CursorColumnI = col('.')
+autocmd CursorMovedI * CursorColumnI = col('.')
+autocmd InsertLeave * if col('.') != CursorColumnI | cursor(0, col('.') + 1) | endif
 
 set timeoutlen=500 ttimeoutlen=50
 
@@ -148,24 +149,24 @@ nnoremap <Tab> za
 
 nnoremap <silent> xx :echoerr 'Pressing "x" more than once consecutively is a sign of weakness'<CR>
 
-" Funny thing to show '%' as '.' in Fortran files
-" autocmd FileType fortran set conceallevel=2
-" autocmd FileType fortran call matchadd('Conceal', '%', 10, -1, {'conceal': '.'})
+# Funny thing to show '%' as '.' in Fortran files
+# autocmd FileType fortran set conceallevel=2
+# autocmd FileType fortran call matchadd('Conceal', '%', 10, -1, {'conceal': '.'})
 
-" Technically version > 8.1.2269 but I only encounter either vim 8.0 or vim 9+
-" so this is easier
-if version >= 900
-    " Silent makes it not complain if the package doesn't exits in
-    " .vim/pack/*/opt/
+# Technically version > 8.1.2269 but I only encounter either vim 8.0 or vim 9+
+# so this is easier
+if v:version >= 900
+    # Silent makes it not complain if the package doesn't exits in
+    # .vim/pack/*/opt/
     silent! packadd YouCompleteMe
     nnoremap gd :YcmCompleter GoToDefinition<CR>
 endif
 
-" Make sure to always check for a `.ycm_extra_conf.py` in new projects
-let g:ycm_confirm_extra_conf = 0
+# Make sure to always check for a `.ycm_extra_conf.py` in new projects
+g:ycm_confirm_extra_conf = 0
 
 runtime macros/justify.vim
-" set formatoptions+=t
+# set formatoptions+=t
 
 nnoremap <leader>c :noh<CR>
 nnoremap <ESC><ESC> :noh<CR>
@@ -196,19 +197,19 @@ inoremap :wqa<CR> <ESC>:wqa<CR>
 
 nnoremap <Leader>gf :tabe <cfile><CR>
 
-let &t_SI = "\<Esc>]12;green\x7\<Esc>[6 q"
-let &t_SR = "\<ESC>]12;red\x7"
-let &t_EI = "\<Esc>]12;yellow\x7\<Esc>[2 q"
+&t_SI = "\<Esc>]12;green\x7\<Esc>[6 q"
+&t_SR = "\<ESC>]12;red\x7"
+&t_EI = "\<Esc>]12;yellow\x7\<Esc>[2 q"
 autocmd VimLeave * silent !echo -ne "\033]112\007"
 
-if version >= 900
+if v:version >= 900
     autocmd VimSuspend * silent !echo -ne "\033]112\007"
     autocmd VimResume * silent !echo -ne "\033]12;blue\007"
 endif
 
 autocmd VimEnter * silent !echo -e "\033[2 q\033]12;blue\007"
 
-def MyOSCYankAndNormalYank(type: string, ...rest: list<number>): void
+def g:MyOSCYankAndNormalYank(type: string, ...rest: list<number>): void
     if len(rest) > 0  # Invoked from Visual mode, use '< and '> marks.
         silent exe "normal! `<" .. type .. "`>y"
     elseif type == 'line'
@@ -224,12 +225,12 @@ enddef
 if has('gui_running')
     set clipboard=unnamedplus
 else
-    nmap <silent> y :set opfunc=MyOSCYankAndNormalYank<CR>g@
+    nmap <silent> y :set opfunc=g:MyOSCYankAndNormalYank<CR>g@
     nmap <silent> yy y_
-    vmap <silent> y :<C-U>call MyOSCYankAndNormalYank(visualmode(), 1)<CR>
+    vmap <silent> y :<C-U>call g:MyOSCYankAndNormalYank(visualmode(), 1)<CR>
 endif
 
-def SuperList(): void
+def g:SuperList(): void
     if !exists("g:super_list_enabled")
         g:super_list_enabled = 0
     endif
@@ -247,12 +248,12 @@ def SuperList(): void
         g:super_list_enabled = 1
     endif
 enddef
-autocmd BufReadPost authorized_keys :call SuperList()
-command SuperList call SuperList()
+autocmd BufReadPost authorized_keys :call g:SuperList()
+command SuperList call g:SuperList()
 
 set mouse=a
 
-let s:filetype_to_extension = {
+g:filetype_to_extension = {
       \ 'cmake': 'cmake',
       \ 'fortran': 'f90',
       \ 'make': 'mk',
@@ -261,17 +262,17 @@ let s:filetype_to_extension = {
       \ 'rust': 'rs',
       \ }
 
-def InsertTemplate(): void
-    let l:ext = (&filetype != '') ? get(s:filetype_to_extension, &filetype, &filetype) : &filetype
-    let l:template_file = expand('~/.vim/templates/template.') . l:ext
-    if !filereadable(l:template_file)
-        echo 'No template file template.' . l:ext . ' in ~/.vim/templates/'
+def g:InsertTemplate(): void
+    var ext = (&filetype != '') ? get(g:filetype_to_extension, &filetype, &filetype) : &filetype
+    var template_file = expand('~/.vim/templates/template.') .. ext
+    if !filereadable(template_file)
+        echo 'No template file template.' .. ext .. ' in ~/.vim/templates/'
         return
     endif
-    execute '0read ' . l:template_file
+    execute ':0read ' .. template_file
 enddef
 
-nnoremap <Leader>t :call InsertTemplate()<CR>
+nnoremap <Leader>t :call g:InsertTemplate()<CR>
 
 nnoremap <buffer> <Leader>ssb ggi#!/usr/bin/env -S bash -o errexit -o nounset -o errtrace -o pipefail -O inherit_errexit -O nullglob -O extglob<CR><BS><CR><ESC>
 nnoremap <buffer> <Leader>sb ggi#!/usr/bin/env bash<CR><BS><CR><ESC>

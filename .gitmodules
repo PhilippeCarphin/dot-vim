@@ -31,9 +31,6 @@
 [submodule "pack/vendor/start/true-monochrome"]
 	path = pack/vendor/start/true-monochrome
 	url = git@github.com:ryanpcmcquen/true-monochrome_vim.git
-[submodule "pack/vendor/opt/powerline-repo"]
-	path = pack/vendor/opt/powerline-repo
-	url = https://github.com/lokaltog/powerline
 [submodule "pack/vendor/start/ctrlp.vim"]
 	path = pack/vendor/start/ctrlp.vim
 	url = git@github.com:ctrlpvim/ctrlp.vim

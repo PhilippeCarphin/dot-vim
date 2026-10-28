@@ -68,8 +68,12 @@ set wildmode=longest:full
 
 set t_Co=256 # Apparently this has to be set before setting the color scheme
 
-colorscheme molokai # Requires https://github.com/tomasr/molokai
-packadd powerline-plugin
+if $__editor_grayscale == ""
+    colorscheme molokai # Requires https://github.com/tomasr/molokai
+else
+    colorscheme true-monochrome
+    highlight ColorColumn ctermbg=236
+endif
 
 autocmd FileType markdown setlocal foldexpr=NestedMarkdownFolds()
 

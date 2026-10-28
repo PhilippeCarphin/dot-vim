@@ -327,19 +327,13 @@ two environment variables which I set in my shell startup file
 colorscheme, the color of the =colorcolumn= is red, so in that case, I
 explicitly set its color.
 
-#+begin_src vimrc :tangle no
+#+begin_src vimrc
 if $__editor_grayscale == ""
     colorscheme molokai # Requires https://github.com/tomasr/molokai
-    packadd powerline-plugin
 else
     colorscheme true-monochrome
     highlight ColorColumn ctermbg=236
 endif
-#+end_src
-
-#+begin_src vimrc :tangle vimrc
-colorscheme molokai # Requires https://github.com/tomasr/molokai
-packadd powerline-plugin
 #+end_src
 
 *** Builtin themes
@@ -445,45 +439,17 @@ g:show_spaces_that_precede_tabs = 1
 set laststatus=2
 #+end_src
 
-*** New Powerline
-**** Install instructions
+*** About powerline
 
-These are the official instructions but this is not what I do.
+I used to use https://github.com/lokaltog/powerline but I found that it was
+adding about a second to my vim startup time probably because of the network
+filesystem at work.
 
-https://powerline.readthedocs.io/en/latest/installation/osx.html#python-package
+I decided to get rid of it and eventually learn how to configure the status line
+myself.
 
-**** Using powerline
-
-I use powerline with vim8's native plugin handling.
-
-I put a link pointing to =$repo/powerline/bindings/vim= inside the
-=~/.vim/pack/*/start=.
-
-Make sure =laststatus=2= makes it always displayed.
-
-**** Important note about macos
-
-Adding powerline made vim hang and fail to start on my mac.  I figured out that
-changing to a version of vim that has python3 support fixed my problem.
-
-I did
-#+begin_src shell
-brew install --cask macvim
-#+end_src
-and made sure that this version of vim is the one being used.
-
-*** Old powerline
-
-Just added the submodule https//github.com/lokaltog/vim-powerline.  No need
-to do anything else than make sure the =laststatus= is set to 2 (always).
-
-Edit: I removed it but I am leaving this section here.  The new powerline made
-my vim not start until I replaced it with macvim installed from homebrew.
-
-The lokaltog one however doesn't need anything like that.
-
-As far as I know, the problem only happens on mac and on the various linux
-computers I have tried, the new powerline has not been an issue.
+See https://stackoverflow.com/questions/5375240/a-more-useful-statusline-in-vim
+for ideas.
 
 ** Keys
 

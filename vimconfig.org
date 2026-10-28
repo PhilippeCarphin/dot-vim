@@ -1398,6 +1398,16 @@ into a file in some subdirectory of =/tmp/= name the file =masetro_something=
 The only reason I would have gvim open is because xflow opened it so this
 applies only to Maestro.
 
+** CMC SSM files
+
+This works with a modification to =share/vim/vim*/autoload/tar.vim= where we
+duplicate the block for =tar.gz= with =ssm= in the =tar#Extract()=.  This
+modified file is in this repo as =autoload/tar.vim=.
+
+#+begin_src vimrc :tangle filetype.vim
+    autocmd BufReadCmd         *.ssm       call tar#Browse(expand("<amatch>"))
+#+end_src
+
 ** fc tempfiles in BASH
 
 When using =fc= (fix command) or doing =C-x C-e= to edit a command, BASH

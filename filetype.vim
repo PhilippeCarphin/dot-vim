@@ -17,6 +17,8 @@ augroup filetypedetect
 
     autocmd BufRead,BufNewFile *.tsk,*.def,*/.suites/*/*.cfg,/tmp/phc001/*/maestro* set filetype=sh
 
+    autocmd BufReadCmd         *.ssm       call tar#Browse(expand("<amatch>"))
+
     autocmd BufRead,BufNewFile *bash-fc* set filetype=sh
 
     autocmd BufRead,BufNewFile *gitconfig* set filetype=gitconfig

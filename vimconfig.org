@@ -5,10 +5,43 @@
 
 * Header
 
+** Vim9script
+
+To make the file vim9script, this has to be the very first line (they say it
+has to be the first command but it can't come after comments so ...)
+#+begin_src vimrc
+vim9script
+#+end_src
+
+*** Highlighting vim9 comments as errors
+
+The '#' sign is one of the most common comment symbols and I frequently
+entered it by mistake in C code and other languages.  Most of the time, I
+noticed it immediately because of the syntax highlighting.
+
+However for vimscript, the syntax file acts like '#' is actually the comment
+symbol.  So I would frequently use it to comment lines while tinkering with
+my vimrc and since the syntax highlighting made it look like the line was
+truly commented, I would only find out when testing my changes.
+
+When looking at the syntax file, to figure out how to do the following:
+#+begin_src vimrc
+# Highlight comments in vimscript as errors
+# Unused now that this file is vim9script (note that the comment symbol is '#')
+# autocmd BufReadPost *.vim,vimrc,.vimrc syn match vimCommentError display "^ *#.*"
+# autocmd BufReadPost *.vim,vimrc,.vimrc hi def link vimCommentError Error
+#+end_src
+I found out that vim9script is the reason why the syntax file is like this.
+
+So I did the work to convert to vim9script for the sole reason that I wanted
+to be able to comment lines with '#' and never again in my life have to use
+that stupid '"' to comment out lines.
+
+*** This file is generated comment
+
 This just puts a comment header in the generated vimrc file.
 
 #+begin_src vimrc
-vim9script
 # This file was generated from vimconfig.org by using org-babel-tangle.
 #
 #     emacs --batch \
@@ -1521,21 +1554,6 @@ This was fixed in vim91 so my =after/syntax/sh.vim= is a copy of that file.
 
 
 * APPENDIX
-
-** Highlighting vim9 comments as errors
-
-How many times have I commented a line with a =#=, seen it highlighted as
-a legit comment only to be surprised by an error from my vimrc!  Oh my god
-why!!!!  Give me a break, can't you make it voluntary or something.
-
-This will at least highlight whole-line comments, not those appearing after
-a command.  This should prevent me from blowing my brains out until I adapt
-to vim9script.
-
-#+begin_src vimrc
-autocmd BufReadPost *.vim,vimrc,.vimrc syn match vimCommentError display "^ *#.*"
-autocmd BufReadPost *.vim,vimrc,.vimrc hi def link vimCommentError Error
-#+end_src
 
 ** Notes about the =clipboard= setting for OSCYank
 

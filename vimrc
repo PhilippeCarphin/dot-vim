@@ -1,4 +1,10 @@
 vim9script
+
+# Highlight comments in vimscript as errors
+# Unused now that this file is vim9script (note that the comment symbol is '#')
+# autocmd BufReadPost *.vim,vimrc,.vimrc syn match vimCommentError display "^ *#.*"
+# autocmd BufReadPost *.vim,vimrc,.vimrc hi def link vimCommentError Error
+
 # This file was generated from vimconfig.org by using org-babel-tangle.
 #
 #     emacs --batch \
@@ -276,6 +282,3 @@ nnoremap <Leader>t :call g:InsertTemplate()<CR>
 
 nnoremap <buffer> <Leader>ssb ggi#!/usr/bin/env -S bash -o errexit -o nounset -o errtrace -o pipefail -O inherit_errexit -O nullglob -O extglob<CR><BS><CR><ESC>
 nnoremap <buffer> <Leader>sb ggi#!/usr/bin/env bash<CR><BS><CR><ESC>
-
-autocmd BufReadPost *.vim,vimrc,.vimrc syn match vimCommentError display "^ *#.*"
-autocmd BufReadPost *.vim,vimrc,.vimrc hi def link vimCommentError Error

@@ -451,6 +451,23 @@ myself.
 See https://stackoverflow.com/questions/5375240/a-more-useful-statusline-in-vim
 for ideas.
 
+See =:help statusline= for how it works and the format elements.
+
+#+begin_src vimrc
+set statusline=%#SLFile#\ %<%f\ 
+set statusline+=%#SLModified#\ %m\ 
+set statusline+=%##%=
+set statusline+=%#SLEncoding#\ %{''.(&fenc!=''?&fenc:&enc).''}\ 
+set statusline+=%#SLPosition#\ %l/%L\ \(%p%%\)\ 
+set statusline+=%#SLFiletype#\ %y\ 
+
+hi SLFile ctermbg=52
+hi SLModified ctermbg=94
+hi SLFiletype ctermbg=19
+hi SLPosition ctermbg=30
+hi SLEncoding ctermbg=28
+#+end_src
+
 ** Keys
 
 *** Leaving insert mode

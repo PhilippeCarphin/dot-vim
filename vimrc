@@ -15,6 +15,11 @@ vim9script
 # That file is 'tangled' to make this vimrc file which should be pointed to
 # by a link '~/.vimrc -> $this_file'
 
+augroup AutoReload
+  autocmd!
+  autocmd BufWritePost $MYVIMRC source $MYVIMRC | popup_notification("Sourced $MYVIMRC", {time: 500, line: 10, col: 20})
+augroup END
+
 set nocompatible              # be iMproved, required
 
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal!  g'\"" | endif

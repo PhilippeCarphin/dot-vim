@@ -89,6 +89,24 @@ hi ColorColumn ctermbg=245
 |--------+--------+------------------+----------------------------|
 | =gwip= | Normal | Refill paragraph | Visual select then do =gq= |
 * Fundamental
+
+** Re-source on modification
+
+TODO: Make a function that (possibly through running a script) that re-tangles
+this file if the only modified tracked file is vimconfig.org and that way I
+could have the same thing as this for vimconfig.org: save vimconfig.org and
+right away, it re-tangles.
+
+Because =~/.vim= is a link the path of the file I have open may not match
+=$MYVIMRC= even though it is that file.
+
+#+begin_src vimrc
+augroup AutoReload
+  autocmd!
+  autocmd BufWritePost $MYVIMRC source $MYVIMRC | popup_notification("Sourced $MYVIMRC", {time: 500, line: 10, col: 20})
+augroup END
+#+end_src
+
 ** Be iMproved
 
 #+begin_src vimrc

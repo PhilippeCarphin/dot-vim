@@ -1610,6 +1610,15 @@ Linux, I'll have to see if this doesn't break anything.
 See [[https://vim.fandom.com/wiki/Accessing_the_system_clipboard][Vim Fandom Accessing the System Clipboard]].  It talks about "+" and "*" being
 the same on some systems and different on others.
 
+** Maestro stuff
+#+begin_src vimrc :tangle no
++    " autocmd BufRead */maestro_tid* set guifont=Monospace\ 12
++    " autocmd BufRead */maestro_tid* set lines=70 columns=120
++    " autocmd BufRead */maestro_tid* setlocal wrap
++    " autocmd BufRead */maestro_tid* setlocal scrolloff=0
++    " autocmd BufRead */maestro_tid* :$
++    " autocmd BufRead */maestro_tid* call timer_start(200, {-> execute('normal! zz')})
+#+end_src
 
 ** Extra
 

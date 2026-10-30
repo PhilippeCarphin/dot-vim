@@ -732,12 +732,15 @@ Code completion engine for Vim.
 #+begin_src vimrc
 # Technically version > 8.1.2269 but I only encounter either vim 8.0 or vim 9+
 # so this is easier
-if v:version >= 900
-    # Silent makes it not complain if the package doesn't exits in
-    # .vim/pack/*/opt/
-    silent! packadd YouCompleteMe
-    nnoremap gd :YcmCompleter GoToDefinition<CR>
-endif
+def g:LoadYcm(unused: number): void
+    if v:version >= 900
+        # Silent makes it not complain if the package doesn't exits in
+        # .vim/pack/*/opt/
+        silent! packadd YouCompleteMe
+        nnoremap gd :YcmCompleter GoToDefinition<CR>
+    endif
+enddef
+timer_start(500, g:LoadYcm)
 #+end_src
 
 Disable confirmation of loading =.ycm_extra_conf.py=.  This could run someone
@@ -1615,23 +1618,4 @@ the same on some systems and different on others.
 
 
 
-
-** Loading YCM later
-
-I tried some stuff to load YCM later since it seems to take a log of time
-#+begin_src vimrc :tangle no
-def LoadYCM(): void
-    if version >= 900
-        # Silent makes it not complain if the package doesn't exits in
-        # .vim/pack/*/opt/
-        silent! packadd YouCompleteMe
-        nnoremap gd :YcmCompleter GoToDefinition<CR>
-    endif
-enddef
-call LoadYCM()
-augroup DeferStartup
-    au!
-    autocmd VimEnter * call LoadYCM()
-augroup END
-#+end_src
 

@@ -170,12 +170,15 @@ nnoremap <silent> xx :echoerr 'Pressing "x" more than once consecutively is a si
 
 # Technically version > 8.1.2269 but I only encounter either vim 8.0 or vim 9+
 # so this is easier
-if v:version >= 900
-    # Silent makes it not complain if the package doesn't exits in
-    # .vim/pack/*/opt/
-    silent! packadd YouCompleteMe
-    nnoremap gd :YcmCompleter GoToDefinition<CR>
-endif
+def g:LoadYcm(unused: number): void
+    if v:version >= 900
+        # Silent makes it not complain if the package doesn't exits in
+        # .vim/pack/*/opt/
+        silent! packadd YouCompleteMe
+        nnoremap gd :YcmCompleter GoToDefinition<CR>
+    endif
+enddef
+timer_start(500, g:LoadYcm)
 
 # Make sure to always check for a `.ycm_extra_conf.py` in new projects
 g:ycm_confirm_extra_conf = 0

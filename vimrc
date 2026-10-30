@@ -104,19 +104,6 @@ g:show_spaces_that_precede_tabs = 1
 
 set laststatus=2
 
-set statusline=%#SLFile#\ %<%f\ 
-set statusline+=%#SLModified#\ %m\ 
-set statusline+=%##%=
-set statusline+=%#SLEncoding#\ %{''.(&fenc!=''?&fenc:&enc).''}\ 
-set statusline+=%#SLPosition#\ %l/%L\ \(%p%%\)\ 
-set statusline+=%#SLFiletype#\ %y\ 
-
-hi SLFile ctermbg=52
-hi SLModified ctermbg=94
-hi SLFiletype ctermbg=19
-hi SLPosition ctermbg=30
-hi SLEncoding ctermbg=28
-
 inoremap jk <ESC>
 
 var CursorColumnI = 0 # the cursor column position in INSERT

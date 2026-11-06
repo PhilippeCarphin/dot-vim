@@ -71,6 +71,8 @@ set hidden
 
 set wildmode=longest:full
 
+set foldmethod=syntax
+
 set t_Co=256 # Apparently this has to be set before setting the color scheme
 
 if $__editor_grayscale == ""

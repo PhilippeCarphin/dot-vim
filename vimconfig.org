@@ -326,6 +326,14 @@ Keeping =full= in there makes the =wildmenu= continue to pop up.
 set wildmode=longest:full
 #+end_src
 
+** Folding
+
+Default to indent folding
+
+#+begin_src vimrc
+set foldmethod=syntax
+#+end_src
+
 * Additional
 ** Color
 
@@ -1194,6 +1202,7 @@ let fortran_more_precise=1
 
 #+begin_src vimrc :tangle ftplugin/python.vim
 nnoremap <buffer> <Leader>sb ggi#!/usr/bin/env python3<CR><CR><ESC>
+set foldmehod=indent
 #+end_src
 
 ** BASH

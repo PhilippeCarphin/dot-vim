@@ -91,6 +91,10 @@ def g:SetStatusLineColors(dow: string): void
         g:SetStatusLineColors_Thu()
     elseif dow == "Fri"
         g:SetStatusLineColors_Fri()
+    elseif dow == "Sat"
+        g:SetStatusLineColors_Sat()
+    elseif dow == "Sun"
+        g:SetStatusLineColors_Sun()
     endif
 enddef
 

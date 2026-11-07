@@ -94,7 +94,7 @@ def g:SetStatusLineColors(dow: string): void
     set statusline=
     set statusline+=%#SL1#\ %<%f\ %M\ 
     set statusline+=%#SL2#\ %{Dow()}\ 
-    set statusline+=%#SL3#%=%{g:DiffStat()}%=
+    set statusline+=%#SL3#%=Vim\ Version\ %{v:version}%=
     set statusline+=%#SL4#\ %{''.(&fenc!=''?&fenc:&enc).''}\ 
     set statusline+=%#SL5#\ %l/%L\ \(%p%%\)\ 
     set statusline+=%#SL6#\ %y\ 

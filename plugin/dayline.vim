@@ -45,6 +45,24 @@ def g:SetStatusLineColors_Fri(): void
     hi SL6 ctermbg=226 ctermfg=0
 enddef
 
+def g:SetStatusLineColors_Sat(): void
+    hi SL1 ctermbg=051 ctermfg=0
+    hi SL2 ctermbg=081 ctermfg=0
+    hi SL3 ctermbg=111 ctermfg=0
+    hi SL4 ctermbg=141 ctermfg=0
+    hi SL5 ctermbg=171 ctermfg=0
+    hi SL6 ctermbg=201 ctermfg=0
+enddef
+
+def g:SetStatusLineColors_Sun(): void
+    hi SL1 ctermbg=201 ctermfg=0
+    hi SL2 ctermbg=165 ctermfg=0
+    hi SL3 ctermbg=129 ctermfg=0
+    hi SL4 ctermbg=093 ctermfg=7
+    hi SL5 ctermbg=057 ctermfg=7
+    hi SL6 ctermbg=021 ctermfg=7
+enddef
+
 def g:Dow(): string
     return strftime("%A", localtime())
 enddef

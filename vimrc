@@ -295,3 +295,24 @@ nnoremap <Leader>t :call g:InsertTemplate()<CR>
 
 nnoremap <buffer> <Leader>ssb ggi#!/usr/bin/env -S bash -o errexit -o nounset -o errtrace -o pipefail -O inherit_errexit -O nullglob -O extglob<CR><BS><CR><ESC>
 nnoremap <buffer> <Leader>sb ggi#!/usr/bin/env bash<CR><BS><CR><ESC>
+
+def MaestroListing(): void
+    if has('gui_running')
+        set guifont=Monospace\ 12
+        set lines=70 columns=120
+        highlight Cursor guibg=red
+        call timer_start(500, (_: any) => execute('highlight Cursor guibg=red'))
+    endif
+    :$
+    :AnsiEsc
+    call timer_start(500, (_: any) => execute("normal 3\<C-e>"))
+    popup_notification(
+        [
+            "Maestro listing",
+            "- Moving to end",
+            "- Activating AnsiEsc"
+        ]
+        , {time: 1500, line: 10, col: 20}
+    )
+enddef
+autocmd BufReadPost */maestro_tid* call MaestroListing()

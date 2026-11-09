@@ -1631,6 +1631,29 @@ the same on some systems and different on others.
 +    " autocmd BufRead */maestro_tid* call timer_start(200, {-> execute('normal! zz')})
 #+end_src
 
+#+begin_src vimrc
+def MaestroListing(): void
+    if has('gui_running')
+        set guifont=Monospace\ 12
+        set lines=70 columns=120
+        highlight Cursor guibg=red
+        call timer_start(500, (_: any) => execute('highlight Cursor guibg=red'))
+    endif
+    :$
+    :AnsiEsc
+    call timer_start(500, (_: any) => execute("normal 3\<C-e>"))
+    popup_notification(
+        [
+            "Maestro listing",
+            "- Moving to end",
+            "- Activating AnsiEsc"
+        ]
+        , {time: 1500, line: 10, col: 20}
+    )
+enddef
+autocmd BufReadPost */maestro_tid* call MaestroListing()
+#+end_src
+
 ** Extra
 
 +autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o

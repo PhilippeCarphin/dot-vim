@@ -1041,9 +1041,11 @@ def g:SuperList(): void
         g:super_list_enabled = 1
     endif
 enddef
-autocmd BufReadPost authorized_keys :call g:SuperList()
 command SuperList call g:SuperList()
 #+end_src
+
+Now that vim ships with a syntax file for authorized_keys, this is no longer
+necessary.  I'm leaving the function because why not still have it avilable.
 
 ** Mouse mode
 

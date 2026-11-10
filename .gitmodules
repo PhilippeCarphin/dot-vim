@@ -46,3 +46,6 @@
 [submodule "pack/vendor/start/blamer.nvim"]
 	path = pack/vendor/start/blamer.nvim
 	url = https://github.com/APZelos/blamer.nvim
+[submodule "pack/vendor/start/diffchar.vim"]
+	path = pack/vendor/start/diffchar.vim
+	url = git@github.com:rickhowe/diffchar.vim

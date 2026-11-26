@@ -24,8 +24,10 @@ augroup filetypedetect
     autocmd BufRead,BufNewFile *gitconfig* set filetype=gitconfig
 
     autocmd BufRead,BufNewFile *tmux.conf* set filetype=tmux
+
+    autocmd BufRead,BufNewFile *.iwt set filetype=iwatchtmux
+
     autocmd BufRead,BufNewFile */authorized_keys set filetype=sshauthorizedkeys
     autocmd BufRead,BufNewFile *.phil set filetype=phil
-
 
 augroup END

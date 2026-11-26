@@ -1470,6 +1470,22 @@ Note that =C-x C-e= also creates a file named =bash-fc.XXXXXX=.
     autocmd BufRead,BufNewFile *tmux.conf* set filetype=tmux
 #+end_src
 
+** Iwatch tmux script files
+
+#+begin_src vimrc :tangle filetype.vim
+    autocmd BufRead,BufNewFile *.iwt set filetype=iwatchtmux
+#+end_src
+
+** Working on syntax files
+
+For experimentation on syntax files
+
+#+begin_src vimrc :tangle filetype.vim
+    autocmd BufRead,BufNewFile */authorized_keys set filetype=sshauthorizedkeys
+    autocmd BufRead,BufNewFile *.phil set filetype=phil
+#+end_src
+
+
 ** Footer
 #+begin_src vimrc :tangle filetype.vim
 augroup END
